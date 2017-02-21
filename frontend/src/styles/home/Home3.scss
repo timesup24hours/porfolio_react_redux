@@ -1,0 +1,152 @@
+.Home3-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(48, 48, 48);
+  position: relative;
+  overflow: hidden;
+  z-index: 200;
+}
+
+// .Home3-left {
+//   width: 40%;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   position: absolute;
+//   height: 100vh;
+//   left: 10%;
+// }
+//
+// .Home3-left-img {
+//   position: fixed;
+//   top: 30%;
+//   width: 40%;
+//   height: 50%;
+//   max-width: 400px;
+//   img {
+//     width: 100%;
+//   }
+// }
+
+.Home3-left {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 10%;
+}
+
+.Home3-left-img {
+  background-image: url('../../public/images/home36.png');
+  // background-size: 28%;
+  // background-position: 22% 55%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
+  height: 100%;
+  // max-width: 400px;
+  max-width: 400px;
+}
+@media screen and (max-width: 1000px) {
+  .Home3-left-img{
+    background-size: 38%;
+    background-position: 22% 50%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .Home3-left-img{
+    background-size: 31%;
+    background-position: 21% 50%;
+  }
+}
+
+
+.Home3-right {
+  width: 40%;
+  right: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: absolute;
+}
+
+.Home3-right-holder {
+  width: 50%;
+  height: 23%;
+}
+
+.Home3-right-header {
+  color: white;
+  font-size: 40px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+.Home3-right-title {
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-weight: 100;
+  a {
+    color: white;
+  }
+}
+
+.Home3-right-phone {
+  color: white;
+}
+
+.Home3-right-text {
+  color: white;
+  font-size: 14px;
+  font-weight: 100;
+  word-wrap: break-word;
+  line-height: 1.4;
+  word-spacing: 2px;
+  // font-family: "Roboto Mono", monospace;
+}
+@media screen and (max-width: 800px) {
+  .Home3-right-holder {
+    height: 20%
+  }
+  .Home3-right-header {
+    font-size: 30px;
+  }
+  .Home3-right-title {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .Home3-container {
+    flex-direction: column;
+  }
+  .Home3-left {
+    width: 100%;
+    left: 0;
+    height: 50vh;
+  }
+  .Home3-left-img {
+    background-size: 70%;
+    background-position: 50% 15%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+  }
+  .Home3-right {
+    width: 100%;
+    top: 40%;
+    left: 0;
+    height: 50vh;
+
+  }
+}

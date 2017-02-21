@@ -1,0 +1,25 @@
+.LoginForm-container {
+  margin: 20% auto 0px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.LoginForm-error {
+  margin-bottom: 40px;
+  color: red;
+}
+
+.LoginForm-loginButton {
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-width: 800px) {
+  .LoginForm-container {
+    margin: 35% auto 0px;
+  }
+}

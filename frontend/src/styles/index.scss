@@ -1,0 +1,38 @@
+@import './nav/index.scss';
+@import './block/index.scss';
+@import './login/index.scss';
+@import './signup/index.scss';
+@import './notification/index.scss';
+@import './mask/index.scss';
+@import './home/index.scss';
+
+*, html, body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+}
+
+.hide {
+  display: none;
+}
+
+.loading {
+  background-color: rgba(0, 158, 212, .8);
+  height: 3px;
+  position: absolute;
+  box-shadow: 0 0 10px #29D, 0 0 5px #29D;
+  transition: all 200ms ease;
+}
+
+.App-container {
+  background-color: rgba(247, 247, 247, 0.8);
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}

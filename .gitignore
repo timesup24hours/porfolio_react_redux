@@ -1,0 +1,5 @@
+/backend/node_modules
+/fronted/node_modules
+
+/fronted/build
+/backend/config.js
