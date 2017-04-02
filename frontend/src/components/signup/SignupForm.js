@@ -5,12 +5,21 @@ import { signupRequestAction, signupSuccess, signupFail } from '../../store/acti
 import RaisedButton from 'material-ui/RaisedButton'
 import { asyncValidate } from './asyncValidate'
 import { validate } from './validate'
-import { renderTextField } from '../../utils'
 import Notification from '../notification/Notification'
 import axios from 'axios'
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
+import classnames from 'classnames';
 
 class SignupForm extends Component {
+  state = {
+    username: '',
+  }
+
+
+  handleOnChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
 
   signup = values => {
     this.props.signupRequestClick()
@@ -33,19 +42,36 @@ class SignupForm extends Component {
     })
   }
 
+  renderField = ({ input, name, label, type, meta: { asyncValidating, touched, error } }) => {
+    return <div className={classnames('SignupForm-input', 'input-field', { 'async-validating': asyncValidating })}>
+              <input
+                {...input}
+                type={type}
+                name={name}
+                placeholder={label}
+                className={classnames('validate', { 'invalid': touched && error })}
+              />
+              <label className="active"
+                htmlFor={name}>{label}</label>
+              {touched && error && <span className='SignupForm-input-error red-text'>{error}</span>}
+            </div>
+  }
+
+
   render() {
     const { handleSubmit, pristine, submitting, submitSucceeded, invalid } = this.props
+
     return (
       <div className='SignupForm-container'>
         <form onSubmit={handleSubmit(this.signup)} className='SignupForm-form' >
-          <div>
-            <Field name="username" component={renderTextField} label="Username"/>
+          <div className='row'>
+            <Field name="username" type="text" component={this.renderField} label="Username"/>
           </div>
-          <div>
-            <Field name="password" component={renderTextField} label="Password"/>
+          <div className='row'>
+            <Field name="password" component={this.renderField} label="Password"/>
           </div>
-          <div>
-            <Field name="passwordConfirm" component={renderTextField} label="Password Confirm"/>
+          <div className='row'>
+            <Field name="passwordConfirm" component={this.renderField} label="Password Confirmation"/>
           </div>
           <div className='SignupForm-loginButton'>
             <RaisedButton
@@ -62,28 +88,28 @@ class SignupForm extends Component {
 }
 
 SignupForm.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
 })
 
 const mapDispatchToProps = dispatch => ({
   signupRequestClick: () => dispatch(signupRequestAction()),
   signupSuccess: () => dispatch(signupSuccess()),
-  signupFail: () => dispatch(signupFail())
+  signupFail: () => dispatch(signupFail()),
 })
 
 SignupForm.propTypes = {
-  signupRequestClick: PropTypes.func.isRequired
+  signupRequestClick: PropTypes.func.isRequired,
 }
 
 SignupForm = reduxForm({
   form: 'SignupForm',  // a unique identifier for this form
   validate,
   asyncValidate,
-  asyncBlurFields: [ 'username' ]
+  asyncBlurFields: ['username'],
 })(SignupForm)
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupForm)

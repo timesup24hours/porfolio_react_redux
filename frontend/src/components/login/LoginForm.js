@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
+import classnames from 'classnames';
 
 import { loginErrorToMessage } from '../../utils'
 
@@ -10,27 +10,33 @@ import { loginRequestAction } from '../../store/actions/authActions'
 
 const validate = values => {
   const errors = {}
-  const requiredFields = [ 'username', 'password' ]
+  const requiredFields = ['username', 'password']
   requiredFields.forEach(field => {
-    if (!values[ field ]) {
-      errors[ field ] = 'Required'
+    if (!values[field]) {
+      errors[field] = 'Required'
     }
   })
   if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = 'Invalid email address'
   }
+
   return errors
 }
 
-const renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
-  <TextField hintText={label}
-    floatingLabelText={label}
-    errorText={touched && error}
-    {...input}
-    {...custom}
-  />
-)
-
+const renderField = ({ input, name, label, type, meta: { asyncValidating, touched, error } }) => {
+  return <div className={classnames('LoginForm-input', 'input-field', { 'async-validating': asyncValidating })}>
+            <input
+              {...input}
+              type={type}
+              name={name}
+              placeholder={label}
+              className={classnames('validate', { 'invalid': touched && error })}
+            />
+            <label className="active"
+              htmlFor={name}>{label}</label>
+            {touched && error && <span className='LoginForm-input-error red-text'>{error}</span>}
+          </div>
+}
 
 class LoginForm extends Component {
 
@@ -41,15 +47,16 @@ class LoginForm extends Component {
 
   componentWillUpdate(nextProps) {
     if(nextProps.auth.token)
-      this.context.router.push('/')
+      this.context.router.goBack()
   }
 
   login = (values) => {
-     this.props.loginRequestClick({
-       username: values.username,
-       password: values.password
-     })
-   }
+    this.props.loginRequestClick({
+      username: values.username,
+      password: values.password,
+    })
+  }
+
   render() {
     const { handleSubmit, pristine, submitting, touchOnChange, invalid, auth } = this.props
 
@@ -57,11 +64,11 @@ class LoginForm extends Component {
       <div className='LoginForm-container'>
         <form onSubmit={handleSubmit(this.login)}>
           {auth.error && !touchOnChange ? <div className='LoginForm-error'>{loginErrorToMessage(auth.error)}</div> : null}
-          <div>
-            <Field name="username" component={renderTextField} label="Username"/>
+          <div className='row'>
+            <Field name="username" type="text" component={renderField} label="Username"/>
           </div>
-          <div>
-            <Field name="password" component={renderTextField} label="Password"/>
+          <div className='row'>
+            <Field name="password" type="text" component={renderField} label="Password"/>
           </div>
           <div className='LoginForm-loginButton'>
             <RaisedButton label="Login"  type="submit" disabled={pristine || submitting || invalid} />
@@ -73,24 +80,24 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-  loginRequestClick: PropTypes.func.isRequired
+  loginRequestClick: PropTypes.func.isRequired,
 }
 
 LoginForm.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 }
 
 LoginForm = reduxForm({
   form: 'LoginForm',  // a unique identifier for this form
-  validate
+  validate,
 })(LoginForm)
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  loginRequestClick: params => dispatch(loginRequestAction(params))
+  loginRequestClick: params => dispatch(loginRequestAction(params)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

@@ -1,0 +1,14 @@
+.ShopByDepartment-container {
+
+}
+
+.ShopByDepartment-category-button {
+  background-color: white;
+  color: $blue;
+
+  &:hover {
+    background-color: $blue;
+    color: white;
+  }
+  margin-bottom: 2px;
+}

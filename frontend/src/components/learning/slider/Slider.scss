@@ -1,0 +1,44 @@
+.Slider-container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #120103;
+  color: #fff;
+  text-align: center;
+}
+
+.Slider-header {
+  background: #3E474F;
+  box-shadow: 0 .5em 1em #111;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  width: 100%;
+
+  label {
+    color: #788188;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 4.2em;
+    font-size: .667em;
+    font-weight: bold;
+    padding: 0 1em;
+    &:hover {
+      background: #2e353b;
+    }
+  }
+}
+
+.slide {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  padding: 8em 1em 0;
+  background-color: #120103;
+  background-position: 50% 50%;
+  background-size: cover;
+}

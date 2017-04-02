@@ -1,0 +1,4 @@
+exports[`test # Block 1`] = `
+<div
+  className="Block-container blur" />
+`;

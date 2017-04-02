@@ -1,0 +1,43 @@
+.AddProductForm-container {
+  padding-top: 150px;
+}
+.AddProductForm-category-selector-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+
+.AddProductForm-stock {
+  display: flex;
+  flex-direction: row;
+}
+
+.AddProductForm-image-preview {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+}
+
+.AddProductForm-upload-image-label {
+  border: 1px solid red;
+  height: 100px;
+  width: 100px;
+  cursor: pointer;
+  display: block;
+}
+
+.AddProductForm-input-container {
+  border: 1px solid red;
+}
+.AddProductForm-input-text {
+  appearance: none;
+  border: none;
+  outline-width: 0;
+  border-bottom: 1px solid blue;
+}
+
+// classNameContainer='AddProductForm-input-container'
+// classNameLabel=''
+// classNameInput='AddProductForm-input-text'
+// classNameError=''

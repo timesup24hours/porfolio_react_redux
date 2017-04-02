@@ -7,12 +7,13 @@ import cors from 'cors'
 import { logger } from '../util'
 import passportInit from '../auth/passport'
 import path from 'path'
+import express from 'express'
 
 export default (app) => {
-  console.log(path.join(__dirname, '../../../frontend/build'));
-  // app.use(express.static('public'))
+  app.use(express.static(path.join(__dirname, '../../public')))
   // setup logging
-  app.use(morgan('combined', {stream: logger.stream}))
+  if(process.env.NODE_ENV !== 'test')
+    app.use(morgan('combined', { stream: logger.stream }))
   // setup CORS
   app.use(cors())
   // add body parsing
@@ -21,8 +22,9 @@ export default (app) => {
   app.use(session({
       secret: authConfig.sessionSecret,
       saveUninitialized: false,
-      resave: false
+      resave: false,
   }))
+  // setup passport
   app.use(passport.initialize())
   app.use(passport.session())
   passportInit(passport)

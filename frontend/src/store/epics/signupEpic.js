@@ -1,4 +1,4 @@
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAIL } from '../actions/actionTypes'
 
 export const signupEpic = (action$, dispatch) => action$
@@ -16,7 +16,7 @@ export const signupEpic = (action$, dispatch) => action$
     .catch(error => Observable.of(
       {
         type: SIGNUP_FAIL,
-        payload: error
+        payload: error,
       }
     ))
 

@@ -1,0 +1,95 @@
+.AddProductForm-container {
+  padding-top: 150px;
+}
+.AddProductForm-category-selector-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+
+.AddProductForm-stock {
+  display: flex;
+  flex-direction: row;
+}
+
+.AddProductForm-image-preview {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+}
+
+.AddProductForm-upload-image-label {
+  border: 1px solid red;
+  height: 100px;
+  width: 100px;
+  cursor: pointer;
+  display: block;
+}
+
+.addProductForm-listDesc-group {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  align-items: stretch;
+  margin-top: 10px;
+}
+.addProductForm-listDesc-each {
+  margin-right: 40px;
+  position: relative;
+  width: 290px;
+}
+.addProductForm-listDesc-cancel {
+  background-color: white;
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px;
+  right: -26px;
+  i {
+    border-radius: 50%;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.AddProductForm-input-container {
+  border: 1px solid red;
+}
+.AddProductForm-input-text {
+  appearance: none;
+  border: none;
+  outline-width: 0;
+  border-bottom: 1px solid blue;
+}
+
+.AddProductForm-image-each {
+  position: relative;
+  margin-right: 20px;
+  width: 200px;
+  .AddProductForm-image-cancel {
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -10px;
+    right: -10px;
+    i {
+      border-radius: 50%;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .AddProductForm-image-text {
+    font-size: 14px;
+  }
+}

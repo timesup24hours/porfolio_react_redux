@@ -1,0 +1,25 @@
+.MessageForm-container {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  height: 10vh;
+  margin-top: 50px;
+}
+
+.MessageForm-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.MessageForm-buttonGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.MessageForm-cancel {
+  margin-left: 10px;
+}
+.MessageForm-submitButton {
+  margin-left: 10px;
+}

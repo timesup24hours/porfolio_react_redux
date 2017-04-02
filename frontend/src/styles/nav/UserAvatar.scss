@@ -1,0 +1,6 @@
+.UserAvatar-container {
+  @include center-text-in-the-circle;
+  cursor: pointer;
+  background-color: black;
+  user-select: none;
+}

@@ -40,6 +40,7 @@ export default (passport) => {
     new LocalStrategy({ usernameField: 'username', passwordField: 'password', passReqToCallback: true },
     async (req, username, password, done) => {
       let user = null
+
       try {
         user = await User.findOne({ 'local.username': username })
       } catch(e) {
@@ -54,15 +55,16 @@ export default (passport) => {
       const newUser = new User()
       newUser.local.username = username
       newUser.local.password = hash(password)
-
+      
       try {
         await newUser.save()
       } catch(e) {
-        done(e, false)
+        done(e, false, { error: 'fail to save' })
         return
       }
 
       newUser.local.password = undefined
+
       done(null, newUser)
       return
     }

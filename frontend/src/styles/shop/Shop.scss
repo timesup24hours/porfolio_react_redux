@@ -1,0 +1,13 @@
+.Shop-container {
+  margin-top: 50px;
+  @extend .flexCenter;
+
+  .Shop-product-holder {
+    margin: 30px;
+    padding: 30px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

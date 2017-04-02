@@ -18,6 +18,18 @@
   justify-content: center;
 }
 
+.LoginForm-input {
+  width: 300px;
+  position: relative;
+  .LoginForm-input-error {
+    font-size: 12px;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .LoginForm-container {
     margin: 35% auto 0px;

@@ -1,0 +1,18 @@
+.ProductDetailHeader-container {
+  padding: 4px 0px 0px 10px;
+  height: 100px;
+}
+.ProductDetailHeader-header {
+  margin: 8px;
+
+  .ProductDetailHeader-name {
+    font-size: 30px;
+    font-weight: 400;
+  }
+
+  .ProductDetailHeader-category {
+    font-size: 14px;
+    color: grey;
+    padding: 4px 6px;
+  }
+}

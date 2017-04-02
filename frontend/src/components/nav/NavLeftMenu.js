@@ -9,6 +9,8 @@ import { logoutAction } from '../../store/actions/authActions'
 import { browserHistory } from 'react-router'
 
 import DirectionsWalk from 'material-ui/svg-icons/maps/directions-walk'
+import Message from 'material-ui/svg-icons/communication/message'
+import Thumbup from 'material-ui/svg-icons/action/thumb-up'
 
 const NavLeftMenu = (props) => {
   const handleHideLeftMenu = () => {
@@ -19,6 +21,14 @@ const NavLeftMenu = (props) => {
   return(
     <div className={`NavLeftMenu-menu ${show}`} onClick={handleHideLeftMenu}>
       <ul className='NavLeftMenu-ul'>
+        <li className='NavLeftMenu-li' onClick={() => browserHistory.push('/comment')}>
+          <Message style={{ marginTop: '4px' }}/>
+          <div>Comment</div>
+        </li>
+        <li className='NavLeftMenu-li' onClick={() => browserHistory.push('/learning')}>
+          <Thumbup style={{ marginTop: '4px' }}/>
+          <div>Learning</div>
+        </li>
         { !props.auth.token
           ? [<li className='NavLeftMenu-li' key='NavLeftMenu-login' onClick={() => browserHistory.push('/login') }>
               <FingerPrint/>

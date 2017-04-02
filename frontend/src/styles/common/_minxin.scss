@@ -1,0 +1,106 @@
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin center-multiline-text-in-the-circle {
+  display: table-cell;
+  height: 200px;
+  width: 200px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%;
+  background: purple;
+  color: white;
+}
+
+@mixin center-text-in-the-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 34px;
+  text-align: center;
+  background: purple;
+  color: white;
+}
+
+@mixin box-shadow-one {
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px; // nice box shadow
+  border-radius: 2px;
+  background: #fff;
+}
+
+// triangle implementation
+@mixin face-up-triangle {
+  &::before { //  just another way triangle implementation (prefer)
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-top: 1px solid rgba(0,0,0,0.117647);
+    border-right: 0px solid transparent;
+    border-bottom: 0px solid transparent;
+    border-left: 1px solid rgba(0,0,0,0.117647);
+    // box-shadow: 1px 1px 0px 1px rgba(0,0,0,.3);
+    background-color: white;
+    border-radius: 1px;
+    content: '';
+    top: -8px;
+    left: 50px;
+    transform: rotate(45deg);
+    z-index: -1;
+  }
+}
+
+@mixin face-left-triangle {
+  &::before { //  just another way triangle implementation (prefer)
+    position: absolute;
+    display: block;
+    width: 14px;
+    height: 14px;
+    border-top: 0px solid transparent;
+    border-right: 0px solid transparent;
+    border-bottom: 1px solid rgba(0,0,0,0.117647);//transparent;
+    border-left: 1px solid rgba(0,0,0,0.117647);
+    // box-shadow: 1px 1px 0px 1px rgba(0,0,0,.3);
+    background-color: white;
+    border-radius: 1px;
+    content: '';
+    top: 8px;
+    left: -8px;
+    transform: rotate(45deg);
+    z-index: -1;
+  }
+}
+
+@mixin no-border-triangle {
+  &::before { // just another way triangle implementation
+    content: ' ';
+    position: absolute;
+    top: -10px;
+    left: 50px;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid rgba(0,0,0,.2);
+    border-left: 10px solid transparent;
+  }
+}
+// &::after {
+//   content: ' ';
+//   position: absolute;
+//   top: -9px;
+//   left: 50px;
+//   border-right: 10px solid transparent;
+//   border-bottom: 10px solid white;
+//   border-left: 10px solid transparent;
+// }
+
+@mixin normalize-a-tag {
+  color: black;
+  text-decoration: none;
+  &:visited, &:hover {
+    color: black;
+  }
+}

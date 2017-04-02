@@ -1,0 +1,5 @@
+.Profile-container {
+  margin-top: 50px;
+  @extend .flexCenter;
+  height: calc(100vh - 50px);
+}

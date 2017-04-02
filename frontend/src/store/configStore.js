@@ -23,7 +23,7 @@ const middlewares = composeEnhancers(
     // loadingBarMiddleware({
     //     promiseTypeSuffixes: ['REQUEST', 'SUCCESS', 'FAILURE'],
     //   })
-    )
+  ),
 )
 // create store
 const store = createStore(rootReducer, middlewares)

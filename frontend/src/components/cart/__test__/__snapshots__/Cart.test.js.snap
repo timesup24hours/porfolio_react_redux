@@ -1,0 +1,73 @@
+exports[`test # Cart should render nested component # Calculator 1`] = `
+<div
+  className="Cart-container">
+  <div
+    className="Cart-wrapper">
+    <div
+      className="Cart-order-holder">
+      <div
+        className="Cart-order-title">
+        Review Your Order:
+      </div>
+    </div>
+    <div
+      className="Cart-calculator">
+      <Calculator
+        cart={
+          Object {
+            "cart": Array [],
+            "currentProduct": Object {},
+            "error": false,
+            "errors": Object {},
+            "fail": false,
+            "pending": false,
+            "quantityOfCurrentProduct": 0,
+            "success": false,
+            "total": 0,
+            "totalQuantity": 0,
+          }
+        } />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test # Cart, should render <div>no item</div> 1`] = `
+<div
+  className="Cart-container">
+  <div
+    className="Cart-no-items">
+    No items
+  </div>
+</div>
+`;
+
+exports[`test # CartWrapper 1`] = `
+<Cart
+  cart={
+    Object {
+      "cart": Array [],
+      "currentProduct": Object {},
+      "error": false,
+      "errors": Object {},
+      "fail": false,
+      "pending": false,
+      "quantityOfCurrentProduct": 0,
+      "success": false,
+      "total": 0,
+      "totalQuantity": 0,
+    }
+  }
+  getCartRequest={[Function]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  totalQuantity={0} />
+`;

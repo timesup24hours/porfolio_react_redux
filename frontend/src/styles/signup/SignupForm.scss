@@ -17,6 +17,18 @@
   justify-content: center;
 }
 
+.SignupForm-input {
+  width: 300px;
+  position: relative;
+  .SignupForm-input-error {
+    font-size: 12px;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .SignupForm-container {
     margin: 25% auto 0px;

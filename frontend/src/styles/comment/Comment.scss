@@ -1,0 +1,27 @@
+.Comment-container {
+  height: 100%;
+  background-color: rgba(247, 247, 247, 0.8);
+}
+
+.Comment-noComment {
+  text-align: center;
+}
+
+
+.CommentAnimation-enter {
+  opacity: 0.01;
+}
+
+.CommentAnimation-enter.CommentAnimation-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.CommentAnimation-leave {
+  opacity: 1;
+}
+
+.CommentAnimation-leave.CommentAnimation-leave-active {
+  opacity: 0.01;
+  transition: opacity 800ms ease-in;
+}

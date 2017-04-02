@@ -1,17 +1,17 @@
-import { SIGNUP_REQUEST, SIGNUP_SUCCESS, SIGNUP_FAIL, LOGIN_REQUEST, LOGIN_OUT } from './actionTypes'
+import * as actionTypes from './actionTypes'
 import axios from 'axios'
 
 export const loginRequestAction = payload => ({
-  type: LOGIN_REQUEST,
-  payload
+  type: actionTypes.LOGIN_REQUEST,
+  payload,
 })
 
 export const logoutAction = () => ({
-  type: LOGIN_OUT
+  type: actionTypes.LOGIN_OUT,
 })
 
 export const signupRequestAction = () => ({
-  type: SIGNUP_REQUEST
+  type: actionTypes.SIGNUP_REQUEST,
 })
 
 export function isUserExistAction(data) {
@@ -21,11 +21,16 @@ export function isUserExistAction(data) {
 }
 
 export const signupSuccess = (payload) => ({
-  type: SIGNUP_SUCCESS,
-  payload
+  type: actionTypes.SIGNUP_SUCCESS,
+  payload,
 })
 
 export const signupFail = (payload) => ({
-  type: SIGNUP_FAIL,
-  payload
+  type: actionTypes.SIGNUP_FAIL,
+  payload,
+})
+
+export const userInfoChangeRequest = payload => ({
+  type: actionTypes.USER_INFO_CHANGE_REQUEST,
+  payload,
 })

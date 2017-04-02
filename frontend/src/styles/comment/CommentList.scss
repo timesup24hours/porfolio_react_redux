@@ -1,0 +1,114 @@
+.CommentList-container {
+  margin: 0px auto 0px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  width: 500px;
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+  position: relative;
+
+  &:hover {
+    // background-color: rgba(0, 0, 0, .1);
+    .CommentList-delete, .CommentList-edit {
+      opacity: 0.4;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
+.CommentList-user-holder {
+
+}
+
+.CommentList-user-group {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  align-items: center;
+}
+
+.CommentList-comment {
+  margin-right: 14px;
+  flex: 10;
+  div {
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .CommentList-edit-input {
+    margin-top: -14px;
+  }
+  .CommentList-comment-show {
+    // margin-top: 14px;
+  }
+}
+
+
+.CommentList-avatar {
+}
+
+.CommentList-username-time-group {
+  margin: 0 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80px
+}
+.CommentList-username {
+  font-weight: lighter;
+  font-size: 14px;
+
+}
+.CommentList-time {
+  font-size: 10px;
+  color: grey;
+}
+
+.CommentList-delete, .CommentList-edit {
+  cursor: pointer;
+  opacity: 0;
+}
+.CommentList-save, .CommentList-cancel {
+  cursor: pointer;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .CommentList-container {
+    width: auto;
+    padding: 10px 10px 4px;
+    flex-direction: column;
+  }
+  .CommentList-username-time-group {
+  }
+  .CommentList-time {
+    color: grey;
+  }
+  .CommentList-comment {
+    margin-left: 14px;
+    padding: 8px 8px;
+    width: auto;
+  }
+  .CommentList-avatar {
+  }
+  .CommentList-save {
+    position: absolute;
+    right: 40px;
+  }
+  .CommentList-edit {
+    position: absolute;
+    right: 40px;
+  }
+  .CommentList-delete {
+    position: absolute;
+    right: 10px;
+  }
+  .CommentList-cancel {
+    position: absolute;
+    right: 10px;
+  }
+}

@@ -1,5 +1,5 @@
 .Logo-container {
-  z-index: 2000;
+  z-index: 10001;
   position: fixed;
   top: 0;
   height: 50px;
@@ -15,7 +15,7 @@
   align-items: center;
   padding: 0 20px;
   transition: all 0.2s ease-in-out;
-  top: 2px;
+  top: 0px;
   z-index: 9999999;
 
   a {
@@ -30,10 +30,10 @@
 
 .Logo-name {
   position: absolute;
-  top: 5px;
+  top: 4.4px;
 }
 
 .Logo-portfolio {
   position: absolute;
-  top: 50px;
+  top: 48px;
 }

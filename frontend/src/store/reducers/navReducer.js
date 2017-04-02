@@ -18,7 +18,7 @@ const initialState = {
     open: false
   },
   scrollButton: {
-    show: true,
+    show: false,
   }
 }
 

@@ -1,0 +1,29 @@
+.ProductDetailAddCart-container {
+  min-width: 300px;
+  height: 100%;
+  padding: 10px 16px;
+}
+
+.ProductDetailAddCart-ship-to {
+  padding: 20px 0px;
+}
+
+.ProductDetailAddCart-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  span {
+    margin: 0 4px;
+    height: 100%;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+.ProductDetailAddCart-login {
+  margin-top: 10px;
+  button {
+    width: 100%;
+  }
+}
