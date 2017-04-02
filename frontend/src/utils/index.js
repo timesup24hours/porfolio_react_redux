@@ -1,6 +1,5 @@
 export { signRequest } from './signRequest.js'
 export { loginErrorToMessage, signupErrorToMessage, errorToMessage, shopByCategoryErrorToMessage } from './errorToMessage'
-export { renderTextField } from './renderTextField'
 export { scrollTo } from './scrollTo'
 export { setAuthorizationToken } from './setAuthorizationToken'
 export { isTheProductInTheCart } from './isTheProductInTheCart'

@@ -7,10 +7,6 @@ export const loginErrorToMessage = (error) => {
 }
 
 export const signupErrorToMessage = (error) => {
-  // if (error.xhr.response && error.xhr.response.error) {
-  //   return error.xhr.response.error
-  // }
-
   if (error.status === 500) {
     return 'Oops, something went wrong. Please, try again !'
   }

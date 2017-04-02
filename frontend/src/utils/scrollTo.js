@@ -39,7 +39,7 @@ export const scrollTo = (element, duration = 200, easing = 'linear', callback) =
     },
     easeInOutQuint(t) {
       return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t;
-    }
+    },
   };
 
   // Returns document.documentElement for Chrome and Safari
