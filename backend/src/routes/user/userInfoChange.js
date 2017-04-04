@@ -11,7 +11,7 @@ export default (app) => {
       res.status(401).send({ error: 'Need to be login!' })
       return
     }
-    
+
     const { nickname, email, street, city, state, zipcode, cellphone, homephone, workphone } = req.body
     let user = null
 

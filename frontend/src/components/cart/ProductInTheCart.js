@@ -42,6 +42,7 @@ export class ProductInTheCart extends Component {
         onTouchTap={this.handleClose}
       />,
       <FlatButton
+        id='ProductInTheCart-remove'
         label='Yes'
         primary={true}
         keyboardFocused={true}
@@ -65,10 +66,10 @@ export class ProductInTheCart extends Component {
 
             <div className='ProductInTheCart-div ProductInTheCart-info-quantity-section'>
               <div className='ProductInTheCart-info-quantity'><strong>Quantity:</strong> {this.props.product.quantity}</div>
-              <div className='ProductInTheCart-info-quantity-change' onClick={this.handleAddQuantity}>Add</div>
+              <div id='ProductInTheCart-add' className='ProductInTheCart-info-quantity-change' onClick={this.handleAddQuantity}>Add</div>
               {this.props.product.quantity === 1
                 ? null
-                : <div className='ProductInTheCart-info-quantity-change' onClick={this.handleSubtractQuantity}>Substract</div>
+                : <div id='ProductInTheCart-substract' className='ProductInTheCart-info-quantity-change' onClick={this.handleSubtractQuantity}>Substract</div>
               }{/*? <div className='ProductInTheCart-info-quantity-change' onClick={this.handleOpen}>remove</div>*/}
             </div>
             <div className='ProductInTheCart-info-seller text-flow'>Sold by : {soldBy || ''}</div>
@@ -77,6 +78,7 @@ export class ProductInTheCart extends Component {
 
         <div className='ProductInTheCart-right-session'>
           <button
+            id='ProductInTheCart-open-dialog'
             className='waves-effect waves-light btn pink'
             onClick={this.handleOpen} >
             Remove
@@ -84,6 +86,7 @@ export class ProductInTheCart extends Component {
         </div>
 
         <Dialog
+          id='ProductInTheCart-Dialog'
           title={this.props.totalQuantity === 1 ? 'Remove and Redirect Confirmation' : 'Remove Confirmation'}
           actions={actions}
           modal={false}

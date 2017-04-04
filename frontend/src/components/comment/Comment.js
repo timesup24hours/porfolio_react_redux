@@ -5,7 +5,12 @@ import { connect } from 'react-redux'
 import * as commentActions from '../../store/actions/commentActions'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
 
-class Comment extends Component {
+export class Comment extends Component {
+
+  static propType = {
+    auth: React.PropTypes.object,
+    comment: React.PropTypes.object
+  }
 
   componentDidMount() {
     this.props.commentGetAllRequest()
@@ -24,7 +29,7 @@ class Comment extends Component {
 
     return(
       <div className='Comment-container'>
-        <CommentForm/>
+        <CommentForm comment={this.props.comment} />
         {Comments.length > 0
           ? <ReactCSSTransitionGroup
               transitionName="CommentAnimation"

@@ -69,12 +69,21 @@ export const addProductEpic = action$ => action$
       {
         type: actionTypes.PRODUCT_ADD_PRODUCT_SUCCESS,
         payload: response,
-      }
+      },
+      {
+        type: actionTypes.SNACKBAR_OPEN,
+        payload: 'Product has been uploaded Successfully',
+      },
+
     ))
     .catch(error => Observable.of(
       {
         type: actionTypes.PRODUCT_ADD_PRODUCT_FAIL,
         payload: error,
-      }
+      },
+      {
+        type: actionTypes.SNACKBAR_OPEN,
+        payload: 'Fail to upload, some fields are required!',
+      },
     ))
   )

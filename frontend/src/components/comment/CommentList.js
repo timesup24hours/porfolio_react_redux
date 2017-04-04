@@ -13,7 +13,7 @@ import Snackbar from 'material-ui/Snackbar'
 import { snackbarClose } from '../../store/actions/snackbarActions'
 import UserAvatar from '../nav/UserAvatar'
 
-class CommentList extends Component {
+export class CommentList extends Component {
   state = {
     open: false,
     editorOpen: false,
@@ -49,7 +49,9 @@ class CommentList extends Component {
   }
 
   handleSave = () => {
-    this.props.commentEditRequest({ id: this.props.commentId, comment: this.state.comment })
+    if(this.state.comment !== this.props.comment) {
+      this.props.commentEditRequest({ id: this.props.commentId, comment: this.state.comment })
+    } 
     this.setState({ editorOpen: false  })
   }
 
@@ -91,6 +93,7 @@ class CommentList extends Component {
           { this.state.editorOpen
             ? <div className='CommentList-edit-input'>
                 <TextFieldGroupMaterialUI
+                  id='CommentList-edit-input'
                   name='comment'
                   value={this.state.comment}
                   type='text'
@@ -123,7 +126,7 @@ class CommentList extends Component {
             </div>
           : null}
         {loginUserId && loginUserId === user._id && !this.state.editorOpen
-          ? <div className='CommentList-edit' onTouchTap={this.openEditor} key='CommentList-edit'>
+          ? <div id='CommentList-edit' className='CommentList-edit' onTouchTap={this.openEditor} key='CommentList-edit'>
               <div><Edit/></div>
             </div>
           : null}

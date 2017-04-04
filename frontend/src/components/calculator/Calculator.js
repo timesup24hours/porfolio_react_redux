@@ -5,6 +5,7 @@ const Calculator = props => {
     <div className='Calculator-container'>
       <div className='Calculator-button'>
         <button
+          id='Calculator-button'
           className='waves-effect waves-light btn blue'
           onClick={() => console.log('Calculator.js place order implementation needed!')} >
           Place your order

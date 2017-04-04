@@ -13,6 +13,12 @@ import { connect } from 'react-redux'
 
 class App extends Component {
 
+  static propTypes = {
+    getCartRequest: React.PropTypes.func,
+    snackbarClose: React.PropTypes.func,
+    // UI: React.PropTypes.obj
+  }
+
   componentDidMount() {
     // this.props.getCategoryRequest()
     if(localStorage.getItem('user.data')) {
@@ -27,14 +33,15 @@ class App extends Component {
           updateTime={100}
           maxProgress={95}
           progressIncrease={10}
-          className='loading' />
+          className='loading'
+        />
         <Nav />
 
         <Logo />
         <Mask />
         <NavLeftMenu />
         <div className='App-children'>
-          {this.props.UI.mask.show ? <div className='App-mask'></div> : null}
+          {this.props.UI.mask.show ? <div className='App-mask' /> : null}
           {this.props.children}
           <Snackbar
             open={this.props.snackbar.open}

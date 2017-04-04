@@ -106,6 +106,16 @@ class AddProductForm extends Component {
     }
   }
 
+  isValid = () => {
+    const { errors, isValid } = validate(this.state)
+
+    if (!isValid) {
+      this.setState({ errors })
+    }
+
+    return isValid
+  }
+
   /*
    * set value of the select element to localStorage and reset the state
    */
@@ -266,7 +276,7 @@ class AddProductForm extends Component {
             classNameContainer='AddProductForm-input-container'
             classNameLabel=''
             classNameInput='AddProductForm-input-text'
-            classNameError=''
+            classNameError='wrong'
             label="Product name"
             name='name'
             value={this.state.name}

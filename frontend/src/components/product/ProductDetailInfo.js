@@ -7,7 +7,7 @@ const ProductDetailInfo = props => {
 
   if(listDesc && listDesc.length) {
     listDescDom = listDesc.map((l, i) => {
-      return <li key={i}><strong className='grey-text'>&bull;</strong>  {l.name}</li>
+      return <li key={i}><strong className='grey-text ProductDetailInfo-dot'>&bull;</strong>{l.name}</li>
     })
   }
 

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/store/actions/cartActions.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">src/store/actions</a> cartActions.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">54.55% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">9.09% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>11/11</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as actionTypes from './actionTypes'
+&nbsp;
+export const getCartRequest = payload =&gt; ({
+  type: actionTypes.CART_GET_REQUEST,
+  payload,
+})
+&nbsp;
+export const addCartRequest = <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  type: actionTypes.CART_ADD_REQUEST,
+  payload,
+})
+&nbsp;
+export const changeQuantityOfProductIntheCart = <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  type: actionTypes.CART_CHANGE_PRODUCT_QUANTITY_REQUEST,
+  payload,
+})
+&nbsp;
+export const subtractQuantityOfProductIntheCart = <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  type: actionTypes.CART_PRODUCT_QUANTITY_SUBTRACT_REQUEST,
+  payload,
+})
+&nbsp;
+export const removeProductFromCart = <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  type: actionTypes.CART_REMOVE_PRODUCT_FROM_CART_REQUEST,
+  payload,
+})
+&nbsp;
+export const increaseQuantityOfProductInTheCart = <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  type: actionTypes.CART_INCREASE_PRODUCT_QUANTITY_REQUEST,
+  payload,
+})
+&nbsp;
+export const setThrCurrentProductFromCart = <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  type: actionTypes.CART_SET_THE_CURRENT_PRODUCT,
+  payload,
+})
+&nbsp;
+export const clearThrCurrentProductFromCart = <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  type: actionTypes.CART_CLEAR_THE_CURRENT_PRODUCT,
+  payload,
+})
+&nbsp;
+export const setQuantityOfCurrentProduct = <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  type: actionTypes.CART_SET_QUANTITY_CURRENT_PRODUCT,
+  payload,
+})
+&nbsp;
+export const clearQuantityOfCurrentProduct = <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  type: actionTypes.CART_CLEAR_QUANTITY_CURRENT_PRODUCT,
+  payload,
+})
+&nbsp;
+export const clearCart = <span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+  type: actionTypes.CART_CLEAR_CART,
+})
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 02 2017 15:33:07 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

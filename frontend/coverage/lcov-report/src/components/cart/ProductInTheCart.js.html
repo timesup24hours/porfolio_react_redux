@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/cart/ProductInTheCart.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">src/components/cart</a> ProductInTheCart.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">62.5% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>10/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">62.5% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>5/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">54.55% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>6/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.14% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>8/14</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react'
+import { connect } from 'react-redux'
+// import Add from 'material-ui/svg-icons/content/add'
+// import Remove from 'material-ui/svg-icons/content/remove'
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import * as cartActions from '../../store/actions/cartActions'
+import { Link } from 'react-router'
+// import { sliceContent } from '../../utils'
+&nbsp;
+export class ProductInTheCart extends Component {
+  state = {
+    open: false,
+  }
+&nbsp;
+  handleOpen = () =&gt; {
+    this.setState({ open: true });
+  }
+&nbsp;
+  handleClose = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    this.setState({ open: false });</span>
+  }
+&nbsp;
+  handleAddQuantity = () =&gt; {
+    this.props.increaseQuantityOfProductInTheCart({ productId: this.props.product.product._id })
+  }
+&nbsp;
+  handleSubtractQuantity = () =&gt; {
+    this.props.subtractQuantityOfProductIntheCart({ productId: this.props.product.product._id })
+  }
+&nbsp;
+  handleConfirmRemoveItemFromCart = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    this.props.removeProductFromCart({ productId: this.props.product.product._id })</span>
+<span class="cstat-no" title="statement not covered" >    this.handleClose()</span>
+  }
+&nbsp;
+  render() {
+    const actions = [
+      &lt;FlatButton
+        label='No'
+        primary={true}
+        onTouchTap={this.handleClose}
+      /&gt;,
+      &lt;FlatButton
+        id='ProductInTheCart-remove'
+        label='Yes'
+        primary={true}
+        keyboardFocused={true}
+        onTouchTap={this.handleConfirmRemoveItemFromCart}
+      /&gt;,
+    ]
+    const { images, _id, name, price, soldBy  } = this.props.product.product
+    return (
+      &lt;div className='ProductInTheCart-container'&gt;
+&nbsp;
+        &lt;div className='ProductInTheCart-info-container'&gt;
+          &lt;div className='ProductInTheCart-img'&gt;
+            &lt;img src={`/images/products/${images[0]}`} alt=""/&gt;
+          &lt;/div&gt;
+          &lt;div className='ProductInTheCart-info-holder'&gt;
+            &lt;div className='ProductInTheCart-div ProductInTheCart-info-name'&gt;
+              &lt;Link to={`/product/${_id}`}&gt;{name}&lt;/Link&gt;
+            &lt;/div&gt;
+            &lt;div className='ProductInTheCart-div ProductInTheCart-info-price'&gt;${price}&lt;/div&gt;
+            {/*&lt;div className='ProductInTheCart-div ProductInTheCart-info-desc'&gt;{sliceContent(desc, 100)}&lt;/div&gt;*/}
+&nbsp;
+            &lt;div className='ProductInTheCart-div ProductInTheCart-info-quantity-section'&gt;
+              &lt;div className='ProductInTheCart-info-quantity'&gt;&lt;strong&gt;Quantity:&lt;/strong&gt; {this.props.product.quantity}&lt;/div&gt;
+              &lt;div id='ProductInTheCart-add' className='ProductInTheCart-info-quantity-change' onClick={this.handleAddQuantity}&gt;Add&lt;/div&gt;
+              {this.props.product.quantity === 1
+                ? null
+                : &lt;div id='ProductInTheCart-substract' className='ProductInTheCart-info-quantity-change' onClick={this.handleSubtractQuantity}&gt;Substract&lt;/div&gt;
+              }{/*? &lt;div className='ProductInTheCart-info-quantity-change' onClick={this.handleOpen}&gt;remove&lt;/div&gt;*/}
+            &lt;/div&gt;
+            &lt;div className='ProductInTheCart-info-seller text-flow'&gt;Sold by : {soldBy || <span class="branch-1 cbranch-no" title="branch not covered" >''}</span>&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+&nbsp;
+        &lt;div className='ProductInTheCart-right-session'&gt;
+          &lt;button
+            id='ProductInTheCart-open-dialog'
+            className='waves-effect waves-light btn pink'
+            onClick={this.handleOpen} &gt;
+            Remove
+          &lt;/button&gt;
+        &lt;/div&gt;
+&nbsp;
+        &lt;Dialog
+          id='ProductInTheCart-Dialog'
+          title={this.props.totalQuantity === 1 ? 'Remove and Redirect Confirmation' : <span class="branch-1 cbranch-no" title="branch not covered" >'Remove Confirmation'}</span>
+          actions={actions}
+          modal={false}
+          open={this.state.open}
+          onRequestClose={this.handleClose}
+        &gt;
+          {this.props.totalQuantity === 1
+            ? &lt;div&gt;Are you want to remove the last item from the cart, and Redirect to the Shop Page&lt;/div&gt;
+            : <span class="branch-1 cbranch-no" title="branch not covered" >&lt;div&gt;Are you want to remove this item from the cart?&lt;/div&gt;</span>
+          }
+        &lt;/Dialog&gt;
+&nbsp;
+      &lt;/div&gt;
+    )
+  }
+&nbsp;
+}
+const mapStateToProps = state =&gt; ({
+  totalQuantity: state.cart.totalQuantity,
+})
+&nbsp;
+const mapDispatchToProps = dispatch =&gt; ({
+  // changeQuantityOfProductIntheCart: payload =&gt; dispatch(cartActions.changeQuantityOfProductIntheCart(payload)),
+  subtractQuantityOfProductIntheCart: <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; <span class="cstat-no" title="statement not covered" >dispatch(cartActions.subtractQuantityOfProductIntheCart(payload)),</span>
+  increaseQuantityOfProductInTheCart: <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; <span class="cstat-no" title="statement not covered" >dispatch(cartActions.increaseQuantityOfProductInTheCart(payload)),</span>
+  removeProductFromCart: <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; <span class="cstat-no" title="statement not covered" >dispatch(cartActions.removeProductFromCart(payload)),</span>
+})
+&nbsp;
+export default connect(mapStateToProps, mapDispatchToProps)(ProductInTheCart)
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 02 2017 15:33:07 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

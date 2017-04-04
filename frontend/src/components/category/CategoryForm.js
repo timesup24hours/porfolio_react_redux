@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class CategoryForm extends Component {
+export class CategoryForm extends Component {
 
   render() {
     // const { categories, department, category, types } = this.props.menu

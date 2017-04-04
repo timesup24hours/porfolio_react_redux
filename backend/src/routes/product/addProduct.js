@@ -28,8 +28,7 @@ export default (app) => {
       return
     }
 
-    sanitizationProductBody(req.body).data
-    const validatedBody = validateAddProductBody(req.body)
+    const validatedBody = validateAddProductBody(sanitizationProductBody(req.body).data)
     if(!validatedBody.valid) {
       res.status(400).json({ error: 'invalided data' })
       // res.status(400).json({ error: 'invalided data', error: validatedBody.error })
@@ -82,14 +81,19 @@ const sanitizationProductBody = data => {
       listDesc: {
         type: 'array',
         splitWith: ',',
-        items: { type: 'string', rules: ['trim', 'capitalize'] },
+        items: {
+          type: 'object',
+          properties: {
+            name: { type: 'string' },
+          },
+        },
         optional: false,
       },
       price: { type: 'number', optional: false },
-      salePrice: { type: 'number', optional: true },
+      salePrice: { type: 'number', optional: true, def: 0 },
       onSale: { type: 'boolean', optional: false },
-      stock: { type: 'number', optional: true },
-      numberOfStock: { type: 'number', optional: true },
+      stock: { type: 'boolean', optional: true },
+      numberOfStock: { type: 'number', optional: true, def: 0 },
       size: { type: 'string', optional: true },
       department: { type: 'string', optional: false },
       category: { type: 'string', optional: false },
@@ -125,7 +129,7 @@ const validateAddProductBody = (data) => {
       },
       listDesc: {
           type: 'array',
-          minLength: 1,
+          minLength: 2,
           optional: false,
       },
       price: {
@@ -135,7 +139,6 @@ const validateAddProductBody = (data) => {
       },
       salePrice: {
           type: 'number',
-          gt: 0,
           optional: true,
       },
       onSale: {
@@ -143,7 +146,7 @@ const validateAddProductBody = (data) => {
           optional: false,
       },
       stock: {
-          type: 'number',
+          type: 'boolean',
           optional: true,
       },
       numberOfStock: {

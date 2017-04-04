@@ -9,7 +9,7 @@ import Chip from 'material-ui/Chip'
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
 import { errorToMessage } from '../../utils'
 
-const CommentForm = props => {
+export const CommentForm = props => {
   const { comment } = props
 
   const onChangeField = e => {
@@ -77,7 +77,7 @@ const CommentForm = props => {
 }
 
 const mapStateToProps = state => ({
-  comment: state.comment,
+  // comment: state.comment,
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/components/gallery/Gallery(copy).js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">src/components/gallery</a> Gallery(copy).js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/32</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/11</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/29</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react'<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span>
+import Spinner from '../spinner/Spinner'
+import { connect } from 'react-redux'
+import * as galleryActions from '../../store/actions/galleryActions'<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span>
+const Gallery = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >pr</span>ops =&gt; {</span>
+&nbsp;
+  const handleAmplify = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >e </span>=&gt; {</span>
+    let el = <span class="cstat-no" title="statement not covered" >document.getElementById('Gallery-amplify-img')</span>
+<span class="cstat-no" title="statement not covered" >    el.style.transform = 'scale(1.8)'</span>
+    // console.log('getBoundingClientRect().width ', el.getBoundingClientRect().width); // get the width of the element
+    // console.log('getBoundingClientRect().height ', el.getBoundingClientRect().height); // get the height of the element
+    // console.log('getBoundingClientRect().top ', el.getBoundingClientRect().top); // get the distance of top from relative parent
+    // console.log('getBoundingClientRect().top ', el.getBoundingClientRect().left); // get the distance of left from relative parent
+    // console.log('e.pageY ', e.pageY); // get the mouse location of Y from the top of inside the browser
+    // console.log('e.pageX ', e.pageX); // get the mouse location of X from the top of inside the browser
+<span class="cstat-no" title="statement not covered" >    el.style.transformOrigin =</span>
+    ((e.clientX - el.getBoundingClientRect().left) / el.getBoundingClientRect().width) * 100 + '% ' +
+    ((e.clientY - el.getBoundingClientRect().top) / el.getBoundingClientRect().height) * 100 + '%'
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if(props.images) {</span>
+    const thumbnails = <span class="cstat-no" title="statement not covered" >props.images.map(<span class="fstat-no" title="function not covered" >(i</span>mg, i) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      return (&lt;div key={i} className={`Gallery-thumbnail ${props.gallery.currentImageIndex === i ? 'active' : ''}`}</span>
+                onCli<span class="fstat-no" title="function not covered" >ck</span>={()<span class="cstat-no" title="statement not covered" > =&gt; props.setCurrentImage</span>(i)}
+                onMouseOv<span class="fstat-no" title="function not covered" >er</span>={()<span class="cstat-no" title="statement not covered" > =&gt; props.setTempPreviewImageIndex</span>(i)}
+                onMouseO<span class="fstat-no" title="function not covered" >ut</span>={()<span class="cstat-no" title="statement not covered" > =&gt; props.clearTempPreviewImageInde</span>x()}&gt;
+                &lt;img src={`/images/products/${img}`} alt=''/&gt;
+              &lt;/div&gt;)
+    })
+    const previewImage = <span class="cstat-no" title="statement not covered" >props.images.filter(<span class="fstat-no" title="function not covered" >(i</span>mg, i) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      return props.gallery.tempPreviewImageIndex !== undefined</span>
+              ? props.gallery.tempPreviewImageIndex === i
+              : props.gallery.currentImageIndex === i
+    })
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;div className='Gallery-container'&gt;
+        &lt;div className='Gallery-thumbnail-holder'&gt;{thumbnails}&lt;/div&gt;
+        &lt;div className='Gallery-preview-image' onClick={() =&gt; props.showAmplify()}&gt;<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ></span></span>
+          &lt;img src={`/images/products/${previewImage}`} alt=""/&gt;
+        &lt;/div&gt;
+<span class="branch-0 cbranch-no" title="branch not covered" >        {props.gallery.amplifyShow</span> &amp;&amp;
+          &lt;div id='Gallery-amplify'
+            className='Gallery-amplify'
+            onMouseMove={<span class="fstat-no" title="function not covered" >e </span>=&gt; <span class="cstat-no" title="statement not covered" >handleAmplify(e)}</span>
+            onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >props.hideAmplify()}</span>&gt;
+            &lt;img id='Gallery-amplify-img' src={`/images/products/${previewImage}`} alt=""/&gt;
+          &lt;/div&gt;}
+      &lt;/div&gt;
+    )
+  } else {
+<span class="cstat-no" title="statement not covered" >    return &lt;Spinner /&gt;</span>
+  }
+}
+&nbsp;
+const mapStateToProps = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >st</span>ate =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
+  gallery: state.gallery,
+})
+const mapDispatchToProps = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >di</span>spatch =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
+  setCurrentImage: <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; <span class="cstat-no" title="statement not covered" >dispatch(galleryActions.setCurrentImage(payload)),</span>
+  clearCurrentImage: <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >dispatch(galleryActions.clearCurrentImage()),</span>
+  showAmplify: <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >dispatch(galleryActions.showAmplify()),</span>
+  hideAmplify: <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >dispatch(galleryActions.hideAmplify()),</span>
+  setTempPreviewImageIndex: <span class="fstat-no" title="function not covered" >pa</span>yload =&gt; <span class="cstat-no" title="statement not covered" >dispatch(galleryActions.setTempPreviewImageIndex(payload)),</span>
+  clearTempPreviewImageIndex: <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >dispatch(galleryActions.clearTempPreviewImageIndex()),</span>
+&nbsp;
+})
+&nbsp;
+<span class="cstat-no" title="statement not covered" >Gallery.propTypes = {</span>
+  images: React.PropTypes.arrayOf(React.PropTypes.string),
+}
+&nbsp;
+export default connect(mapStateToProps, mapDispatchToProps)(Gallery)
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Apr 02 2017 15:33:07 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

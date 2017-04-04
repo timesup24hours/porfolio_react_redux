@@ -1,7 +1,7 @@
 import React from 'react'
 
 const TextFieldGroup = ({ id, name, value, label, cols, rows,
-  error, type, onChange, checkUserExists, classNameContainer,
+  error, type, onChange, onBlur, classNameContainer,
   classNameLabel, classNameInput, classNameError, }) => {
   const classNameDiv = error ? classNameError + classNameContainer : classNameContainer
   return (
@@ -10,7 +10,7 @@ const TextFieldGroup = ({ id, name, value, label, cols, rows,
       <input
         onChange={onChange}
         id={id}
-        onBlur={checkUserExists}
+        onblur={(e) => console.log('123')}
         value={value}
         type={type}
         name={name}
@@ -29,7 +29,7 @@ TextFieldGroup.propTypes = {
   error: React.PropTypes.string,
   type: React.PropTypes.string,
   onChange: React.PropTypes.func,
-  checkUserExists: React.PropTypes.func,
+  onBlur: React.PropTypes.func,
   cols: React.PropTypes.string,
   rows: React.PropTypes.string,
 }

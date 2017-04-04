@@ -14,8 +14,8 @@ export default (passport) => {
   passport.use('local-jwt', new JwtStrategy(jwtOpts, async (payload, done) => {
     let user = null
     try {
-      user = await User.findById(payload._id)
-      // user = await User.findById(payload._doc._id)
+      // user = await User.findById(payload._id)
+      user = await User.findById(payload._doc._id)
     } catch(e) {
       done(e)
       return

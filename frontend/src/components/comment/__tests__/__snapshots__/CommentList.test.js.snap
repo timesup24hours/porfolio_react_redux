@@ -1,0 +1,246 @@
+exports[`test # CommentList itself 1`] = `
+<div
+  className="CommentList-container">
+  <div
+    className="CommentList-user-holder">
+    <div
+      className="CommentList-user-group">
+      <div
+        className="CommentList-avatar">
+        <UserAvatar
+          user={
+            Object {
+              "_id": "123",
+              "local": Object {
+                "nickname": "123",
+                "username": "123",
+              },
+            }
+          } />
+      </div>
+      <div
+        className="CommentList-username-time-group">
+        <div
+          className="CommentList-username">
+          123
+        </div>
+        <div
+          className="CommentList-time">
+          3 years ago
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="CommentList-comment">
+    <div
+      className="CommentList-comment-show" />
+  </div>
+  <Dialog
+    actions={
+      Array [
+        <FlatButton
+          disabled={false}
+          label="Cancel"
+          labelPosition="after"
+          labelStyle={Object {}}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          onTouchTap={[Function]}
+          primary={true}
+          secondary={false} />,
+        <FlatButton
+          disabled={false}
+          keyboardFocused={true}
+          label="Delete"
+          labelPosition="after"
+          labelStyle={Object {}}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          onTouchTap={[Function]}
+          primary={true}
+          secondary={false} />,
+      ]
+    }
+    autoDetectWindowHeight={true}
+    autoScrollBodyContent={false}
+    modal={false}
+    onRequestClose={[Function]}
+    open={false}
+    repositionOnUpdate={true}
+    title="Delete Confirm">
+    This comment would be deleted permanently.
+  </Dialog>
+  <div
+    className="CommentList-edit"
+    id="CommentList-edit"
+    onTouchTap={[Function]}>
+    <div>
+      <EditorBorderColor />
+    </div>
+  </div>
+  <div
+    className="CommentList-delete"
+    onTouchTap={[Function]}>
+    <div>
+      <ActionDeleteForever />
+    </div>
+  </div>
+  <Snackbar
+    autoHideDuration={5000}
+    message="13"
+    onRequestClose={[Function]}
+    open={true} />
+</div>
+`;
+
+exports[`test # CommentList with dispatch 1`] = `
+<div
+  className="CommentList-container">
+  <div
+    className="CommentList-user-holder">
+    <div
+      className="CommentList-user-group">
+      <div
+        className="CommentList-avatar">
+        <UserAvatar
+          user={
+            Object {
+              "_id": "123",
+              "local": Object {
+                "nickname": "123",
+                "username": "123",
+              },
+            }
+          } />
+      </div>
+      <div
+        className="CommentList-username-time-group">
+        <div
+          className="CommentList-username">
+          123
+        </div>
+        <div
+          className="CommentList-time">
+          3 years ago
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="CommentList-comment">
+    <div
+      className="CommentList-comment-show" />
+  </div>
+  <Dialog
+    actions={
+      Array [
+        <FlatButton
+          disabled={false}
+          label="Cancel"
+          labelPosition="after"
+          labelStyle={Object {}}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          onTouchTap={[Function]}
+          primary={true}
+          secondary={false} />,
+        <FlatButton
+          disabled={false}
+          keyboardFocused={true}
+          label="Delete"
+          labelPosition="after"
+          labelStyle={Object {}}
+          onKeyboardFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onTouchStart={[Function]}
+          onTouchTap={[Function]}
+          primary={true}
+          secondary={false} />,
+      ]
+    }
+    autoDetectWindowHeight={true}
+    autoScrollBodyContent={false}
+    modal={false}
+    onRequestClose={[Function]}
+    open={false}
+    repositionOnUpdate={true}
+    title="Delete Confirm">
+    This comment would be deleted permanently.
+  </Dialog>
+  <div
+    className="CommentList-edit"
+    id="CommentList-edit"
+    onTouchTap={[Function]}>
+    <div>
+      <EditorBorderColor />
+    </div>
+  </div>
+  <div
+    className="CommentList-delete"
+    onTouchTap={[Function]}>
+    <div>
+      <ActionDeleteForever />
+    </div>
+  </div>
+  <Snackbar
+    autoHideDuration={5000}
+    message="13"
+    onRequestClose={[Function]}
+    open={true} />
+</div>
+`;
+
+exports[`test # CommentListWrapper 1`] = `
+<CommentList
+  auth={
+    Object {
+      "user": Object {
+        "_id": "123",
+        "local": Object {
+          "nickname": "123",
+          "username": "123",
+        },
+      },
+    }
+  }
+  comment="testComment"
+  commentDeleteRequest={[Function]}
+  commentEditRequest={[Function]}
+  commentId="comentId"
+  createdAt="2014-04-03T01:40:41.448Z"
+  loginUserId="123"
+  snackbar={
+    Object {
+      "message": "13",
+      "open": true,
+    }
+  }
+  snackbarClose={[Function]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  user={
+    Object {
+      "_id": "123",
+      "local": Object {
+        "nickname": "123",
+        "username": "123",
+      },
+    }
+  } />
+`;

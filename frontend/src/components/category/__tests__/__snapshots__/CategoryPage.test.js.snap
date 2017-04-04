@@ -1,0 +1,31 @@
+exports[`test # CategoryPage 1`] = `
+<div
+  className="CategoryPage-container"
+  id="CategoryPage-container">
+  <CategoryForm
+    menu={
+      Object {
+        "pending": false,
+      }
+    } />
+</div>
+`;
+
+exports[`test # CategoryPageWrapper 1`] = `
+<Component
+  menu={
+    Object {
+      "pending": false,
+    }
+  }
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  } />
+`;

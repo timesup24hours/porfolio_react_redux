@@ -1,0 +1,104 @@
+exports[`test # Comment 1`] = `
+<div
+  className="Comment-container">
+  <Connect(Component)
+    comment={
+      Object {
+        "comments": Array [
+          Object {
+            "_id": "1",
+            "comment": "testComment",
+            "createdAt": "2099",
+            "user": Object {},
+          },
+          Object {
+            "_id": "1",
+            "comment": "testComment",
+            "createdAt": "2099",
+            "user": Object {},
+          },
+        ],
+      }
+    } />
+  <ReactCSSTransitionGroup
+    transitionAppear={false}
+    transitionEnter={true}
+    transitionEnterTimeout={1000}
+    transitionLeave={true}
+    transitionLeaveTimeout={800}
+    transitionName="CommentAnimation">
+    <Connect(CommentList)
+      comment="testComment"
+      commentId="1"
+      createdAt="2099"
+      loginUserId="testUserId123"
+      user={Object {}} />
+    <Connect(CommentList)
+      comment="testComment"
+      commentId="1"
+      createdAt="2099"
+      loginUserId="testUserId123"
+      user={Object {}} />
+  </ReactCSSTransitionGroup>
+</div>
+`;
+
+exports[`test # Comment render nested component 1`] = `
+<div
+  className="Comment-container">
+  <Connect(Component)
+    comment={
+      Object {
+        "comments": Array [],
+      }
+    } />
+  <div
+    className="Comment-noComment">
+    No Comment!
+  </div>
+</div>
+`;
+
+exports[`test # CommentWrapper 1`] = `
+<Comment
+  auth={
+    Object {
+      "user": Object {
+        "_id": "testUserId123",
+      },
+    }
+  }
+  comment={
+    Object {
+      "comments": Array [
+        Object {
+          "_id": "1",
+          "comment": "testComment",
+          "createdAt": "2099",
+          "user": Object {},
+        },
+        Object {
+          "_id": "1",
+          "comment": "testComment",
+          "createdAt": "2099",
+          "user": Object {},
+        },
+      ],
+      "error": false,
+      "fail": false,
+      "pending": false,
+      "success": false,
+    }
+  }
+  commentGetAllRequest={[Function]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  } />
+`;

@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
     case actionTypes.LOGIN_SUCCESS:
     case actionTypes.USER_INFO_CHANGE_SUCCESS:
       localStorage.setItem('user.token', action.payload.token)
-      localStorage.setItem('user.data', action.payload.user)
+      localStorage.setItem('user.data', JSON.stringify(action.payload.user))
       setAuthorizationToken(action.payload.token)
       return {
         ...state,
@@ -57,8 +57,8 @@ export default (state = initialState, action) => {
         redirect: true,
         error: undefined,
         token: localStorage.getItem('user.token'),
-        user: JSON.parse(action.payload.user),
-        // user: action.payload.user,
+        // user: JSON.parse(action.payload.user),
+        user: action.payload.user,
       }
     case actionTypes.SIGNUP_FAIL:
     case actionTypes.LOGIN_FAIL:

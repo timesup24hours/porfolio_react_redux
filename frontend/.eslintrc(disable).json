@@ -1,0 +1,59 @@
+{
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "plugins": [
+      "react",
+      "jsx-a11y",
+      "import"
+    ],
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "settings": {
+      "react": {
+        "createClass": "createClass",
+        "pragma": "React",
+        "version": "15.0"
+      }
+    },
+    "globals": {
+      "shallow": true,
+      "React": true,
+      "mount": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "rules": {
+      "semi": "off",
+      "react/jsx-uses-react": "error",
+      "react/jsx-uses-vars": "error",
+      "no-unused-vars": "warn",
+      "no-console": "warn",
+      "no-underscore-dangle": "off",
+      "no-named-as-default": "off",
+      "jsx-filename-extension": "off",
+      "jsx-quotes": "off",
+      "jsx-filename-extension": "off",
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "single": "off",
+      "comma-dangle": ["off", {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "ignore"
+      }],
+      "max-len": ["error", { "code": 200 } ],
+      "arrow-parens": ["off", "always"],
+      "keyword-spacing": ["off", { "before": true }],
+      "arrow-body-style": ["off", "always"],
+      "import/first": "off",
+      "require-default-props": "off"
+    }
+}

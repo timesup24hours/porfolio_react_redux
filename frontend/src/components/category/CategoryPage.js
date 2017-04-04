@@ -2,10 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import CategoryForm from './CategoryForm'
 
-const CategoryPage = props => {
+export const CategoryPage = props => {
 
   return !props.menu.pending ?
-    (<div className='CategoryPage-container'>
+    (<div id='CategoryPage-container' className='CategoryPage-container'>
       <CategoryForm menu={props.menu} />
     </div>) : null
 

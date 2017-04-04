@@ -1,0 +1,53 @@
+exports[`test # CommentForm 1`] = `
+<div
+  className="CommentForm-container">
+  <form
+    onSubmit={[Function]}>
+    <TextFieldGroupMaterialUI
+      className="CommentForm-comment"
+      disabled={false}
+      error="commentError"
+      label="Comment"
+      multiLine={true}
+      name="comment"
+      onChange={[Function]}
+      rowsMax={4}
+      type="text"
+      value="" />
+    <div
+      className="CommentForm-button">
+      <RaisedButton
+        disabled={false}
+        fullWidth={false}
+        label="Comment"
+        labelPosition="after"
+        primary={false}
+        secondary={false}
+        type="submit" />
+    </div>
+  </form>
+</div>
+`;
+
+exports[`test # CommentFormWrapper 1`] = `
+<Component
+  commentResetValues={[Function]}
+  commentSetError={[Function]}
+  commentSetValue={[Function]}
+  commentSubmitFail={[Function]}
+  commentSubmitRequest={[Function]}
+  commentSubmitSuccess={[Function]}
+  commentSubmitting={[Function]}
+  hideLoading={[Function]}
+  showLoading={[Function]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  } />
+`;
