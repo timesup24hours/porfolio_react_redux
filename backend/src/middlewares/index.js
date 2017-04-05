@@ -10,7 +10,7 @@ import path from 'path'
 import express from 'express'
 
 export default (app) => {
-  // console.log(path.join(__dirname, '../../../frontend/build'))
+  console.log(path.join(__dirname, '../../../frontend/build'))
   if(process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../../../frontend/build')))
   } else {
