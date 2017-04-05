@@ -10,8 +10,8 @@ import path from 'path'
 import express from 'express'
 
 export default (app) => {
-  console.log(path.join(__dirname, '../../build'))
-  app.use(express.static(path.join(__dirname, '../../build')))
+  // console.log(path.join(__dirname, '../../../frontend/build'))
+  app.use(express.static(path.join(__dirname, '../../../frontend/build')))
   // setup logging
   if(process.env.NODE_ENV !== 'test')
     app.use(morgan('combined', { stream: logger.stream }))
