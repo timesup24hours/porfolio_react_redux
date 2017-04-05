@@ -18,7 +18,6 @@ export default (passport) => {
     return
   })
 
-
   jwt(passport)
   local(passport)
 }

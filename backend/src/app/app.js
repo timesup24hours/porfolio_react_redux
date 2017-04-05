@@ -1,3 +1,6 @@
+require("babel-core/register");
+require("babel-polyfill");
+
 import app from './server'
 import { mongoose } from '../db'
 import { db as dbConfg, server as serverConfig } from '../../config'
