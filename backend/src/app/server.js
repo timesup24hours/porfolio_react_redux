@@ -1,4 +1,5 @@
 import express from 'express'
+import path from 'path'
 
 import middlewares from '../middlewares'
 import routes from '../routes'
@@ -9,7 +10,7 @@ middlewares(app)
 routes(app)
 
 app.get('/*', (req, res) => {
-  res.sendFile('index.html')
+  res.sendFile(path.join(__dirname, '../../../frontend/build', 'index.html'))
 })
 
 export default app
