@@ -5,12 +5,12 @@ import React, { Component } from 'react'
 class FlyInText extends Component {
 
   componentDidMount() {
-    this.timeout = setTimeout(function() {
+    this.timeout = setTimeout(function () {
       document.querySelector('.fly-in-text').classList.remove('hidden')
     }, 500);
   }
 
-  componentWillUnmout() {
+  componentWillUnmount() {
     clearTimeout(this.timeout)
   }
 

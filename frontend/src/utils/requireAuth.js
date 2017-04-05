@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { snackbarOpen } from '../store/actions/snackbarActions'
-import { browserHistory } from 'react-router'
+// import { browserHistory } from 'react-router'
 
 export const requireAuth = (ComposedComponent) => {
   class Authenticate extends Component {

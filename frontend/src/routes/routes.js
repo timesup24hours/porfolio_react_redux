@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import { requireAuth } from '../utils'
+// import { requireAuth } from '../utils'
 
 import App from '../components/App'
 import Home from '../components/home/Home'
