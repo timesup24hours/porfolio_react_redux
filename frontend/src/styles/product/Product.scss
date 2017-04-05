@@ -17,4 +17,8 @@
 
 }
 .Product-desc {
+  white-space: pre-wrap;      /* CSS3 */
+  word-wrap: break-word;
+  max-width: 162px;
+  min-width: 162px;
 }
