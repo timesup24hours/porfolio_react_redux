@@ -33,22 +33,22 @@ export const addProductionFormValidation = e => {
   if(e.target.name === 'desc') {
     if(e.target.hasAttribute('required') && e.target.value.length === 0) {
       e.target.classList.add('invalid')
-      e.target.nextSibling.textContent = 'required'
+      e.target.parentElement.lastChild.textContent = 'required'
     } else if(e.target.value.length < 6 && e.target.value.length >= 1) {
       e.target.classList.add('invalid')
-      e.target.nextSibling.textContent = `too short (${e.target.value.length}/6)`
+      e.target.parentElement.lastChild.textContent = `too short (${e.target.value.length}/6)`
       e.target.parentElement.firstChild.textContent = 'Long Description'
     } else if(e.target.value.length > 300 && e.target.value.length >= 1) {
       e.target.classList.add('invalid')
-      e.target.nextSibling.textContent = `too long (${e.target.value.length}/300)`
+      e.target.parentElement.lastChild.textContent = `too long (${e.target.value.length}/300)`
       e.target.parentElement.firstChild.textContent = 'Long Description'
     } else if(e.target.value.length <= 300 && e.target.value.length >= 1) {
       e.target.classList.remove('invalid')
-      e.target.nextSibling.textContent = ''
+      e.target.parentElement.lastChild.textContent = ''
       e.target.parentElement.firstChild.textContent = `Long Description (${e.target.value.length}/300)`
     } else {
       e.target.classList.remove('invalid')
-      e.target.nextSibling.textContent = ''
+      e.target.parentElement.lastChild.textContent = ''
     }
   }
 
