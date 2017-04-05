@@ -1,5 +1,3 @@
-import './FlyInText.scss'
-
 import React, { Component } from 'react'
 
 class FlyInText extends Component {
