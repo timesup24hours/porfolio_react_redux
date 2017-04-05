@@ -37,15 +37,15 @@ export const addProductionFormValidation = e => {
     } else if(e.target.value.length < 6 && e.target.value.length >= 1) {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `too short (${e.target.value.length}/6)`
-      e.target.previousSibling.textContent = 'Long Description'
+      e.target.parentElement.firstChild.textContent = 'Long Description'
     } else if(e.target.value.length > 300 && e.target.value.length >= 1) {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `too long (${e.target.value.length}/300)`
-      e.target.previousSibling.textContent = 'Long Description'
+      e.target.parentElement.firstChild.textContent = 'Long Description'
     } else if(e.target.value.length <= 300 && e.target.value.length >= 1) {
       e.target.classList.remove('invalid')
       e.target.nextSibling.textContent = ''
-      e.target.previousSibling.textContent = `Long Description (${e.target.value.length}/300)`
+      e.target.parentElement.firstChild.textContent = `Long Description (${e.target.value.length}/300)`
     } else {
       e.target.classList.remove('invalid')
       e.target.nextSibling.textContent = ''
