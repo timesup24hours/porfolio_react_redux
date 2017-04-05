@@ -5,3 +5,5 @@ frontend/build
 backend/config.js
 
 frontend/public/images
+
+backend/lib
