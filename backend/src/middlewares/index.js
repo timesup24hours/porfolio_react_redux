@@ -11,7 +11,12 @@ import express from 'express'
 
 export default (app) => {
   // console.log(path.join(__dirname, '../../../frontend/build'))
-  app.use(express.static(path.join(__dirname, '../../../frontend/build')))
+  if(process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../../../frontend/build')))
+  } else {
+    app.use(express.static(path.join(__dirname, '../../../frontend/public')))
+  }
+
   // setup logging
   if(process.env.NODE_ENV !== 'test')
     app.use(morgan('combined', { stream: logger.stream }))
