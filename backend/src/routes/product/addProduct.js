@@ -10,7 +10,8 @@ import multer from 'multer'
 
 const storage = multer.diskStorage({
   // destination: 'public/uploads/images',
-  destination: '../frontend/public/images/products', // test path only
+  // destination: '../frontend/build/images/products',
+  destination: process.env.NODE_ENV === 'production' ? '../frontend/build/images/products' : '../frontend/public/images/products',
   filename(req, file, cb) {
     cb(null, `${Math.random()}-${new Date()}-${file.originalname}`) // file name should be unique
     // cb(null, `${file.originalname}`) // test only
