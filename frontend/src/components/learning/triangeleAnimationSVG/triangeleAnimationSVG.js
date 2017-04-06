@@ -7,14 +7,16 @@ class TriangeleAnimationSVG extends Component {
 
   drawLine = (path, div) => {
     let length = 0;
+    // get the length of the path
     let pathLength = path.getTotalLength();
+    // get the distance from the top
     let distanceFromTop = document.body.scrollTop + document.documentElement.scrollTop - div.scrollHeight
     let percentDone = 1 - distanceFromTop / (document.documentElement.scrollHeight - document.documentElement.clientHeight)
-    length = percentDone * pathLength ;
-    path.style.strokeDasharray = [length,pathLength].join(' ');
+    length = percentDone * pathLength;
+    path.style.strokeDasharray = [length, pathLength].join(' ');
 
     // parallax scrolling effect
-    div.style.transform = `translate3d(0, ${window.scrollY * 0.3}px, 0`
+    div.style.transform = `translate3d(0, ${window.scrollY * 0.4}px, 0)`
   }
 
   onScroll = () => {

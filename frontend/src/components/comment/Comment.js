@@ -9,7 +9,7 @@ export class Comment extends Component {
 
   static propType = {
     auth: React.PropTypes.object,
-    comment: React.PropTypes.object
+    comment: React.PropTypes.object,
   }
 
   componentDidMount() {

@@ -7,9 +7,10 @@ class RippleEffectButton extends Component {
 
     Array.prototype.forEach.call(buttons, function (b) {
         b.addEventListener('click', createRipple);
-    });
+      }
+    )
 
-    function createRipple (e) {
+    function createRipple(e) {
       let circle = document.createElement('div');
       this.appendChild(circle);
 
@@ -18,8 +19,8 @@ class RippleEffectButton extends Component {
       circle.style.width = circle.style.height = d + 'px';
 
       let rect = this.getBoundingClientRect();
-      circle.style.left = e.clientX - rect.left -d/2 + 'px';
-      circle.style.top = e.clientY - rect.top - d/2 + 'px';
+      circle.style.left = e.clientX - rect.left - d / 2 + 'px';
+      circle.style.top = e.clientY - rect.top - d / 2 + 'px';
 
 
       circle.classList.add('ripple');
@@ -30,7 +31,10 @@ class RippleEffectButton extends Component {
   render() {
     return (
       <div className='RippleEffectButton'>
-        <button className='ripple'>Click Me!</button>
+        <button className='ripple'
+          onClick={this.props.onClick}
+          id={this.props.id}
+        >Click Me!</button>
       </div>
     )
   }

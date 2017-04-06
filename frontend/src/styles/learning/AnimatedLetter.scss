@@ -1,0 +1,42 @@
+.AnimatedLetter-container {
+  display: flex;
+  flex-direction: row;
+  font-size: 4rem;
+  position: relative;
+}
+
+.AnimatedLetter-animated {
+  opacity: 0;
+  animation: AnimatedLetterTimeline 300ms ease-in-out forwards;
+}
+
+.AnimatedLetter-A {
+  animation-delay: 250ms;
+}
+.AnimatedLetter-B {
+  animation-delay: 500ms;
+}
+.AnimatedLetter-C {
+  animation-delay: 750ms;
+}
+.AnimatedLetter-D {
+  animation-delay: 1000ms;
+}
+.AnimatedLetter-E {
+  animation-delay: 1250ms;
+}
+.AnimatedLetter-F {
+  animation-delay: 1500ms;
+}
+
+
+@keyframes AnimatedLetterTimeline {
+  0% {
+    opacity: 0;
+    transform: translateX(-42px)
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px)
+  }
+}
