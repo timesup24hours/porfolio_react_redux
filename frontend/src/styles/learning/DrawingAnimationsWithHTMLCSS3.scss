@@ -1,0 +1,53 @@
+@font-face {
+  font-family: Oswald;
+  src: url('http://fonts.googleapis.com/css?family=Oswald:300');
+}
+
+// @import url('http://fonts.googleapis.com/css?family=Oswald:300');
+
+.DrawingAnimationsWithHTMLCSS3 {
+  background: grey;
+  color: #FFF;
+  font-size: 20px;
+  font-family: 'Oswald', 'sans-serif';
+  height: 140vh;
+
+  p {
+	  margin: 50px 0 50px 0;
+  }
+
+  h1 {
+    text-align:center;
+    font-size: 50px;
+    margin: 50px 0 50px 0;
+  }
+
+  div {
+    margin-left: 10%;
+    float: left;
+  }
+
+  /* CAT */
+
+  path {
+  	transition: 1s linear;
+  }
+
+  path:hover {
+  	opacity: 1;
+  	stroke-dashoffset: 0;
+    fill: rgba(0,0,0,0)
+  }
+
+  /* TEXT */
+
+  text {
+  	transition: 1s linear;
+  }
+
+  text:hover {
+  	stroke-dashoffset: 0;
+    fill: rgba(0,0,0,0)
+  }
+
+}

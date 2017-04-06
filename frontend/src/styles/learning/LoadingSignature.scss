@@ -1,0 +1,40 @@
+.LoadingSignature {
+  background:#fd0;
+  @extend .flexCenter;
+  height: 100vh;
+
+  #wrapper{
+  // -webkit-transform: translate(-50%, -50%);
+  }
+
+  .LoadingSignature-path {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 0;
+    animation: dash 5s linear  infinite;
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 2000;
+    }
+    90% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .LoadingSignature-path2 {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash2 5s linear  infinite;
+  }
+
+  @keyframes dash2 {
+    60% {
+      stroke-dashoffset: 1000;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+}

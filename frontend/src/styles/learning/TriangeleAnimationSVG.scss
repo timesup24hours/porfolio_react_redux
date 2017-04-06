@@ -1,5 +1,9 @@
 .TriangeleAnimationSVG {
   position: absolute;
-  top: 100vh;
-  left: 300px;
+  top: calc(100vh + 50px);
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  @extend .flexCenter;
+  z-index: -1;
 }

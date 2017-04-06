@@ -1,0 +1,21 @@
+.ScrollControlledSVGLineAnimation {
+  font-family: avenir, helvetica, sans-serif;
+  // style={{ backgroundColor: 'skyblue' }}
+  svg {
+    opacity: .3;
+    position: fixed;
+    margin: auto;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    max-width: 280px;
+    max-height: 240px;
+  }
+
+  .path {
+    stroke-dashoffset: 1000;
+    stroke-dasharray: 1000;
+    stroke: black;
+  }
+
+}

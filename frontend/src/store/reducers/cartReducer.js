@@ -14,7 +14,10 @@ const initialState = {
   quantityOfCurrentProduct: 0,
   // values: {
   //   products: ''
-  // }
+  // },
+  creditCardForm: {
+    show: false,
+  },
 }
 
 /************************
@@ -159,6 +162,20 @@ export default (state = initialState, action = {}) => {
       }
     case actionTypes.CART_CLEAR_CART:
       return initialState
+    case actionTypes.CART_SHOW_CREDIT_CARD_FORM:
+      return {
+        ...state,
+        creditCardForm: {
+          show: true,
+        },
+      }
+    case actionTypes.CART_HIDE_CREDIT_CARD_FORM:
+      return {
+        ...state,
+        creditCardForm: {
+          show: false,
+        },
+      }
     default:
       return state
   }

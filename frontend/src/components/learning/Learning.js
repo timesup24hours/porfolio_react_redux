@@ -7,6 +7,11 @@ import FlyInText from './flyInText/FlyInText'
 import TriggerSvgWord from './TriggerSvgWord/TriggerSvgWord'
 import KnockoutMaskEffect from './KnockoutMaskEffect/KnockoutMaskEffect'
 import AnimatedLetter from './AnimatedLetter/AnimatedLetter'
+import SourceTreeLoader from './SourceTreeLoader/SourceTreeLoader'
+import ScrollControlledSVGLineAnimation from './ScrollControlledSVGLineAnimation/ScrollControlledSVGLineAnimation'
+import LoadingSignature from './LoadingSignature/LoadingSignature'
+// import DrawingAnimationsWithHTMLCSS3 from './DrawingAnimationsWithHTMLCSS3/DrawingAnimationsWithHTMLCSS3'
+// <DrawingAnimationsWithHTMLCSS3 />
 
 class Learning extends Component {
 
@@ -14,11 +19,14 @@ class Learning extends Component {
     return (
       <div className='Learning' style={{ height: '1000vh', width: '100%', marginTop: '50px' }}>
         <FlyInText />
+        <LoadingSignature />
         <TriggerSvgWord />
+        <SourceTreeLoader />
         <KnockoutMaskEffect />
         <AnimatedLetter />
         <TriangeleAnimationSVG />
         <CaptainAmericaShieldSVG />
+        <ScrollControlledSVGLineAnimation />
       </div>
     )
   }

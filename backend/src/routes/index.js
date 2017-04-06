@@ -8,6 +8,7 @@ import department from './department'
 import category from './category'
 import subCategory from './subCategory'
 import menu from './menu'
+import charge from './charge'
 
 export default (app) => {
    auth(app)
@@ -20,4 +21,5 @@ export default (app) => {
    category(app)
    subCategory(app)
    menu(app)
+   charge(app)
 }

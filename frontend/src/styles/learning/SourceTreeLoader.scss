@@ -1,0 +1,256 @@
+.SourceTreeLoader {
+  height: 11rem;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  width: 11rem;
+}
+
+#sourcetree_loader {
+  width: 11rem;
+}
+
+.border {
+  fill: none;
+  stroke: #205081;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+
+.stems {
+  fill: none;
+  stroke: #205081;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 10;
+}
+
+.circles {
+  fill: #205081;
+}
+
+.circles circle {
+  transform: scale(0);
+}
+
+.border-group {
+  transform: rotate(90deg);
+  transform-origin: center;
+}
+
+.border {
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440;
+  animation: border 4s forwards infinite;
+}
+
+@keyframes border {
+  0% {
+    stroke-dashoffset: 440;
+  }
+  25% {
+    stroke-dashoffset: 0;
+  }
+  80% {
+    stroke-dashoffset: 0;
+  }
+  95% {
+    stroke-dashoffset: -438;
+  }
+  100% {
+    stroke-dashoffset: -438;
+  }
+}
+
+.st1 {
+  stroke-dasharray: 115;
+  stroke-dashoffset: 115;
+  animation: st115 4s forwards infinite;
+}
+
+.st2 {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: st60 4s forwards infinite;
+  -webkit-animation-delay: .2s;
+  animation-delay: .2s;
+}
+
+.st3 {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: st60 4s forwards infinite;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+
+.st4 {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: st60 4s forwards infinite;
+  -webkit-animation-delay: .4s;
+  animation-delay: .4s;
+}
+
+.st5 {
+  stroke-dasharray: 35;
+  stroke-dashoffset: 35;
+  animation: st35 4s forwards infinite;
+  -webkit-animation-delay: .5s;
+  animation-delay: .5s;
+}
+
+.st6 {
+  stroke-dasharray: 70;
+  stroke-dashoffset: 70;
+  animation: st70 4s forwards infinite;
+  -webkit-animation-delay: .6s;
+  animation-delay: .6s;
+}
+
+.st7 {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: st60 4s forwards infinite;
+  -webkit-animation-delay: .7s;
+  animation-delay: .7s;
+}
+
+@keyframes st35 {
+  0% {
+    stroke-dashoffset: 35;
+  }
+  15% {
+    stroke-dashoffset: 0;
+  }
+  65% {
+    stroke-dashoffset: 0;
+  }
+  75% {
+    stroke-dashoffset: 35;
+  }
+  100% {
+    stroke-dashoffset: 35;
+  }
+}
+
+@keyframes st60 {
+  0% {
+    stroke-dashoffset: 60;
+  }
+  15% {
+    stroke-dashoffset: 0;
+  }
+  65% {
+    stroke-dashoffset: 0;
+  }
+  75% {
+    stroke-dashoffset: 60;
+  }
+  100% {
+    stroke-dashoffset: 60;
+  }
+}
+
+@keyframes st70 {
+  0% {
+    stroke-dashoffset: 70;
+  }
+  15% {
+    stroke-dashoffset: 0;
+  }
+  65% {
+    stroke-dashoffset: 0;
+  }
+  75% {
+    stroke-dashoffset: 70;
+  }
+  100% {
+    stroke-dashoffset: 70;
+  }
+}
+
+@keyframes st115 {
+  0% {
+    stroke-dashoffset: 115;
+  }
+  15% {
+    stroke-dashoffset: 0;
+  }
+  92% {
+    stroke-dashoffset: 0;
+  }
+  98% {
+    stroke-dashoffset: 115;
+  }
+  100% {
+    stroke-dashoffset: 115;
+  }
+}
+
+.c1 {
+  animation: scale 4s forwards infinite;
+}
+
+.c2 {
+  animation: scale 4s forwards infinite;
+  -webkit-animation-delay: .2s;
+  animation-delay: .2s;
+}
+
+.c3 {
+  animation: scale 4s forwards infinite;
+  -webkit-animation-delay: .6s;
+  animation-delay: .6s;
+}
+
+.c4 {
+  animation: scale 4s forwards infinite;
+  -webkit-animation-delay: .4s;
+  animation-delay: .4s;
+}
+
+.c5 {
+  animation: scale 4s forwards infinite;
+  -webkit-animation-delay: .7s;
+  animation-delay: .7s;
+}
+
+.c6 {
+  animation: scale 4s forwards infinite;
+  -webkit-animation-delay: .5s;
+  animation-delay: .5s;
+}
+
+.c7 {
+  animation: scale 4s forwards infinite;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(0);
+  }
+  15% {
+    transform: scale(0);
+  }
+  19% {
+    transform: scale(1.3);
+  }
+  22% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
