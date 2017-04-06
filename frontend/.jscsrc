@@ -2,11 +2,12 @@
   "preset": "airbnb",
   "requireSemicolons": false,
   "disallowMultipleLineBreaks": false,
-  "maximumLineLength": 240,
+  "maximumLineLength": 1540,
   "requireShorthandArrowFunctions": false,
   "requirePaddingNewLinesBeforeLineComments": false,
   "requireSpaceAfterKeywords": false,
   "validateQuoteMarks": false,
   "disallowQuotedKeysInObjects": false,
   "requirePaddingNewLinesAfterBlocks": false,
+  "disallowMultipleLineStrings": false,
 }
