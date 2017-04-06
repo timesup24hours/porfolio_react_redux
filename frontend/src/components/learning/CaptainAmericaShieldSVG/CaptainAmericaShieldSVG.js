@@ -17,12 +17,18 @@ class CaptainAmericaShieldSVG extends Component {
     let heightOfElement = div.offsetHeight
     let scollPosition = document.body.scrollTop
 
-    if(scollPosition >= heightOfElement / 2
+
+    // add classname when the botton of view is touching the top of the cap
+    // add classname when the top of the view is touching the bottom of the cap
+    if(scollPosition + window.innerHeight >= distanceFromTopOfElement
       && scollPosition <= distanceFromTopOfElement + heightOfElement
     ) {
       paths.classList.add("CaptainAmericaShieldSV-animation");
-    } else if(scollPosition > distanceFromTopOfElement
-      || scollPosition <= distanceFromTopOfElement - heightOfElement
+
+      // remove classname when top of the view is greater then the bottem of the cap
+      // remove classname when the bottem of the view is less then the top of the cap
+    } else if(scollPosition > distanceFromTopOfElement + heightOfElement
+      || scollPosition + window.innerHeight < distanceFromTopOfElement
     ) {
       paths.classList.remove("CaptainAmericaShieldSV-animation");
     }
