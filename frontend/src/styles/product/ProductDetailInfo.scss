@@ -20,11 +20,18 @@
 
 .ProductDetailInfo-desc {
   // padding-left: 10px;
-  white-space: pre-wrap;      /* CSS3 */
-  word-wrap: break-word;
-  max-width: 300px;
-  min-width: 200px;
-  width: 100%;
+  // white-space: pre-wrap;      /* CSS3 */
+  // word-wrap: break-word;
+  // max-width: 300px;
+  // min-width: 200px;
+  // width: 100%;
+  @extend .wrapword;
+}
+
+.ProductDetailInfo-listDesc-ul {
+  li {
+    @extend .wrapword;
+  }
 }
 
 .ProductDetailInfo-dot {
