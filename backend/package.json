@@ -6,7 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test PORT=81 DB_HOST='mongodb://localhost:27017/adsfTestDB' node ./test/index.js | tap-spec ",
     "dev": "sudo NODE_ENV=development PORT=80 nodemon index.js",
-    "pm2": "NODE_ENV=production PORT=80 pm2 start lib/app/app.js",
+    "pm2": "sudo NODE_ENV=production PORT=80 pm2 start lib/app/app.js",
     "build": "./node_modules/.bin/babel src --out-dir lib",
     "start": "NODE_ENV=production PORT=80 node lib/app/app.js"
   },
