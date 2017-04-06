@@ -56,7 +56,7 @@ export default (state = initialState, action = {}) => {
       localStorage.removeItem('addProductForm-size')
       localStorage.removeItem('addProductForm-images')
       localStorage.removeItem('addProductForm-soldBy')
-      window.Materialize.toast('Product Uploaded!', 4000)
+      // window.Materialize.toast('Product Uploaded!', 4000)
       return {
         ...state,
         products: state.products.concat([action.payload.product]),
