@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import * as cartActions from '../../store/actions/cartActions'
 import ProductInTheCart from './ProductInTheCart'
 import Calculator from '../calculator/Calculator'
+import StripePay from './StripePay'
 
 const mapStateToProps = state => ({
   cart: state.cart,
@@ -56,6 +57,7 @@ export class Cart extends Component {
               </div>
               <div className='Cart-calculator'>
                 <Calculator cart={this.props.cart} />
+                {this.props.cart.creditCardForm.show ? <StripePay cart={this.props.cart}  /> : null}
               </div>
             </div>)
         }
