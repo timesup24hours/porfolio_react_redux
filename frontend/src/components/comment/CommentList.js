@@ -12,12 +12,14 @@ import TextFieldGroupMaterialUI from '../common/TextFieldGroupMaterialUI'
 import Snackbar from 'material-ui/Snackbar'
 import { snackbarClose } from '../../store/actions/snackbarActions'
 import UserAvatar from '../nav/UserAvatar'
+import UserPopUpProfile from '../user/UserPopUpProfile'
 
 export class CommentList extends Component {
   state = {
     open: false,
     editorOpen: false,
-    comment: ''
+    comment: '',
+    profileShow: false,
   }
 
   componentDidMount() {
@@ -51,13 +53,23 @@ export class CommentList extends Component {
   handleSave = () => {
     if(this.state.comment !== this.props.comment) {
       this.props.commentEditRequest({ id: this.props.commentId, comment: this.state.comment })
-    } 
-    this.setState({ editorOpen: false  })
+    }
+    this.setState({ editorOpen: false })
   }
 
   handleDeleteComment = () => {
     this.props.commentDeleteRequest(this.props.commentId)
     this.handleClose()
+  }
+
+  //handle show profileShow
+  handleShowProfile = () => {
+    this.setState({ profileShow: true })
+  }
+
+  //handle hide profileShow
+  handleHideProfile = () => {
+    this.setState({ profileShow: false })
   }
 
   render() {
@@ -81,7 +93,8 @@ export class CommentList extends Component {
         <div className='CommentList-user-holder'>
           <div className='CommentList-user-group'>
             <div className='CommentList-avatar'>
-              <UserAvatar user={user} />
+              <UserAvatar user={user} onClick={this.handleShowProfile} />
+              {this.state.profileShow ? <UserPopUpProfile user={user} onClick={this.handleHideProfile} /> : null}
             </div>
             <div className='CommentList-username-time-group'>
               <div className='CommentList-username'>{user.local.nickname || user.local.username}</div>
@@ -158,19 +171,19 @@ CommentList.propTypes = {
   user: PropTypes.object.isRequired,
   comment: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
-  commentId: PropTypes.string.isRequired
+  commentId: PropTypes.string.isRequired,
 }
 
 const mapDispatchToProps = dispatch => ({
   commentDeleteRequest: commentId => dispatch(commentActions.commentDeleteRequest(commentId)),
   commentEditRequest: paypload => dispatch(commentActions.commentEditRequest(paypload)),
-  snackbarClose: () => dispatch(snackbarClose())
+  snackbarClose: () => dispatch(snackbarClose()),
 })
 
 const mapStateToProps = state => ({
   comments: state.comment,
   snackbar: state.snackbar,
-  auth: state.auth
+  auth: state.auth,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentList)
