@@ -51,16 +51,20 @@ export class Cart extends Component {
         {this.props.totalQuantity === 0
           ? <div className='Cart-no-items'>No items</div>
           : (<div className='Cart-wrapper'>
+
+              <div className='Cart-calculator'>
+                <Calculator cart={this.props.cart} />
+              </div>
+
               <div className='Cart-order-holder'>
                 <div className='Cart-order-title'>Review Your Order:</div>
                 {cart}
               </div>
-              <div className='Cart-calculator'>
-                <Calculator cart={this.props.cart} />
-              </div>
+
             </div>)
         }
         {this.props.cart.creditCardForm.show ? <StripePay cart={this.props.cart}  /> : null}
+        
       </div>
     )
 

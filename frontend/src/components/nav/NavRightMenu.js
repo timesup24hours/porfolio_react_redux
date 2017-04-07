@@ -36,7 +36,7 @@ const NavRightMenu = (props) => {
                 onClick={handleProfileMenuToggle}
                 id='profileMenu'
                 key='avatar'>
-              <UserAvatar user={props.auth.user} />
+              <UserAvatar user={props.auth.user} onClick={() => {}}/>
             </li>
           : [<li className='NavRightMenu-li' key='login'>
               <RaisedButton

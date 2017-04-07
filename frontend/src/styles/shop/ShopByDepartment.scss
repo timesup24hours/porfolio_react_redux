@@ -12,3 +12,13 @@
   }
   margin-bottom: 2px;
 }
+
+@media only screen and (max-width: 700px) {
+  .ShopByDepartment-container {
+    div {
+      &:first-child {
+        font-size: 12px;
+      }
+    }
+  }
+}

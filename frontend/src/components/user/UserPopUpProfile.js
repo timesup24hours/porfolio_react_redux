@@ -1,7 +1,7 @@
 import React from 'react'
 
 const UserPopUpProfile = props => {
-  const defaultAvatar = '/images/avatar/avatar.jpg'
+  // const defaultAvatar = '/images/avatar/avatar.jpg'
   return (
     <div className='UserPopUpProfile'>
       <div className='UserPopUpProfile-mask' onClick={() => props.onClick()}></div>

@@ -1,3 +1,38 @@
 .ShopByCategory-container {
-  
+
+  a {
+    white-space: nowrap;
+    &:first-child {
+      margin-left: 40px;
+    }
+  }
+  nav {
+    overflow: hidden;
+  }
+}
+
+.ShopByCategory-product-display {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  width: 100%;
+  margin: 20px 30px;
+}
+
+@media only screen and (max-width: 700px){
+  .ShopByCategory-container {
+    a {
+      font-size: 1rem;
+      white-space: nowrap;
+      &:first-child {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .ShopByCategory-product-display {
+    justify-content: center;
+    margin: 20px auto;
+    width: 80%;
+  }
 }

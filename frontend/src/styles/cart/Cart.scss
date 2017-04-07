@@ -46,7 +46,7 @@
   line-height: 100px;
 }
 
-@media screen and (max-width : 830px) {
+@media only screen and (max-width: 830px) {
   .Cart-wrapper {
     display: flex;
     flex-direction: column;
@@ -56,5 +56,39 @@
     display: flex;
     justify-content: center;
     padding-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .Cart-wrapper {
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .Cart-calculator {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+  }
+  .Cart-order-holder {
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 0px 10px;
+    min-width: 300px;
+    width: 90%;
+
+    .Cart-order-title {
+      font-weight: bold;
+      padding: 20px;
+      font-size: 20px;
+      text-align: center;
+      margin: 0px auto 20px;
+      width: 100%;
+      border-bottom: 1px solid rgba(0,0,0,.1);
+    }
+
   }
 }

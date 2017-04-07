@@ -7,9 +7,9 @@
 }
 
 @mixin center-multiline-text-in-the-circle {
-  display: table-cell;
   height: 200px;
   width: 200px;
+  display: table-cell;
   text-align: center;
   vertical-align: middle;
   border-radius: 50%;

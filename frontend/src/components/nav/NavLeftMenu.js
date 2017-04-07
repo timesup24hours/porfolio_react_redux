@@ -25,23 +25,43 @@ const NavLeftMenu = (props) => {
           <Message style={{ marginTop: '4px' }}/>
           <div>Comment</div>
         </li>
+        <li className='NavLeftMenu-li' onClick={() => browserHistory.push('/shop')}>
+          <i className="material-icons">shopping_basket</i>
+          <div>Shop</div>
+        </li>
         <li className='NavLeftMenu-li' onClick={() => browserHistory.push('/learning')}>
           <Thumbup style={{ marginTop: '4px' }}/>
           <div>Learning</div>
         </li>
-        { !props.auth.token
-          ? [<li className='NavLeftMenu-li' key='NavLeftMenu-login' onClick={() => browserHistory.push('/login') }>
-              <FingerPrint/>
-              <div>Login</div>
-            </li>,
-            <li className='NavLeftMenu-li' key='NavLeftMenu-signup' onClick={() => browserHistory.push('/signup') }>
-              <EventNote/>
-              <div>Signup</div>
-            </li>]
-          : <li className='NavLeftMenu-li' key='NavLeftMenu-logout' onClick={() => props.logout()}>
-              <DirectionsWalk/>
-              <div>Logout</div>
-            </li>
+        { !props.auth.isAuthenticated
+          ? [
+              <li className='NavLeftMenu-li' key='NavLeftMenu-login' onClick={() => browserHistory.push('/login') }>
+                <FingerPrint/>
+                <div>Login</div>
+              </li>,
+              <li className='NavLeftMenu-li' key='NavLeftMenu-signup' onClick={() => browserHistory.push('/signup') }>
+                <EventNote/>
+                <div>Signup</div>
+              </li>,
+            ]
+          : [
+              <li className='NavLeftMenu-li' key='NavLeftMenu-cart' onClick={() => browserHistory.push('/cart')}>
+                <i className="material-icons">shopping_cart</i>
+                <div>Cart</div>
+              </li>,
+              <li className='NavLeftMenu-li' key='NavLeftMenu-upload' onClick={() => browserHistory.push('/upload_product')}>
+                <i className="material-icons">backup</i>
+                <div>Upload Product</div>
+              </li>,
+              <li className='NavLeftMenu-li' key='NavLeftMenu-profile' onClick={() => browserHistory.push('/profile')}>
+                <i className="material-icons">person</i>
+                <div>Profile</div>
+              </li>,
+              <li className='NavLeftMenu-li' key='NavLeftMenu-logout' onClick={() => props.logout()}>
+                <DirectionsWalk/>
+                <div>Logout</div>
+              </li>,
+            ]
         }
 
       </ul>

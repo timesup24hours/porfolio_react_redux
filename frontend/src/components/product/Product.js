@@ -15,19 +15,17 @@ const Product = props => {
   return (
     <div className='Product-container' style={{ cursor: 'pointer' }}
       onClick={() => browserHistory.push(`/product/${_id}`)}>
-      <div className='row'>
-        <div className="col">
 
-          <div className="card">
-            <div className="card-image">
-              <img style={{ maxWidth: '210px', minWidth: '210px', height: '210px' }} src={`/images/products/${images[0]}`} alt=''/>
+            <div className="Product-image">
+              <img
+                src={`/images/products/${images[0]}`} alt=''/>
             </div>
-            <div className="card-content Product-content">
-              <div className="Product-name grey-text text-darken-4">{name}</div>
+
+            <div className="Product-content">
+              <div className="Product-name grey-text text-darken-4">{sliceContent(name, 20)}</div>
               <div className='Product-price blue-text'>{`$ ${price}`}</div>
               <p className='Product-desc grey-text'>{sliceContent(desc, 100)}</p>
             </div>
-          </div>
 
           {/* Add Cart Button
             <div className='Product-addCard'>
@@ -35,8 +33,6 @@ const Product = props => {
             </div>
           */}
 
-        </div>
-      </div>
     </div>
   )
 }

@@ -12,9 +12,6 @@ export const paymentRequestEpic = action$ => action$
       {
         type: actionTypes.PAYMENT_REQUEST_SUCCESS,
         payload: response,
-      },
-      {
-        type: actionTypes.CART_EMPTY_CART_REQUEST,
       }
     ))
     .catch(error => Observable.of(

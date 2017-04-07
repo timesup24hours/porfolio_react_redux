@@ -3,11 +3,17 @@
   @extend .flexCenter;
 
   .Shop-product-holder {
-    margin: 30px;
-    padding: 30px;
-    width: 90%;
+    margin: 30px 30px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 700px){
+  .Shop-product-holder {
+    justify-content: center;
+    margin: 30px auto;
   }
 }

@@ -7,8 +7,8 @@ class StripePay extends Component {
 
   componentDidMount() {
     const elements = stripe.elements();
-    // const total = this.props.cart.total
 
+    // create input element from stripe libaray
     let card = elements.create('card', {
       iconStyle: 'solid',
       style: {
@@ -36,6 +36,7 @@ class StripePay extends Component {
     });
     card.mount('#card-element');
 
+    // get all the input field and loop through to add listen event in order to add class and remove class
     var inputs = document.querySelectorAll('input.field');
     Array.prototype.forEach.call(inputs, function (input) {
       input.addEventListener('focus', function () {
@@ -53,12 +54,12 @@ class StripePay extends Component {
       });
     });
 
-
-
+    // listen on change even and fire the setOutcome method
     card.on('change', (event) => {
       this.setOutcome(event);
     });
 
+    // listen the on submit event, collect the data, prepare token and finally fire the setOutcome method
     document.querySelector('form').addEventListener('submit', (e) => {
       e.preventDefault();
       var form = document.querySelector('form');
@@ -67,12 +68,13 @@ class StripePay extends Component {
       };
       stripe.createToken(card, extraDetails).then(this.setOutcome);
     });
+
   }
 
+  // set error and success message if token is created or not and call the paymentRequestEpic when token is created
   setOutcome = (result) => {
     var successElement = document.querySelector('.success');
     var errorElement = document.querySelector('.error');
-    var successPayment = document.querySelector('.success-payment');
     successElement.classList.remove('visible');
     errorElement.classList.remove('visible');
 
@@ -86,22 +88,29 @@ class StripePay extends Component {
 
       // successElement.querySelector('.token').textContent = result.token.id;
       // successElement.classList.add('visible');
-      successPayment.classList.add('visible');
     } else if (result.error) {
       errorElement.textContent = result.error.message;
       errorElement.classList.add('visible');
     }
   }
 
+  // compare thisProps and nextProps to update the UI, when payment epic success
+  componentWillReceiveProps(nextProps) {
+    if(!this.props.payment.success === nextProps.payment.success) {
+      this.props.emptyCartRequest()
+      document.querySelector('.success-payment').classList.add('visible')
+    }
+  }
+
+  // clear the memory
   componentWillUnmount() {
     this.setOutcome = null
   }
 
+  // hide the form when onclick
   handleHide = e => {
     this.props.hideCreditCardForm()
   }
-
-
 
   render() {
     return (
@@ -140,10 +149,12 @@ class StripePay extends Component {
 }
 
 const mapStateToProps = state => ({
+  payment: state.payment,
 })
 const mapDispatchToProps = dispatch => ({
   hideCreditCardForm: () => dispatch(cartActions.hideCreditCardForm()),
   paymentRequest: () => dispatch(cartActions.paymentRequest()),
+  emptyCartRequest: () => dispatch(cartActions.emptyCartRequest()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(StripePay)

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 // import FoldedCornerEffect from './foldedCornerEffect/FoldedCornerEffect'<FoldedCornerEffect></FoldedCornerEffect>
 // import VideoBackground from './videoBackground/VideoBackground' // <VideoBackground></VideoBackground>
 import TriangeleAnimationSVG from './triangeleAnimationSVG/triangeleAnimationSVG'
-import CaptainAmericaShieldSVG from './CaptainAmericaShieldSVG/CaptainAmericaShieldSVG'
+// import CaptainAmericaShieldSVG from './CaptainAmericaShieldSVG/CaptainAmericaShieldSVG'
 import FlyInText from './flyInText/FlyInText'
 import TriggerSvgWord from './TriggerSvgWord/TriggerSvgWord'
 import KnockoutMaskEffect from './KnockoutMaskEffect/KnockoutMaskEffect'
@@ -12,6 +12,7 @@ import ScrollControlledSVGLineAnimation from './ScrollControlledSVGLineAnimation
 import LoadingSignature from './LoadingSignature/LoadingSignature'
 // import DrawingAnimationsWithHTMLCSS3 from './DrawingAnimationsWithHTMLCSS3/DrawingAnimationsWithHTMLCSS3'
 // <DrawingAnimationsWithHTMLCSS3 />
+// <CaptainAmericaShieldSVG />
 
 class Learning extends Component {
 
@@ -25,7 +26,6 @@ class Learning extends Component {
         <KnockoutMaskEffect />
         <AnimatedLetter />
         <TriangeleAnimationSVG />
-        <CaptainAmericaShieldSVG />
         <ScrollControlledSVGLineAnimation />
       </div>
     )

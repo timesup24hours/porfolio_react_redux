@@ -126,7 +126,7 @@ export const removeProductFromCartEpic = action$ => action$
 
 export const emptyCartRequestEpic = action$ => action$
   .ofType(actionTypes.CART_EMPTY_CART_REQUEST)
-  .do(payload => console.log('going through cartGetEpic epic')) // test
+  // .do(payload => console.log('going through cartGetEpic epic')) // test
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
     .ajax.put('/api/cart_empty', payload, headers)

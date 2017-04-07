@@ -25,17 +25,13 @@ class ShopByCategory extends Component {
       <div className='ShopByCategory-container marginTop50px'>
         <nav>
           <div className="nav-wrapper blue">
-            <div className='row'>
-              <div className="col">
-                <Link to={`/shop/${this.context.router.params.department}`} className="breadcrumb">{routeParamsFormatToName(this.context.router.params.department)}</Link>
-                <Link to={`/shop/${this.context.router.params.department}/${this.context.router.params.category}`} className="breadcrumb">{routeParamsFormatToName(this.context.router.params.category)}</Link>
-              </div>
-            </div>
+            <Link to={`/shop/${this.context.router.params.department}`} className="breadcrumb">{routeParamsFormatToName(this.context.router.params.department)}</Link>
+            <Link to={`/shop/${this.context.router.params.department}/${this.context.router.params.category}`} className="breadcrumb">{routeParamsFormatToName(this.context.router.params.category)}</Link>
           </div>
         </nav>
         {this.props.product.currentCategoryProducts.length > 0 && !this.props.product.error
             ?
-              (<div className='flexRowWrap container'>
+              (<div className='ShopByCategory-product-display'>
                 {this.props.product.currentCategoryProducts.map((p, i) => {
                   return <Product key={i} product={p} />
                 })}

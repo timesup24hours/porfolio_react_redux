@@ -9,6 +9,7 @@ class Calculator extends Component {
       <div className='Calculator-container'>
 
         <div className='Calculator-button'>
+          {this.props.cart.creditCardForm.show}
           <button
             id='Calculator-button'
             className='waves-effect waves-light btn blue'
