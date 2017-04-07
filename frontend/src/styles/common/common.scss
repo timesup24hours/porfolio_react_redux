@@ -63,3 +63,16 @@ left: 0%; } }
   word-break: break-all;
   white-space: normal;
 }
+
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}

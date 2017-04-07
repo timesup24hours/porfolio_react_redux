@@ -1,10 +1,17 @@
 .RightPanel-container {
   width: 100%;
   display: flex;
+
+
 }
 
 @media only screen and (max-width: 820px){
   .RightPanel-container {
     flex-direction: column;
   }
+}
+
+// only add this if the browser is safari
+.RightPanel-container:not(:root:root){
+  margin-top: 250px;
 }

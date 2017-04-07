@@ -19,6 +19,13 @@ class App extends Component {
     // UI: React.PropTypes.obj
   }
 
+  // detect Safari browser in js
+  // componentWillUpdate(nextProps) {
+    // if (navigator.userAgent.indexOf('Safari') !== -1 &&
+    // navigator.userAgent.indexOf('Chrome') === -1) {
+    // }
+  // }
+
   componentDidMount() {
     // this.props.getCategoryRequest()
     if(localStorage.getItem('user.data')) {

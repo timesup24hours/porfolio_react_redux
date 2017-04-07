@@ -85,7 +85,7 @@ class Nav extends Component {
     const navBarShadowShow = this.props.nav.navBar.shadow ? 'Nav-container-shadow' : ''
     const navBarShadow = browserHistory.getCurrentLocation().pathname !== '/' ? 'Nav-container-shadow' : ''
     const navBarBackgroundColor = browserHistory.getCurrentLocation().pathname !== '/' ? 'Nav-background-color' : ''
-    
+
     return (
       <div className={`Nav-container ${navBarShadowShow} ${navBarShadow} ${navBarBackgroundColor}`}>
         <div className='Nav-rightMenu-container'>
