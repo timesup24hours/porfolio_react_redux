@@ -27,10 +27,18 @@ function getClientEnvironment(publicUrl) {
       .reduce((env, key) => {
         env[key] = JSON.stringify(raw[key]);
         return env;
-      }, {})
+      }, {}),
+    'process.env': {
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      API_HOST: JSON.stringify(process.env.API_HOST || 'http://localhost:80'),
+      STRIPE_PUBLIC_KEY: JSON.stringify(process.env.STRIPE_PUBLIC_KEY || 'pk_test_eZPEOrztVTn92MulyEkDp2ay'),
+    },
   };
 
   return { raw, stringified };
 }
 
 module.exports = getClientEnvironment;
+{
+
+}

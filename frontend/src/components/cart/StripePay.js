@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import './StripePay.scss';
 var stripe = window.Stripe(process.env.STRIPE_PUBLIC_KEY);
 import { hideCreditCardForm } from '../../store/actions/cartActions'
 import axios from 'axios'
@@ -9,7 +8,7 @@ class StripePay extends Component {
 
   componentDidMount() {
     const elements = stripe.elements();
-    const total = this.props.cart.total
+    // const total = this.props.cart.total
 
     let card = elements.create('card', {
       iconStyle: 'solid',
@@ -55,32 +54,10 @@ class StripePay extends Component {
       });
     });
 
-    function setOutcome(result) {
-      var successElement = document.querySelector('.success');
-      var errorElement = document.querySelector('.error');
-      var successPayment = document.querySelector('.success-payment');
-      successElement.classList.remove('visible');
-      errorElement.classList.remove('visible');
 
-      if (result.token) {
-        // Use the token to create a charge or a customer
-        // https://stripe.com/docs/charges
-        axios.post('/api/charge', {
-          stripeToken: result.token,
-          chargeAmount: total,
-        })
-
-        // successElement.querySelector('.token').textContent = result.token.id;
-        // successElement.classList.add('visible');
-        successPayment.classList.add('visible');
-      } else if (result.error) {
-        errorElement.textContent = result.error.message;
-        errorElement.classList.add('visible');
-      }
-    }
 
     card.on('change', (event) => {
-      setOutcome(event);
+      this.setOutcome(event);
     });
 
     document.querySelector('form').addEventListener('submit', (e) => {
@@ -89,13 +66,42 @@ class StripePay extends Component {
       var extraDetails = {
         name: form.querySelector('input[name=cardholder-name]').value,
       };
-      stripe.createToken(card, extraDetails).then(setOutcome);
+      stripe.createToken(card, extraDetails).then(this.setOutcome);
     });
+  }
+
+  setOutcome = (result) => {
+    var successElement = document.querySelector('.success');
+    var errorElement = document.querySelector('.error');
+    var successPayment = document.querySelector('.success-payment');
+    successElement.classList.remove('visible');
+    errorElement.classList.remove('visible');
+
+    if (result.token) {
+      // Use the token to create a charge or a customer
+      // https://stripe.com/docs/charges
+      axios.post('/api/charge', {
+        stripeToken: result.token,
+        chargeAmount: this.props.cart.total,
+      })
+
+      // successElement.querySelector('.token').textContent = result.token.id;
+      // successElement.classList.add('visible');
+      successPayment.classList.add('visible');
+    } else if (result.error) {
+      errorElement.textContent = result.error.message;
+      errorElement.classList.add('visible');
+    }
+  }
+
+  componentWillUnmount() {
+    this.setOutcome = null
   }
 
   handleHide = e => {
     this.props.hideCreditCardForm()
   }
+
 
 
   render() {
