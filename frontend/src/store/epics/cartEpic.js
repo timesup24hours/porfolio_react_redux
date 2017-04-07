@@ -123,31 +123,10 @@ export const removeProductFromCartEpic = action$ => action$
     ))
   )
 
-export const paymentRequestEpic = action$ => action$
-  .ofType(actionTypes.CART_PAYMENT_REQUEST)
-  .map(signRequest)
-  .switchMap(({ headers, payload }) => Observable
-    .ajax.post('/api/charge', payload, headers)
-    .map(res => res.response)
-    .mergeMap(response => Observable.of(
-      {
-        type: actionTypes.CART_PAYMENT_REQUEST_SUCCESS,
-        payload: response,
-      },
-      {
-        type: actionTypes.CART_EMPTY_CART_REQUEST,
-      }
-    ))
-    .catch(error => Observable.of(
-      {
-        type: actionTypes.CART_PAYMENT_REQUEST_FAIL,
-        payload: error,
-      }
-    ))
-  )
 
 export const emptyCartRequestEpic = action$ => action$
   .ofType(actionTypes.CART_EMPTY_CART_REQUEST)
+  .do(payload => console.log('going through cartGetEpic epic')) // test
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
     .ajax.put('/api/cart_empty', payload, headers)

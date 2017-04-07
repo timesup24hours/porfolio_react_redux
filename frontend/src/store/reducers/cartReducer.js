@@ -91,6 +91,7 @@ export default (state = initialState, action = {}) => {
   switch (action.type) {
     case actionTypes.CART_ADD_REQUEST:
     case actionTypes.CART_GET_REQUEST:
+    case actionTypes.CART_EMPTY_CART_REQUEST:
       return {
         ...state,
         pending: true,
@@ -176,7 +177,7 @@ export default (state = initialState, action = {}) => {
           show: false,
         },
       }
-    case actionTypes.CART_PAYMENT_REQUEST_SUCCESS:
+    case actionTypes.CART_EMPTY_CART_REQUEST_SUCCESS:
       return {
         ...state,
         cart: [],
@@ -191,7 +192,7 @@ export default (state = initialState, action = {}) => {
         currentProduct: {},
         quantityOfCurrentProduct: 0,
       }
-    case actionTypes.CART_PAYMENT_REQUEST_FAIL:
+    case actionTypes.CART_EMPTY_CART_REQUEST_FAIL:
       return {
         ...state,
         pending: false,

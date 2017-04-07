@@ -9,7 +9,7 @@ export const showCreditCardForm = () => ({
 })
 
 export const paymentRequest = payload => ({
-  type: actionTypes.CART_PAYMENT_REQUEST,
+  type: actionTypes.PAYMENT_REQUEST,
   payload,
 })
 
