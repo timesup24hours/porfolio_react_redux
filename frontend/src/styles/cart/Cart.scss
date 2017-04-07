@@ -11,9 +11,9 @@
 
 .Cart-wrapper {
   display: flex;
-  flex-direction: row;
   margin: 40px;
   width: 100%;
+  flex-direction: row-reverse;
 }
 
 .Cart-order-holder {
@@ -30,7 +30,9 @@
   }
 
 }
+
 .Cart-calculator {
+
 }
 
 .Cart-no-items {
@@ -42,4 +44,17 @@
   top: 50%;
   text-align: center;
   line-height: 100px;
+}
+
+@media screen and (max-width : 830px) {
+  .Cart-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .Cart-calculator {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+  }
 }
