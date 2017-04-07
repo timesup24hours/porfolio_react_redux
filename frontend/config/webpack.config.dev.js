@@ -201,7 +201,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        API_HOST: JSON.stringify(process.env.API_HOST || 'http://localhost:80'),
+        API_HOST: JSON.stringify(process.env.API_HOST || 'http://localhost:8080'),
         STRIPE_PUBLIC_KEY: JSON.stringify(process.env.STRIPE_PUBLIC_KEY || 'pk_test_eZPEOrztVTn92MulyEkDp2ay'),
       },
     }),

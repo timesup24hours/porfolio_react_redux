@@ -57,10 +57,10 @@ export class Cart extends Component {
               </div>
               <div className='Cart-calculator'>
                 <Calculator cart={this.props.cart} />
-                {this.props.cart.creditCardForm.show ? <StripePay cart={this.props.cart}  /> : null}
               </div>
             </div>)
         }
+        {this.props.cart.creditCardForm.show ? <StripePay cart={this.props.cart}  /> : null}
       </div>
     )
 

@@ -4,7 +4,10 @@ import { loginEpic } from './loginEpic'
 import { userInfoChangeRequest } from './userEpic'
 import { commentGetAllEpic, commentDeleteEpic, commentEditRequest } from './commentEpic'
 import { productGetAllEpic, productGetOneEpic, addProductEpic, getProductByCategoryEpic } from './productEpic'
-import { cartAddEpic, cartGetEpic, changeQuantityOfProductIntheCartEpic, subtractQuantityOfProductIntheCartEpic, removeProductFromCartEpic, increaseQuantityOfProductIntheCartEpic } from './cartEpic'
+import { cartAddEpic, cartGetEpic, changeQuantityOfProductIntheCartEpic,
+  subtractQuantityOfProductIntheCartEpic, removeProductFromCartEpic,
+  increaseQuantityOfProductIntheCartEpic, paymentRequestEpic,
+  emptyCartRequestEpic } from './cartEpic'
 import { menuGetAllEpic } from './menuEpic'
 
 export default combineEpics(
@@ -25,4 +28,6 @@ export default combineEpics(
   increaseQuantityOfProductIntheCartEpic,
   addProductEpic,
   getProductByCategoryEpic,
+  paymentRequestEpic,
+  emptyCartRequestEpic,
 );

@@ -6,7 +6,7 @@ export const cartGetEpic = action$ => action$
   .ofType(actionTypes.CART_GET_REQUEST)
   .map(signRequest)
   // .do(payload => console.log('going through cartGetEpic epic')) // test
-  .switchMap(({headers}) => Observable
+  .switchMap(({ headers }) => Observable
     .ajax.get('/api/cart', headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
@@ -18,7 +18,7 @@ export const cartGetEpic = action$ => action$
     .catch(error => Observable.of(
       {
         type: actionTypes.CART_GET_FAIL,
-        payload: error
+        payload: error,
       }
     ))
   )
@@ -26,7 +26,7 @@ export const cartGetEpic = action$ => action$
 export const cartAddEpic = action$ => action$
   .ofType(actionTypes.CART_ADD_REQUEST)
   .map(signRequest)
-  .switchMap(({headers, payload}) => Observable
+  .switchMap(({ headers, payload }) => Observable
     .ajax.post('/api/cart/', payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
@@ -38,7 +38,7 @@ export const cartAddEpic = action$ => action$
     .catch(error => Observable.of(
       {
         type: actionTypes.CART_ADD_FAIL,
-        payload: error
+        payload: error,
       }
     ))
   )
@@ -46,7 +46,7 @@ export const cartAddEpic = action$ => action$
 export const changeQuantityOfProductIntheCartEpic = action$ => action$
   .ofType(actionTypes.CART_CHANGE_PRODUCT_QUANTITY_REQUEST)
   .map(signRequest)
-  .switchMap(({headers, payload}) => Observable
+  .switchMap(({ headers, payload }) => Observable
     .ajax.put(`/api/cart/changeQuantity`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
@@ -58,7 +58,7 @@ export const changeQuantityOfProductIntheCartEpic = action$ => action$
     .catch(error => Observable.of(
       {
         type: actionTypes.CART_CHANGE_PRODUCT_QUANTITY_FAIL,
-        payload: error
+        payload: error,
       }
     ))
   )
@@ -66,7 +66,7 @@ export const changeQuantityOfProductIntheCartEpic = action$ => action$
 export const increaseQuantityOfProductIntheCartEpic = action$ => action$
   .ofType(actionTypes.CART_INCREASE_PRODUCT_QUANTITY_REQUEST)
   .map(signRequest)
-  .switchMap(({headers, payload}) => Observable
+  .switchMap(({ headers, payload }) => Observable
     .ajax.put('/api/cart/increaseOneQuantity', payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
@@ -78,7 +78,7 @@ export const increaseQuantityOfProductIntheCartEpic = action$ => action$
     .catch(error => Observable.of(
       {
         type: actionTypes.CART_INCREASE_PRODUCT_QUANTITY_FAIL,
-        payload: error
+        payload: error,
       }
     ))
   )
@@ -86,7 +86,7 @@ export const increaseQuantityOfProductIntheCartEpic = action$ => action$
 export const subtractQuantityOfProductIntheCartEpic = action$ => action$
   .ofType(actionTypes.CART_PRODUCT_QUANTITY_SUBTRACT_REQUEST)
   .map(signRequest)
-  .switchMap(({headers, payload}) => Observable
+  .switchMap(({ headers, payload }) => Observable
     .ajax.put('/api/cart/subtractOneQuantity', payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
@@ -98,7 +98,7 @@ export const subtractQuantityOfProductIntheCartEpic = action$ => action$
     .catch(error => Observable.of(
       {
         type: actionTypes.CART_PRODUCT_QUANTITY_SUBTRACT_FAIL,
-        payload: error
+        payload: error,
       }
     ))
   )
@@ -106,7 +106,7 @@ export const subtractQuantityOfProductIntheCartEpic = action$ => action$
 export const removeProductFromCartEpic = action$ => action$
   .ofType(actionTypes.CART_REMOVE_PRODUCT_FROM_CART_REQUEST)
   .map(signRequest)
-  .switchMap(({headers, payload}) => Observable
+  .switchMap(({ headers, payload }) => Observable
     .ajax.put('/api/cart/removeProductFromCart', payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
@@ -118,7 +118,50 @@ export const removeProductFromCartEpic = action$ => action$
     .catch(error => Observable.of(
       {
         type: actionTypes.CART_REMOVE_PRODUCT_FROM_CART_FAIL,
-        payload: error
+        payload: error,
+      }
+    ))
+  )
+
+export const paymentRequestEpic = action$ => action$
+  .ofType(actionTypes.CART_PAYMENT_REQUEST)
+  .map(signRequest)
+  .switchMap(({ headers, payload }) => Observable
+    .ajax.post('/api/charge', payload, headers)
+    .map(res => res.response)
+    .mergeMap(response => Observable.of(
+      {
+        type: actionTypes.CART_PAYMENT_REQUEST_SUCCESS,
+        payload: response,
+      },
+      {
+        type: actionTypes.CART_EMPTY_CART_REQUEST,
+      }
+    ))
+    .catch(error => Observable.of(
+      {
+        type: actionTypes.CART_PAYMENT_REQUEST_FAIL,
+        payload: error,
+      }
+    ))
+  )
+
+export const emptyCartRequestEpic = action$ => action$
+  .ofType(actionTypes.CART_EMPTY_CART_REQUEST)
+  .map(signRequest)
+  .switchMap(({ headers, payload }) => Observable
+    .ajax.put('/api/cart_empty', payload, headers)
+    .map(res => res.response)
+    .mergeMap(response => Observable.of(
+      {
+        type: actionTypes.CART_EMPTY_CART_REQUEST_SUCCESS,
+        payload: response,
+      }
+    ))
+    .catch(error => Observable.of(
+      {
+        type: actionTypes.CART_EMPTY_CART_REQUEST_FAIL,
+        payload: error,
       }
     ))
   )

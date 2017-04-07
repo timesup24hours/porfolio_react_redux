@@ -1,9 +1,17 @@
 import * as actionTypes from './actionTypes'
 
+export const emptyCartRequest = () => ({
+  type: actionTypes.CART_EMPTY_CART_REQUEST,
+})
+
 export const showCreditCardForm = () => ({
   type: actionTypes.CART_SHOW_CREDIT_CARD_FORM,
 })
 
+export const paymentRequest = payload => ({
+  type: actionTypes.CART_PAYMENT_REQUEST,
+  payload,
+})
 
 export const hideCreditCardForm = () => ({
   type: actionTypes.CART_HIDE_CREDIT_CARD_FORM,

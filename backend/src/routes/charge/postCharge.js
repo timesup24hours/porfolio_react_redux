@@ -1,7 +1,10 @@
+import passport from 'passport'
 import { stripe as stripeConfig } from '../../../config'
 import { asyncRequest } from '../../util'
 import stripePackage from 'stripe'
+
 let stripe
+
 if(process.env.NODE_ENV !== 'production') {
   stripe = stripePackage(stripeConfig.testSecretKey)
 } else {
@@ -10,11 +13,9 @@ if(process.env.NODE_ENV !== 'production') {
 
 export default (app) => {
 
-  app.post('/api/charge', asyncRequest(async (req, res, next) => {
+  app.post('/api/charge', passport.authenticate('local-jwt'), asyncRequest(async (req, res, next) => {
     const token = req.body.stripeToken
     const chargeAmount = req.body.chargeAmount
-    console.log('token ', token);
-    console.log('chargeAmount ', chargeAmount);
     let charge = stripe.charges.create({
       amount: chargeAmount,
       currency: 'usd',
@@ -28,7 +29,7 @@ export default (app) => {
       // req.user.customData.save((err) => {
       //   if(err) console.log(err);
       // })
-      console.log('charge ', charge);
+      // console.log('charge ', charge);
     })
     console.log('your payment was successful');
     res.status(201).json({ success: true })

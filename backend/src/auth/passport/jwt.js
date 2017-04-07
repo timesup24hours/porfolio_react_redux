@@ -20,6 +20,7 @@ export default (passport) => {
       done(e)
       return
     }
+    console.log(user);
     // check if exists
     if (!user) {
       done(null, false)

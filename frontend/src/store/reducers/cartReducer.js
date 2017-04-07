@@ -176,6 +176,35 @@ export default (state = initialState, action = {}) => {
           show: false,
         },
       }
+    case actionTypes.CART_PAYMENT_REQUEST_SUCCESS:
+      return {
+        ...state,
+        cart: [],
+        totalQuantity: 0,
+        total: 0,
+        pending: false,
+        success: true,
+        fail: false,
+        errors: {
+        },
+        error: false,
+        currentProduct: {},
+        quantityOfCurrentProduct: 0,
+      }
+    case actionTypes.CART_PAYMENT_REQUEST_FAIL:
+      return {
+        ...state,
+        pending: false,
+        success: false,
+        fail: true,
+        errors: {
+          error: action.payload,
+        },
+        error: true,
+        creditCardForm: {
+          show: true,
+        },
+      }
     default:
       return state
   }

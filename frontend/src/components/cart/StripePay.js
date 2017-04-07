@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 var stripe = window.Stripe(process.env.STRIPE_PUBLIC_KEY);
-import { hideCreditCardForm } from '../../store/actions/cartActions'
-import axios from 'axios'
+import * as cartActions from '../../store/actions/cartActions'
 
 class StripePay extends Component {
 
@@ -80,7 +79,7 @@ class StripePay extends Component {
     if (result.token) {
       // Use the token to create a charge or a customer
       // https://stripe.com/docs/charges
-      axios.post('/api/charge', {
+      this.props.paymentRequest({
         stripeToken: result.token,
         chargeAmount: this.props.cart.total,
       })
@@ -143,7 +142,8 @@ class StripePay extends Component {
 const mapStateToProps = state => ({
 })
 const mapDispatchToProps = dispatch => ({
-  hideCreditCardForm: () => dispatch(hideCreditCardForm()),
+  hideCreditCardForm: () => dispatch(cartActions.hideCreditCardForm()),
+  paymentRequest: () => dispatch(cartActions.paymentRequest()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(StripePay)
