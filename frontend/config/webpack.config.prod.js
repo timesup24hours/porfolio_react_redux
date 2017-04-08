@@ -198,7 +198,7 @@ module.exports = {
         collapseWhitespace: true,
         removeRedundantAttributes: true,
         useShortDoctype: true,
-        removeEmptyAttributes: true,
+        removeEmptyAttributes: false,
         removeStyleLinkTypeAttributes: true,
         keepClosingSlash: true,
         minifyJS: true,
