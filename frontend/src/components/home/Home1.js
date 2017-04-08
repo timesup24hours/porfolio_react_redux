@@ -2,6 +2,7 @@ import React from 'react'
 import home1Img from '../../../public/images/home1.jpg'
 
 const Home1 = () => {
+  // console.log(document.styleSheets);
   return (
     <div className='Home1-container' id='home'>
       <div className='Home1-left'>

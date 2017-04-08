@@ -132,7 +132,9 @@
   }
   .Home2-left-img {
     background-size: 70%;
-    background-position: 50% 15%;
+    // background-position: 50% 15%;
+    background-position: 50% 1%; // test
+    border: 1px solid red; // test
     background-repeat: no-repeat;
     background-attachment: fixed;
     width: 100%;
