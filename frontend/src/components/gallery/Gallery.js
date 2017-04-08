@@ -36,8 +36,8 @@ const Gallery = props => {
 
     const onmousemove = (ev) => {
       let container = document.getElementById('Gallery-amplify-container');
-      let holder = document.getElementById('Gallery-img-preview-holder');
-      // let previewImg = document.getElementById('Gallery-preview-img');
+      // let holder = document.getElementById('Gallery-img-preview-holder');
+      let previewImg = document.getElementById('Gallery-preview-img');
       let mark = document.getElementById('mark');
       let floatBox = document.getElementById('float-box');
       let amplify = document.getElementById('Gallery-amplify');
@@ -45,19 +45,19 @@ const Gallery = props => {
 
       let _event = ev || window.event;  //兼容多个浏览器的event参数模式
 
-      let left = _event.pageX - container.offsetLeft - holder.offsetLeft - floatBox.offsetWidth / 2  - 20;
-      let top = _event.pageY - container.offsetTop - holder.offsetTop - floatBox.clientHeight / 2 - 164;
+      let left = _event.pageX - container.offsetLeft - previewImg.offsetLeft - floatBox.offsetWidth / 2  - 20;
+      let top = _event.pageY - container.offsetTop - previewImg.offsetTop - floatBox.offsetHeight / 2 - 164;
 
       if (left < 0) {
         left = 0;
-      } else if (left > (holder.offsetWidth - floatBox.offsetWidth)) {
-        left = holder.offsetWidth - floatBox.offsetWidth;
+      } else if (left > (previewImg.offsetWidth - floatBox.offsetWidth)) {
+        left = previewImg.offsetWidth - floatBox.offsetWidth;
       }
 
       if (top < 0) {
         top = 0;
-      } else if (top > (holder.offsetHeight - floatBox.offsetHeight)) {
-        top = holder.offsetHeight - floatBox.offsetHeight;
+      } else if (top > (previewImg.offsetHeight - floatBox.offsetHeight)) {
+        top = previewImg.offsetHeight - floatBox.offsetHeight;
 
       }
 

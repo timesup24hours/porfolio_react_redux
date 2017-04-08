@@ -4,7 +4,6 @@ import RippleEffectButton from '../RippleEffectButton/RippleEffectButton'
 class TriggerSvgWord extends Component {
 
   handleOnClik = () => {
-
     // get all the svg element that has className .st0
     let svg = document.querySelector('.st0')
     // add the className if svg element does not has one
