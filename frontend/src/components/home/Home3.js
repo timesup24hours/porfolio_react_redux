@@ -1,11 +1,11 @@
 import React from 'react'
-// import Home3Img from '../../../public/images/Home3.png'<img src={Home3Img} alt=""/>
+import Home36Img from '../../../public/images/home36.png' //<img src={Home3Img} alt=""/>
 
 const Home3 = () => {
   return (
     <div className='Home3-container' id='home'>
       <div className='Home3-left'>
-        <div className='Home3-left-img' >
+        <div className='Home3-left-img' style={{ backgroundImage: `url(${Home36Img})` }}>
         </div>
       </div>
       <div className='Home3-right'>
