@@ -41,7 +41,7 @@
 }
 
 .Home2-left-img {
-  background-image: url('../../public/images/home2.png');
+  background-image: url('/images/home2.png');
   // background-size: 28%;
   // background-position: 22% 55%;
   background-repeat: no-repeat;
@@ -132,9 +132,9 @@
   }
   .Home2-left-img {
     background-size: 70%;
-    // background-position: 50% 15%;
-    background-position: 50% 1%; // test
-    border: 1px solid red; // test
+    background-position: 50% 15%;
+    // background-position: 50% 1%; // test
+    // border: 1px solid red; // test
     background-repeat: no-repeat;
     background-attachment: fixed;
     width: 100%;
