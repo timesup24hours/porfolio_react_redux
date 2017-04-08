@@ -9,11 +9,11 @@
   z-index: 200;
 
   img {
-    width: 50%;
-    height: 50%;
+    width: 300px;
+    height: 300px;
     position: absolute;
     top: 35%;
-    left: 25%;
+    left: calc(50% - 150px);
   }
 }
 
@@ -135,13 +135,13 @@
 @media screen and (max-width: 500px) {
   .Home3-container {
     flex-direction: column;
-    
+
     img {
-      width: 50%;
-      height: 60%;
+      width: 300px;
+      height: 300px;
       position: absolute;
       top: 35%;
-      left: 25%;
+      left: calc(50% - 150px);
     }
   }
   .Home3-left {
@@ -173,11 +173,11 @@
     flex-direction: column;
 
     img {
-      width: 50%;
-      height: 60%;
+      width: 300px;
+      height: 300px;
       position: absolute;
       top: 35%;
-      left: 25%;
+      left: calc(50% - 150px);
     }
   }
   .Home3-left {
