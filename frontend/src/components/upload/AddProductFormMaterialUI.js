@@ -93,7 +93,7 @@ class AddProductForm extends Component {
     const { isValid, errors } = submitValidation(this.getFormNameAndValue(listDesc, images))
     if(!isValid) {
       document.querySelector('#AddProductForm-upload-btn').disabled = true
-      this.setState({ errors })
+      // this.setState({ errors })
     } else {
       document.querySelector('#AddProductForm-upload-btn').disabled = false
     }
@@ -107,7 +107,7 @@ class AddProductForm extends Component {
       this.setState({
         listDesc: newListDesc
       })
-      this.validatingFormValueDisableUploadButton(newListDesc)
+      // this.validatingFormValueDisableUploadButton(newListDesc)
       localStorage.setItem('addProductForm-listDesc', JSON.stringify(newListDesc))
    }
 
@@ -138,7 +138,7 @@ class AddProductForm extends Component {
     addProductionFormValidation(e)
     this.handleListDescError(e)
     this.setState({ listDesc: newListDesc })
-    this.validatingFormValueDisableUploadButton(newListDesc)
+    // this.validatingFormValueDisableUploadButton(newListDesc)
     localStorage.setItem('addProductForm-listDesc', JSON.stringify(newListDesc))
   }
 
@@ -146,7 +146,7 @@ class AddProductForm extends Component {
    * increase the listDesc length in order to dynamically map the input field to the dom
    */
   handleAddBriefDescription = () => {
-    this.validatingFormValueDisableUploadButton(this.state.listDesc.concat({ name: '' }))
+    // this.validatingFormValueDisableUploadButton(this.state.listDesc.concat({ name: '' }))
     if(this.state.listDesc.length < 9) {
       this.setState({ listDesc: this.state.listDesc.concat({ name: '' }) })
     }
@@ -154,7 +154,7 @@ class AddProductForm extends Component {
 
   // handle onBlue event
   handleOnBlur = (e) => {
-    this.validatingFormValueDisableUploadButton()
+    // this.validatingFormValueDisableUploadButton()
     addProductionFormValidation(e)
     this.handleListDescError(e)
   }
@@ -164,7 +164,7 @@ class AddProductForm extends Component {
    */
   handleSelect = e => {
     addProductionFormValidation(e)
-    this.validatingFormValueDisableUploadButton()
+    // this.validatingFormValueDisableUploadButton()
     if(e.target.name === 'department') {
       this.setState({ 'category': '' })
       this.setState({ 'type': '' })
@@ -179,7 +179,7 @@ class AddProductForm extends Component {
    */
   handleChange = (e) => {
     addProductionFormValidation(e)
-    this.validatingFormValueDisableUploadButton()
+    // this.validatingFormValueDisableUploadButton()
     localStorage.setItem(`addProductForm-${e.target.name}`, e.target.value)
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -204,7 +204,7 @@ class AddProductForm extends Component {
     for(let i = 0; i < filelist.length; i++) {
       images.push(filelist[i])
     }
-    this.validatingFormValueDisableUploadButton(undefined, images)
+    // this.validatingFormValueDisableUploadButton(undefined, images)
     // concat the coming object and seset the state
     this.setState({ images: this.state.images.concat(images) })
   }
@@ -214,7 +214,7 @@ class AddProductForm extends Component {
    */
   handleRemoveImage = (index) => {
     this.setState({ images: this.state.images.filter((img, i) => i !== index) })
-    this.validatingFormValueDisableUploadButton(undefined, this.state.images.filter((img, i) => i !== index))
+    // this.validatingFormValueDisableUploadButton(undefined, this.state.images.filter((img, i) => i !== index))
   }
 
   /*
@@ -225,10 +225,11 @@ class AddProductForm extends Component {
 
     const { isValid, errors } = submitValidation(this.state)
     if(!isValid) {
-      document.querySelector('#AddProductForm-upload-btn').disabled = true
+      // document.querySelector('#AddProductForm-upload-btn').disabled = true
       this.setState({ errors })
       return false
     }
+    document.querySelector('#desc').parentElement.firstChild.textContent = 'Long Description'
 
     // Learning Note: inorder to make NPM package multer wokring at server side,
     // this step has to perform, append each file objec to the new FormData
