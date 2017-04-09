@@ -36,3 +36,16 @@
 .fly-in-text.hidden li:nth-child(5) { transform: translateX(-300px) translateY(200px); }
 .fly-in-text.hidden li:nth-child(6) { transform: translateX(20px) translateY(-20px); }
 .fly-in-text.hidden li:nth-child(7) { transform: translateX(30px) translateY(200px); }
+
+@media screen and (max-width: 500px) {
+  .fly-in-text li {
+    display: inline-block;
+    margin-right: 10px;
+    font-family: Open Sans, Arial;
+    font-weight: 300;
+    font-size: 3em;
+    color: #fff;
+    opacity: 1;
+    transition: all 2.5s ease;
+  }
+}

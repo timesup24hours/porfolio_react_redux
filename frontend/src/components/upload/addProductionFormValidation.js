@@ -30,6 +30,16 @@ export const addProductionFormValidation = e => {
     }
   }
 
+  if(e.target.name.indexOf('listDesc') > -1) {
+    if(e.target.value === '') {
+      e.target.classList.add('invalid')
+      e.target.parentElement.lastChild.textContent = 'required'
+    } else {
+      e.target.classList.remove('invalid')
+      e.target.parentElement.lastChild.textContent = ''
+    }
+  }
+
   if(e.target.name === 'desc') {
     if(e.target.hasAttribute('required') && e.target.value.length === 0) {
       e.target.classList.add('invalid')
@@ -196,6 +206,7 @@ export const addProductionFormValidation = e => {
 // }
 
 export const submitValidation = data => {
+  
   let errors = {}
   if(data.name === '') {
     errors.name = 'required'
@@ -223,9 +234,17 @@ export const submitValidation = data => {
     errors.listDesc = 'At least 2 Brief Description'
   }
 
-  if(data.price.length === 0) {
+  if(data.listDesc.length) {
+    data.listDesc.forEach((el, i) => {
+      if(el.name === '') {
+        errors[`listDesc${i}`] = 'required'
+      }
+    })
+  }
+
+  if(data.price === '') {
     errors.price = 'required'
-  } else if(data.price.length && !Number.isInteger(parseInt(data.price, 10))) {
+  } else if(data.price && !Number.isInteger(parseInt(data.price, 10))) {
     errors.price = 'invalid value'
   }
 

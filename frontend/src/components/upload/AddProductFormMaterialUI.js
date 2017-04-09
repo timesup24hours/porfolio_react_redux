@@ -70,6 +70,34 @@ class AddProductForm extends Component {
     this.setState(clearState)
   }
 
+  // get all name and value method
+  getFormNameAndValue = (listDesc, images) => ({
+    [document.querySelector('#name').name]: document.querySelector('#name').value,
+    [document.querySelector('#category').name]: document.querySelector('#category').value,
+    [document.querySelector('#type').name]: document.querySelector('#type').value,
+    [document.querySelector('#stock').name]: document.querySelector('#stock').value,
+    [document.querySelector('#numberOfStock').name]: document.querySelector('#numberOfStock').value,
+    [document.querySelector('#desc').name]: document.querySelector('#desc').value,
+    [document.querySelector('#name').name]: document.querySelector('#name').value,
+    [document.querySelector('#brand').name]: document.querySelector('#brand').value,
+    [document.querySelector('#salePrice').name]: document.querySelector('#salePrice').value,
+    listDesc: listDesc || this.state.listDesc,
+    [document.querySelector('#onSale').name]: document.querySelector('#onSale').value,
+    [document.querySelector('#size').name]: document.querySelector('#size').value,
+    [document.querySelector('#images').name]: images || this.state.images,
+    [document.querySelector('#soldBy').name]: document.querySelector('#soldBy').value,
+  })
+
+  // validating form value for disable the upload btn or Note
+  validatingFormValueDisableUploadButton = (listDesc, images) => {
+    const { isValid, errors } = submitValidation(this.getFormNameAndValue(listDesc, images))
+    if(!isValid) {
+      document.querySelector('#AddProductForm-upload-btn').disabled = true
+      this.setState({ errors })
+    } else {
+      document.querySelector('#AddProductForm-upload-btn').disabled = false
+    }
+  }
 
   /*
    *  remove the dynamically added input field (listDesc)
@@ -79,6 +107,7 @@ class AddProductForm extends Component {
       this.setState({
         listDesc: newListDesc
       })
+      this.validatingFormValueDisableUploadButton(newListDesc)
       localStorage.setItem('addProductForm-listDesc', JSON.stringify(newListDesc))
    }
 
@@ -102,13 +131,14 @@ class AddProductForm extends Component {
    * change the value in the dynamically added input field (listDesc)
    */
   handleListDescChange = (e, index) => {
-    this.handleListDescError(e)
     const newListDesc = this.state.listDesc.map((l, ldi) => {
       if (ldi !== index) return l
       return { ...l, name: e.target.value }
     })
-
+    addProductionFormValidation(e)
+    this.handleListDescError(e)
     this.setState({ listDesc: newListDesc })
+    this.validatingFormValueDisableUploadButton(newListDesc)
     localStorage.setItem('addProductForm-listDesc', JSON.stringify(newListDesc))
   }
 
@@ -116,6 +146,7 @@ class AddProductForm extends Component {
    * increase the listDesc length in order to dynamically map the input field to the dom
    */
   handleAddBriefDescription = () => {
+    this.validatingFormValueDisableUploadButton(this.state.listDesc.concat({ name: '' }))
     if(this.state.listDesc.length < 9) {
       this.setState({ listDesc: this.state.listDesc.concat({ name: '' }) })
     }
@@ -123,6 +154,7 @@ class AddProductForm extends Component {
 
   // handle onBlue event
   handleOnBlur = (e) => {
+    this.validatingFormValueDisableUploadButton()
     addProductionFormValidation(e)
     this.handleListDescError(e)
   }
@@ -131,7 +163,13 @@ class AddProductForm extends Component {
    * set value of the select element to localStorage and reset the state
    */
   handleSelect = e => {
-    if(e.target.name === 'department') this.setState({ 'category': '' })
+    addProductionFormValidation(e)
+    this.validatingFormValueDisableUploadButton()
+    if(e.target.name === 'department') {
+      this.setState({ 'category': '' })
+      this.setState({ 'type': '' })
+    }
+    if(e.target.name === 'category') this.setState({ 'type': '' })
     localStorage.setItem(`addProductForm-${e.target.name}`, e.target.value)
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -141,6 +179,7 @@ class AddProductForm extends Component {
    */
   handleChange = (e) => {
     addProductionFormValidation(e)
+    this.validatingFormValueDisableUploadButton()
     localStorage.setItem(`addProductForm-${e.target.name}`, e.target.value)
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -165,6 +204,7 @@ class AddProductForm extends Component {
     for(let i = 0; i < filelist.length; i++) {
       images.push(filelist[i])
     }
+    this.validatingFormValueDisableUploadButton(undefined, images)
     // concat the coming object and seset the state
     this.setState({ images: this.state.images.concat(images) })
   }
@@ -174,6 +214,7 @@ class AddProductForm extends Component {
    */
   handleRemoveImage = (index) => {
     this.setState({ images: this.state.images.filter((img, i) => i !== index) })
+    this.validatingFormValueDisableUploadButton(undefined, this.state.images.filter((img, i) => i !== index))
   }
 
   /*
@@ -184,6 +225,7 @@ class AddProductForm extends Component {
 
     const { isValid, errors } = submitValidation(this.state)
     if(!isValid) {
+      document.querySelector('#AddProductForm-upload-btn').disabled = true
       this.setState({ errors })
       return false
     }
@@ -321,6 +363,7 @@ class AddProductForm extends Component {
                     <i className="material-icons hover-cursor-pointer z-depth-2"
                       onClick={(e) => this.handelListDescRemove(e, i)}>cancel</i>
                   </div>
+                  <span className='red-text wrong addProductForm-invalid-span'>{this.state.errors[`listDesc${i}`]}</span>
                 </div>)
       })
 
@@ -585,7 +628,7 @@ class AddProductForm extends Component {
                 <button className='waves-effect waves-light btn' onClick={this.handleClearForm}>Clear</button>
               </div>
               <div className='col s6 m6'>
-                <button className='waves-effect waves-light btn right' onClick={this.handleUploadProduct}>Upload product</button>
+                <button id='AddProductForm-upload-btn' className='waves-effect waves-light btn right' onClick={this.handleUploadProduct}>Upload product</button>
               </div>
             </div>
 
