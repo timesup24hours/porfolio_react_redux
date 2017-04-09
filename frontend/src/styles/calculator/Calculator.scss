@@ -66,3 +66,56 @@
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
+
+
+@media only screen and (max-width: 700px) {
+  .Calculator-container {
+    // max-width: 300px;
+    // min-width: 300px;
+    // height: 320px;
+    // display: flex;
+    // flex-direction: column;
+    // padding: 14px 16px;
+    // font-size: 14px;
+    // box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, .1);
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 0px 10px;
+    min-width: 90%;
+    max-width: 90%;
+    width: 90%;
+  }
+  .Calculator-holder {
+    margin-top: 6px;
+    padding: 0px 24px;
+  }
+  .Calculator-button {
+    button {
+      width: 100%;
+    }
+  }
+  .Calculator-order-summary {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .Calculator-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 6px 0px;
+  }
+  .Calculator-divider {
+    margin: 10px 0px;
+    div {
+      border-bottom: 1px solid grey;
+    }
+  }
+  .Calculator-total-summary {
+    font-weight: bold;
+    color: red;
+    font-size: 16px;
+  }
+}
