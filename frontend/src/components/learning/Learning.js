@@ -14,6 +14,7 @@ import LoadingSignature from './LoadingSignature/LoadingSignature'
 // import DrawingAnimationsWithHTMLCSS3 from './DrawingAnimationsWithHTMLCSS3/DrawingAnimationsWithHTMLCSS3'
 // <DrawingAnimationsWithHTMLCSS3 />
 // <CaptainAmericaShieldSVG />
+import StepByStepForm from './StepByStepForm/StepByStepForm'
 
 class Learning extends Component {
 
@@ -27,6 +28,7 @@ class Learning extends Component {
         <KnockoutMaskEffect />
         <AnimatedLetter />
         <ScrollControlledSVGLineAnimation />
+        <StepByStepForm />
       </div>
     )
   }

@@ -90,7 +90,7 @@ class AddProductForm extends Component {
 
   // validating form value for disable the upload btn or Note
   validatingFormValueDisableUploadButton = (listDesc, images) => {
-    const { isValid, errors } = submitValidation(this.getFormNameAndValue(listDesc, images))
+    const { isValid } = submitValidation(this.getFormNameAndValue(listDesc, images))
     if(!isValid) {
       document.querySelector('#AddProductForm-upload-btn').disabled = true
       // this.setState({ errors })
