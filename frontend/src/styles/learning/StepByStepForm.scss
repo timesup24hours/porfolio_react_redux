@@ -148,6 +148,9 @@
       background: rgba(0,0,0,0.4);
       background: #FF8F00;
     }
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .StepByStepForm-modal-bodies {
@@ -187,6 +190,10 @@
     animation: fadeOut 500ms forwards;
   }
 
+  .animate-fade-in {
+    animation: fadeIn 500ms forwards;
+  }
+
 }
 
 @keyframes out {
@@ -211,4 +218,9 @@
 @keyframes fadeOut {
   0% {opacity: 1;}
   100% {opacity: 0;}
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }

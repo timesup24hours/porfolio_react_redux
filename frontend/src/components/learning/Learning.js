@@ -15,6 +15,7 @@ import LoadingSignature from './LoadingSignature/LoadingSignature'
 // <DrawingAnimationsWithHTMLCSS3 />
 // <CaptainAmericaShieldSVG />
 import StepByStepForm from './StepByStepForm/StepByStepForm'
+import NotificationAlertModal from './NotificationAlertModal/NotificationAlertModal'
 
 class Learning extends Component {
 
@@ -29,6 +30,7 @@ class Learning extends Component {
         <AnimatedLetter />
         <ScrollControlledSVGLineAnimation />
         <StepByStepForm />
+        <NotificationAlertModal />
       </div>
     )
   }

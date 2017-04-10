@@ -2,6 +2,7 @@
   font-family: avenir, helvetica, sans-serif;
   // style={{ backgroundColor: 'skyblue' }}
   svg {
+    z-index: 1000;
     opacity: .3;
     position: fixed;
     margin: auto;

@@ -30,6 +30,9 @@ const StepByStepForm = props => {
 
   }
 
+  /*
+   * handle on click when click the next button and fire outer function step1 or step3
+   */
   const handleOnClick = e => {
     e.preventDefault()
     const allBody = document.querySelectorAll('.StepByStepForm-modal-body')
@@ -42,7 +45,7 @@ const StepByStepForm = props => {
       }
     })
 
-    if (currentIndex === 0 || currentIndex === 1) {
+    if (allBody.length - 1 !== currentIndex) {
       step1(allBody, allSpan, currentIndex)
     } else {
       step3(allBody, allSpan, currentIndex);
@@ -50,6 +53,9 @@ const StepByStepForm = props => {
 
   }
 
+  /*
+   * handle on click return to the first step
+   */
   const handleOnClickReturn = e => {
     document.querySelector('.StepByStepForm-modal-wrap').classList.remove('animate-up')
     const allBody = document.querySelectorAll('.StepByStepForm-modal-body')
@@ -73,6 +79,76 @@ const StepByStepForm = props => {
     document.querySelector('.StepByStepForm-return-button').style.display = 'none'
   }
 
+  /*
+   * change page
+   */
+  const changePage = (allBody, allSpan, currentIndex, lastIndex) => {
+    // animate the step in
+    allBody[lastIndex].classList.remove('is-showing')
+    allBody[currentIndex].classList.add('is-showing');
+    allBody[currentIndex].classList.add('animate-fade-in');
+    allSpan[lastIndex].classList.remove('is-active')
+    allSpan[currentIndex].classList.add('is-active')
+
+    // after the animation, adjust the classes
+    setTimeout(() => {
+      allBody[currentIndex].classList.remove('animate-fade-in')
+    }, 500);
+  }
+
+  /*
+   *  handle on click to change the page
+   */
+  const handleOnClickChangePage = e => {
+    e.preventDefault()
+    const allBody = document.querySelectorAll('.StepByStepForm-modal-body')
+    const allSpan = document.querySelectorAll('.StepByStepForm-modal-header span')
+    let lastIndex = 0;
+    let currentIndex = 0;
+    let isCurrent = e.target.classList.contains('is-active')
+
+    allSpan.forEach((el, i) => {
+      if(el.classList.contains('is-active')) {
+        lastIndex = i
+      }
+    })
+
+    allSpan.forEach((el, i) => {
+      if(el.contains(e.currentTarget)) {
+        el.classList.add('is-active')
+        currentIndex = i
+      } else {
+        el.classList.remove('is-active')
+      }
+    })
+
+    if(!isCurrent) {
+      changePage(allBody, allSpan, currentIndex, lastIndex)
+    }
+
+  }
+
+  /*
+   *  render span on page
+   */
+  const renderSpan = new Array(3).fill(1).map((el, i) => {
+    if(i === 0) {
+      return <span key={i}
+                id={`StepByStepForm-span${i}`}
+                className='is-active'
+                onClick={e => handleOnClickChangePage(e)}
+             ></span>
+    } else {
+      return <span key={i}
+                id={`StepByStepForm-span${i}`}
+                onClick={e => handleOnClickChangePage(e)}
+             ></span>
+    }
+  })
+
+  /*
+   * return ()
+   */
   return (
     <div className='StepByStepForm'>
 
@@ -81,9 +157,7 @@ const StepByStepForm = props => {
 
         {/* StepByStepForm-modal-header */}
         <div className='StepByStepForm-modal-header'>
-          <span className='is-active'></span>
-          <span></span>
-          <span></span>
+          {renderSpan}
         </div>
 
         {/* StepByStepForm-modal-bodies */}
