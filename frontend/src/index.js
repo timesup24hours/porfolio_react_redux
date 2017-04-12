@@ -10,7 +10,7 @@ import { profileMenuClose, scrollButtonShow, scrollButtonHide } from './store/ac
 import { navBarFontColorChangeToBlackUI } from './store/actions/UIActions'
 
 // styles
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 require("!style-loader!css-loader!sass-loader!./styles/index.scss")
 
