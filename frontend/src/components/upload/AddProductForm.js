@@ -401,8 +401,14 @@ class AddProductForm extends Component {
 
         </Paper>
 
-        <RaisedButton label="Clear" onClick={this.handleClearForm}/>
-        <RaisedButton label="upload product" primary={true} onClick={this.handleUploadProduct} />
+        <div className='row'>
+          <div className='col-xs-6 col-sm-6'>
+            <RaisedButton label="Clear" onClick={this.handleClearForm}/>
+          </div>
+          <div className='col-xs-6 col-sm-6'>
+            <RaisedButton label="upload product" primary={true} onClick={this.handleUploadProduct} />
+          </div>
+        </div>
       </div>
     )
   }

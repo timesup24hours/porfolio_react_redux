@@ -50,10 +50,10 @@ class ProductDetailAddCart extends Component {
 
   displayShippingAddress = () => {
     if(this.props.auth.user.address) {
-      return (<div>
+      return (<address>
                 <div>{this.props.auth.user.address.street}</div>
                 <div>{this.props.auth.user.address.city}, {this.props.auth.user.address.state} {this.props.auth.user.address.zipcode}</div>
-              </div>)
+              </address>)
     } else {
       return null
     }
@@ -80,7 +80,7 @@ class ProductDetailAddCart extends Component {
           {isTheProductInTheCart(cart, _id)
             ? <div>
                 <button
-                  className='waves-effect waves-light btn pink center ProductDetailAddCart-button'
+                  className='btn btn-danger ProductDetailAddCart-button'
                   onClick={this.handleRemoveProductFromCart} >
                   <i className="material-icons center">remove_shopping_cart</i><span>Remove</span>
                 </button>
@@ -88,14 +88,14 @@ class ProductDetailAddCart extends Component {
             : <div>
                 <button
                   disabled={ !this.props.auth.isAuthenticated }
-                  className='waves-effect waves-light btn blue center ProductDetailAddCart-button'
+                  className='btn btn-primary ProductDetailAddCart-button'
                   onClick={this.handleAddProductToTheCart} >
                   <i className="material-icons center">add_shopping_cart</i><span>Add Cart</span>
                 </button>
                 { !this.props.auth.isAuthenticated ?
                   <div className='ProductDetailAddCart-login'>
                     <button
-                      className='waves-effect waves-light btn blue center'
+                      className='btn btn-primary'
                       onClick={() => browserHistory.push('/login')} >
                       <span>LOGIN</span>
                     </button>

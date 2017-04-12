@@ -65,17 +65,27 @@
   color: grey;
 }
 
-.CommentList-delete, .CommentList-edit {
-  cursor: pointer;
-  opacity: 0;
-}
-.CommentList-save, .CommentList-cancel {
-  cursor: pointer;
-  opacity: 0.7;
-  &:hover {
-    opacity: 1;
+.CommentList-edit-group {
+  position: absolute;
+  right: 0px;
+  top: 6px;
+  display: flex;
+  flex-direction: row;
+  z-index: 100;
+
+  .CommentList-delete, .CommentList-edit {
+    cursor: pointer;
+    opacity: 0;
+  }
+  .CommentList-save, .CommentList-cancel {
+    cursor: pointer;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
+
 
 @media screen and (max-width: 700px) {
   .CommentList-container {
@@ -95,20 +105,5 @@
   }
   .CommentList-avatar {
   }
-  .CommentList-save {
-    position: absolute;
-    right: 40px;
-  }
-  .CommentList-edit {
-    position: absolute;
-    right: 40px;
-  }
-  .CommentList-delete {
-    position: absolute;
-    right: 10px;
-  }
-  .CommentList-cancel {
-    position: absolute;
-    right: 10px;
-  }
+
 }

@@ -12,7 +12,7 @@ class Calculator extends Component {
           {this.props.cart.creditCardForm.show}
           <button
             id='Calculator-button'
-            className='waves-effect waves-light btn blue'
+            className='btn btn-primary'
             onClick={() => this.props.showCreditCardForm()} >
             Place your order
           </button>

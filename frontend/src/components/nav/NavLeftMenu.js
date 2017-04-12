@@ -70,7 +70,7 @@ const NavLeftMenu = (props) => {
 }
 const mapStateToProps = state => ({
   nav: state.nav,
-  auth: state.auth
+  auth: state.auth,
 })
 
 const mapDispatchToProps = dispatch => ({

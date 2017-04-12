@@ -1,5 +1,6 @@
 import { LEFT_MENU_TOGGLE, MASK_TOGGLE, LOGO_UP, NAV_BAR_SHADOW, LOGO_DOWN, NAV_BAR_SHADOW_HIDE, PROFILE_MENU_OPEN, PROFILE_MENU_CLOSE,
-SCROLL_BUTTON_SHOW, SCROLL_BUTTON_HIDE } from '../actions/actionTypes'
+SCROLL_BUTTON_SHOW, SCROLL_BUTTON_HIDE, LEFT_MENU_HIDE,
+MASK_HIDE } from '../actions/actionTypes'
 
 const initialState = {
   leftMenu: {
@@ -91,6 +92,20 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         scrollButton: {
+          show: false
+        }
+      }
+    case LEFT_MENU_HIDE:
+      return {
+        ...state,
+        leftMenu: {
+          show: false
+        }
+      }
+    case MASK_HIDE:
+      return {
+        ...state,
+        mask: {
           show: false
         }
       }

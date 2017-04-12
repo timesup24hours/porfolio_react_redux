@@ -30,6 +30,7 @@
 
 .ProductDetailInfo-listDesc-ul {
   li {
+    list-style-type: none;
     @extend .wrapword;
   }
 }

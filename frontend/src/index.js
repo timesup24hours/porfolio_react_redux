@@ -9,6 +9,9 @@ import routes from './routes/routes'
 import { profileMenuClose, scrollButtonShow, scrollButtonHide } from './store/actions/navActions'
 import { navBarFontColorChangeToBlackUI } from './store/actions/UIActions'
 
+// styles
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 require("!style-loader!css-loader!sass-loader!./styles/index.scss")
 
 // material ui plugin

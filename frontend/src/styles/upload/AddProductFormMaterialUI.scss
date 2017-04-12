@@ -1,5 +1,17 @@
 .AddProductForm-container {
   padding-top: 150px;
+  padding-bottom: 40px;
+
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+
+  input[type=number] {
+      -moz-appearance:textfield;
+  }
+
 }
 .AddProductForm-category-selector-group {
   display: flex;
@@ -96,11 +108,12 @@
 
 
 .addProductForm-invalid-span {
-  font-size: .9rem;
-  position: absolute;
-  bottom: 0px;
-  display: flex;
-  flex-direction: row;
+  font-size: 1.2rem;
+  margin-left: 6px;
+  // position: absolute;
+  // bottom: 0px;
+  // display: flex;
+  // flex-direction: row;
 }
 
 .invalid-span {

@@ -3,3 +3,10 @@
   @extend .flexCenter;
   height: calc(100vh - 50px);
 }
+
+@media only screen and (max-width: 500px) {
+  .Profile-container {
+    height: 100%;
+    padding-bottom: 50px;
+  }
+}

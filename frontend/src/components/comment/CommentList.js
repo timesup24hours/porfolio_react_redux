@@ -90,18 +90,52 @@ export class CommentList extends Component {
 
     return (
       <div className='CommentList-container'>
+
+        {/* user info and edit group wrapper */}
         <div className='CommentList-user-holder'>
+
+          {/* user info group */}
           <div className='CommentList-user-group'>
+
             <div className='CommentList-avatar'>
               <UserAvatar user={user} onClick={this.handleShowProfile} />
               {this.state.profileShow ? <UserPopUpProfile user={user} onClick={this.handleHideProfile} /> : null}
             </div>
+
             <div className='CommentList-username-time-group'>
               <div className='CommentList-username'>{user.local.nickname || user.local.username}</div>
               <div className='CommentList-time'>{moment(createdAt).fromNow()}</div>
             </div>
-          </div>
-        </div>
+
+          </div>{/* user info group */}
+
+          {/* edit group */}
+          <div className='CommentList-edit-group pull-right'>
+            {loginUserId && loginUserId === user._id && this.state.editorOpen
+              ? <div className='CommentList-save' onTouchTap={this.handleSave} key='CommentList-save'>
+                  <div><Save/></div>
+                </div>
+              : null}
+            {loginUserId && loginUserId === user._id && !this.state.editorOpen
+              ? <div id='CommentList-edit' className='CommentList-edit' onTouchTap={this.openEditor} key='CommentList-edit'>
+                  <div><Edit/></div>
+                </div>
+              : null}
+            {loginUserId && loginUserId === user._id && !this.state.editorOpen
+              ? <div className='CommentList-delete' onTouchTap={this.handleOpen} key='CommentList-delete'>
+                  <div><Delete/></div>
+                </div>
+              : null}
+            {loginUserId && loginUserId === user._id && this.state.editorOpen
+              ? <div className='CommentList-cancel' onTouchTap={this.handleCancel} key='CommentList-cancel'>
+                  <div><Cancel/></div>
+                </div>
+              : null}
+          </div>{/* edit group */}
+
+        </div>{/* user info and edit group wrapper */}
+
+        {/* comment */}
         <div className='CommentList-comment'>
           { this.state.editorOpen
             ? <div className='CommentList-edit-input'>
@@ -119,47 +153,27 @@ export class CommentList extends Component {
               </div>
             : <div className='CommentList-comment-show'>{this.state.comment}</div>
           }
-        </div>
+        </div>{/* comment */}
 
 
-          <Dialog
-            title="Delete Confirm"
-            actions={actions}
-            modal={false}
-            open={this.state.open}
-            onRequestClose={this.handleClose}
-          >
-            This comment would be deleted permanently.
-          </Dialog>
+        <Dialog
+          title="Delete Confirm"
+          actions={actions}
+          modal={false}
+          open={this.state.open}
+          onRequestClose={this.handleClose}
+        >
+          This comment would be deleted permanently.
+        </Dialog>
 
 
-        {loginUserId && loginUserId === user._id && this.state.editorOpen
-          ? <div className='CommentList-save' onTouchTap={this.handleSave} key='CommentList-save'>
-              <div><Save/></div>
-            </div>
-          : null}
-        {loginUserId && loginUserId === user._id && !this.state.editorOpen
-          ? <div id='CommentList-edit' className='CommentList-edit' onTouchTap={this.openEditor} key='CommentList-edit'>
-              <div><Edit/></div>
-            </div>
-          : null}
-        {loginUserId && loginUserId === user._id && !this.state.editorOpen
-          ? <div className='CommentList-delete' onTouchTap={this.handleOpen} key='CommentList-delete'>
-              <div><Delete/></div>
-            </div>
-          : null}
-        {loginUserId && loginUserId === user._id && this.state.editorOpen
-          ? <div className='CommentList-cancel' onTouchTap={this.handleCancel} key='CommentList-cancel'>
-              <div><Cancel/></div>
-            </div>
-          : null}
 
-          <Snackbar
-            open={this.props.snackbar.open}
-            message={this.props.snackbar.message}
-            autoHideDuration={5000}
-            onRequestClose={this.handleRequestClose}
-          />
+        <Snackbar
+          open={this.props.snackbar.open}
+          message={this.props.snackbar.message}
+          autoHideDuration={5000}
+          onRequestClose={this.handleRequestClose}
+        />
 
       </div>
     )

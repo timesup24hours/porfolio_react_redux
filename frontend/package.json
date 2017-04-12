@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
     "cleave.js": "^0.7.15",
     "enzyme": "^2.8.0",

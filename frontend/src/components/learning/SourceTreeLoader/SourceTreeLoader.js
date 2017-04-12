@@ -5,7 +5,7 @@ class SourceTreeLoader extends Component {
   render() {
     return (
       <div className='SourceTreeLoader'>
-        <svg version="1.1" id="sourcetree_loader">
+        <svg version="1.1" id="sourcetree_loader" style={{ width: '150px', height: '150px' }}>
           <g className="rotate-group" transform="translate(75, 75)">
             <g className="border-group">
               <circle className="border" cx="0" cy="0" r="70" />

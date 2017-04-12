@@ -48,7 +48,9 @@ class Nav extends Component {
     this.closeProfileMenu()
 
     if(browserHistory.getCurrentLocation().pathname === '/') {
-      this.toggleScrollButton()
+      if(window.matchMedia("(min-width: 500px)").matches) {
+        this.toggleScrollButton()
+      }
       document.body.scrollTop >= document.querySelectorAll('#home')[1].offsetTop
         ? this.props.navBarFontColorChangeToWhiteUI()
         : this.props.navBarFontColorChangeToBlackUI()
@@ -62,17 +64,26 @@ class Nav extends Component {
     }
   }
 
+  handleNavLeftMenuClose = e => {
+    if(window.matchMedia("(min-width: 500px)").matches) {
+      this.props.HideLeftMenu()
+      this.props.HideMask()
+    }
+  }
+
   componentDidMount() {
     window.addEventListener('scroll', this.scroll);
     window.addEventListener("resize", this.closeProfileMenu)
     if(browserHistory.getCurrentLocation().pathname === '/') this.props.scrollButtonShow()
     window.addEventListener('click', this.closeProfileMenuListener)
+    window.addEventListener('resize', this.handleNavLeftMenuClose)
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.scroll)
     window.removeEventListener('scroll', this.closeProfileMenu)
     window.removeEventListener('click', this.closeProfileMenuListener)
+    window.removeEventListener('resize', this.handleNavLeftMenuClose)
   }
 
   handleLogout = () => {
@@ -124,6 +135,8 @@ const mapDispatchToProps = dispatch => ({
   navBarFontColorChangeToWhiteUI: () => dispatch(UIActions.navBarFontColorChangeToWhiteUI()),
   navBarFontColorChangeToBlackUI: () => dispatch(UIActions.navBarFontColorChangeToBlackUI()),
   clearCart: () => dispatch(cartActions.clearCart()),
+  HideLeftMenu: () => dispatch(navActions.HideLeftMenu()),
+  HideMask: () => dispatch(navActions.HideMask()),
 })
 
 Nav.propTypes = {

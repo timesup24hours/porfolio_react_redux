@@ -7,7 +7,7 @@ const ProductDetailInfo = props => {
 
   if(listDesc && listDesc.length) {
     listDescDom = listDesc.map((l, i) => {
-      return <li key={i}><strong className='grey-text ProductDetailInfo-dot'>&bull;</strong>{l.name}</li>
+      return <li key={i}><strong className='text-muted ProductDetailInfo-dot'>&bull;</strong>{l.name}</li>
     })
   }
 
@@ -15,43 +15,49 @@ const ProductDetailInfo = props => {
     <div className='ProductDetailInfo-container container'>
 
       <div className='row'>
-        <div className='col s12'>
-          <div className='title blue-text text-darken-2 ProductDetailInfo-name'>{brand} - {name}</div>
+        <div className='col-sm-12'>
+          <div className='text-primary ProductDetailInfo-name'>{brand} - {name}</div>
         </div>
-        <div className='col s12'>
-          <div className='grey-text text-darken-2 ProductDetailInfo-soldby'>{soldBy}</div>
+        <div className='col-sm-12'>
+          <div className='text-muted ProductDetailInfo-soldby'>{soldBy}</div>
         </div>
       </div>
 
+      <br/>
+
       <div className='row'>
-        <div className='col s12'>
+        <div className='col-sm-12'>
           {onSale
-            ? <div>Price: <span className='ProductDetailInfo-price grey-text'>$ {price}</span><span> <strong>$ {salePrice}</strong></span></div>
+            ? <div>Price: <s className='text-muted'>$ {price}</s><span> <strong>$ {salePrice}</strong></span></div>
             : <span><strong>$ {price}</strong></span>
           }
         </div>
-        <div className='col s12'>
+        <div className='col-sm-12'>
           {stock
-            ? <div className='ProductDetailInfo-in-stock green-text'>In Stock</div>
-            : <div className='ProductDetailInfo-out-of-stock red-text'>Out of stock  </div>
+            ? <div className='ProductDetailInfo-in-stock text-success'>In Stock</div>
+            : <div className='ProductDetailInfo-out-of-stock text-danger'>Out of stock  </div>
           }
           {numberOfStock ? <div>Stock available: <strong>{numberOfStock}</strong></div> : null }
         </div>
-        <div className='col s12'>{size ? <div>Size: <strong>{size}</strong></div> : null}</div>
+        <div className='col-sm-12'>{size ? <div>Size: <strong>{size}</strong></div> : null}</div>
       </div>
 
+      <br/>
+
       <div className='row'>
-        <div className='col'>
+        <div className='col-sm-12'>
           <ul className='ProductDetailInfo-listDesc-ul'>
             {listDescDom}
           </ul>
         </div>
       </div>
 
+      <br/>
+
       <div className='row'>
-        <div className='col'>
+        <div className='col-sm-12'>
           <div>Description: </div>
-          <div className='grey-text text-darken-2 ProductDetailInfo-desc'>{desc}</div>
+          <p className='text-muted ProductDetailInfo-desc'>{desc}</p>
         </div>
       </div>
 

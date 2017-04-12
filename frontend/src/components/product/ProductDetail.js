@@ -7,18 +7,17 @@ import { Link } from 'react-router'
 const ProductDetail = props => {
   const department = routeNameFormatBackToLink(props.product.department)
   const category = routeNameFormatBackToLink(props.product.category)
+
+
+
   return (
     <div className='ProductDetail-container'>
-      <nav>
-        <div className="nav-wrapper blue">
-          <div className='row'>
-            <div className="col">
-              <Link to={`/shop/${department}`} className="breadcrumb">{props.product.department}</Link>
-              <Link to={`/shop/${department}/${category}`} className="breadcrumb">{props.product.category}</Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+
+      <ol className="breadcrumb">
+        <li><Link to={`/shop/${department}`} className="breadcrumb">{props.product.department}</Link></li>
+        <li><Link to={`/shop/${department}/${category}`} className="breadcrumb">{props.product.category}</Link></li>
+      </ol>
+
       <div className='ProductDetail-detail-holder'>
         <LeftPanel product={props.product} />
         <RightPanel product={props.product} cart={props.cart}/>

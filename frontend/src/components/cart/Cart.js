@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import * as cartActions from '../../store/actions/cartActions'
 import ProductInTheCart from './ProductInTheCart'
 import Calculator from '../calculator/Calculator'
-// import StripePay from './StripePay'
+import StripePay from './StripePay'
 
 const mapStateToProps = state => ({
   cart: state.cart,
@@ -64,11 +64,11 @@ export class Cart extends Component {
             </div>)
         }
 
-
+        {this.props.cart.creditCardForm.show ? <StripePay cart={this.props.cart}  /> : null}
+        
       </div>
     )
 
   }
 }
-  // {this.props.cart.creditCardForm.show ? <StripePay cart={this.props.cart}  /> : null}
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

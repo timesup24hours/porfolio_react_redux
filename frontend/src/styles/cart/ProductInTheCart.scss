@@ -53,9 +53,11 @@
     .ProductInTheCart-info-quantity-change {
       float: left;
       margin-left: 8px;
-      color: blue;
-      text-decoration: underline;
+      opacity: .5;
+      // color: blue;
+      // text-decoration: underline;
       &:hover {
+        opacity: 1;
         cursor: pointer;
       }
     }

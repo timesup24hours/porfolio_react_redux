@@ -272,7 +272,7 @@ class AddProductForm extends Component {
     // Note: usr the "escape(f.name)" method if necessary to change the white space to % sign
     let filesPreviewDiv = this.state.images.map((f, i) => {
       return (<div className='AddProductForm-image-each' key={i}>
-                <div className='AddProductForm-image-cancel z-depth-2'>
+                <div className='AddProductForm-image-cancel'>
                 <i className="material-icons hover-cursor-pointer"
                   onClick={() => this.handleRemoveImage(i)}>cancel</i>
                 </div>
@@ -350,21 +350,25 @@ class AddProductForm extends Component {
     let listDescInputField = null
     if(this.state.listDesc.length)
       listDescInputField = this.state.listDesc.map((l, i) => {
-        return (<div className='addProductForm-listDesc-each' key={i}>
-                  <input
-                    id='listDesc'
-                    name={`listDesc${i}`}
-                    type="text"
-                    value={l.name}
-                    onChange={e => this.handleListDescChange(e, i)}
-                    className="validate"
-                    onBlur={this.handleOnBlur}
-                   />
-                  <div className='addProductForm-listDesc-cancel'>
-                    <i className="material-icons hover-cursor-pointer z-depth-2"
-                      onClick={(e) => this.handelListDescRemove(e, i)}>cancel</i>
+        return (<div className='row' key={i}>
+                  <div className='col-sm-11'>
+                    <div className='form-group'>
+                      <input
+                        id='listDesc'
+                        name={`listDesc${i}`}
+                        type="text"
+                        value={l.name}
+                        onChange={e => this.handleListDescChange(e, i)}
+                        className="form-control"
+                        onBlur={this.handleOnBlur}
+                       />
+                      <div className='addProductForm-listDesc-cancel'>
+                        <i className="material-icons hover-cursor-pointer"
+                          onClick={(e) => this.handelListDescRemove(e, i)}>cancel</i>
+                      </div>
+                      <span className='text-danger addProductForm-invalid-span'>{this.state.errors[`listDesc${i}`]}</span>
+                    </div>
                   </div>
-                  <span className='red-text wrong addProductForm-invalid-span'>{this.state.errors[`listDesc${i}`]}</span>
                 </div>)
       })
 
@@ -373,268 +377,309 @@ class AddProductForm extends Component {
      */
     return (
       <div className='AddProductForm-container container'>
-        <div className="row">
-          <div className="col s12">
 
             {/* row */}
             <div className="row">
-              <div className="input-field col s6">
-                <label className='active'
-                  htmlFor="name">Product name</label>
-                <input
-                  placeholder="Product name"
-                  id="name"
-                  name='name'
-                  type="text"
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                  onBlur={this.handleOnBlur}
-                  required
-                  />
-                <span className='red-text wrong addProductForm-invalid-span'>{this.state.errors.name}</span>
 
+              <div className='col-sm-6'>
+                <div className="form-group">
+                  <label className=''
+                    htmlFor="name">Product name</label>
+                  <input
+                    className='form-control'
+                    placeholder="Product name"
+                    id="name"
+                    name='name'
+                    type="text"
+                    value={this.state.name}
+                    onChange={this.handleChange}
+                    onBlur={this.handleOnBlur}
+                    required
+                    />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.name}</span>
+                </div>
               </div>
 
-              <div className="input-field col s6">
-                <label
-                  className='active'
-                  htmlFor="brand">Brand name</label>
-                <input
-                  placeholder="Brand name"
-                  id="brand"
-                  name='brand'
-                  type="text"
-                  value={this.state.brand}
-                  onChange={this.handleChange}
-                  onBlur={this.handleOnBlur}
-                  required
-                  />
-                <span className='red-text wrong addProductForm-invalid-span'>{this.state.errors.brand}</span>
+              <div className='col-sm-6'>
+                <div className="form-group">
+                  <label
+                    className=''
+                    htmlFor="brand">Brand name</label>
+                  <input
+                    className='form-control'
+                    placeholder="Brand name"
+                    id="brand"
+                    name='brand'
+                    type="text"
+                    value={this.state.brand}
+                    onChange={this.handleChange}
+                    onBlur={this.handleOnBlur}
+                    required
+                    />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.brand}</span>
+                </div>
               </div>
+
             </div>
 
             {/* row Long Description*/}
             <div className="row">
-              <div className="input-field col s12">
-                <label className='active'
-                  htmlFor="desc">Long Description</label>
-                <textarea
-                  id="desc"
-                  name='desc'
-                  value={this.state.desc}
-                  onChange={this.handleChange}
-                  onBlur={this.handleOnBlur}
-                  className='materialize-textarea'
-                  required
-                ></textarea>
-              <span className='red-text wrong addProductForm-invalid-span'>{this.state.errors.desc}</span>
+              <div className='col-sm-12'>
+                <div className="form-group">
+                  <label className=''
+                    htmlFor="desc">Long Description</label>
+                  <textarea
+                    style={{ resize: "vertical" }}
+                    rows='4'
+                    className='form-control'
+                    id="desc"
+                    name='desc'
+                    value={this.state.desc}
+                    onChange={this.handleChange}
+                    onBlur={this.handleOnBlur}
+                    required
+                  ></textarea>
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.desc}</span>
+                </div>
               </div>
             </div>
 
             {/* row List of Description */}
             <div className="row">
-              <div className='col'>
-                <label htmlFor="">Brief of Description</label><br/>
-                <button className='waves-effect waves-light btn' onClick={this.handleAddBriefDescription}>Add Description</button>
-                <span className='red-text wrong addProductForm-listDesc-invalid-span'>{this.state.errors.listDesc}</span>
-                <div className='addProductForm-listDesc-group'>
-                  {listDescInputField}
+              <div className='col-sm-12'>
+                <div className='form-group'>
+                  <label htmlFor="">Brief of Description</label><br/>
+                  <button className='btn btn-default' onClick={this.handleAddBriefDescription}>Add Description</button>
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.listDesc}</span>
                 </div>
               </div>
             </div>
+            <div className='container'>
+              {listDescInputField}
+            </div>
 
-            <div className='divider'></div><br/>
+            <hr/>
 
             {/* row Price */}
             <div className="row">
-              <div className="input-field col s4">
-                <label className='active' htmlFor="price">Price</label>
-                <input
-                  placeholder="Price"
-                  id="price"
-                  name='price'
-                  value={this.state.price}
-                  onChange={this.handleChange}
-                  onBlur={this.handleOnBlur}
-                  required
-                  type='number'
-                />
-              <span className='red-text wrong addProductForm-invalid-span'>{this.state.errors.price}</span>
+              <div className='col-sm-4'>
+                <div className="form-group">
+                  <label className='' htmlFor="price">Price</label>
+                  <input
+                    className='form-control'
+                    placeholder="Price"
+                    id="price"
+                    name='price'
+                    value={this.state.price}
+                    onChange={this.handleChange}
+                    onBlur={this.handleOnBlur}
+                    required
+                    type='number'
+                  />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.price}</span>
+                </div>
               </div>
 
-              <div className="col s4">
-                <label>On Sale</label>
-                <select className="browser-default" id='onSale' name='onSale' value={this.state.onSale} onChange={this.handleChange}>\
-                  <option disabled>Choose your option</option>
-                  <option value={true}>true</option>
-                  <option value={false}>false</option>
-                </select>
+
+              <div className='col-sm-4'>
+                <div className="form-group">
+                  <label>On Sale</label>
+                  <select className="form-control" id='onSale' name='onSale' value={this.state.onSale} onChange={this.handleChange}>\
+                    <option disabled>Choose your option</option>
+                    <option value={true}>true</option>
+                    <option value={false}>false</option>
+                  </select>
+                </div>
               </div>
 
-              <div className="input-field col s4">
-                <label className='active' htmlFor="salePrice">Sale Price</label>
-                <input
-                  placeholder="Sale Price"
-                  id="salePrice"
-                  name='salePrice'
-                  value={this.state.salePrice}
-                  onChange={this.handleChange}
-                  type='number'
-                />
-              <span className='red-text wrong addProductForm-invalid-span'>{this.state.errors.salePrice}</span>
+              <div className='col-sm-4'>
+                <div className="form-group">
+                  <label className='' htmlFor="salePrice">Sale Price</label>
+                  <input
+                    className='form-control'
+                    placeholder="Sale Price"
+                    id="salePrice"
+                    name='salePrice'
+                    value={this.state.salePrice}
+                    onChange={this.handleChange}
+                    type='number'
+                  />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.salePrice}</span>
+                </div>
               </div>
 
             </div>
 
             {/* row Size */}
             <div className="row">
-              <div className="input-field col s4">
-                <label className='active' htmlFor="size">Size</label>
-                <input
-                  placeholder="Size"
-                  id="size"
-                  name='size'
-                  type="text"
-                  value={this.state.size}
-                  onChange={this.handleChange}
-                  onBlur={this.handleOnBlur}
-                />
-              <span className='red-text wrong addProductForm-invalid-span'>{this.state.errors.size}</span>
+
+              <div className="col-sm-4">
+                <div className="form-group">
+                  <label className='' htmlFor="size">Size</label>
+                  <input
+                    className='form-control'
+                    placeholder="Size"
+                    id="size"
+                    name='size'
+                    type="text"
+                    value={this.state.size}
+                    onChange={this.handleChange}
+                    onBlur={this.handleOnBlur}
+                  />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.size}</span>
+                </div>
               </div>
 
-              <div className="col s4">
-                <label>In stock</label>
-                <select className='browser-default'  id='stock' name='stock' value={this.state.stock} onChange={this.handleChange}>
-                  <option value="" disabled>Choose your option</option>
-                  <option value={true}>true</option>
-                  <option value={false}>false</option>
-                </select>
+              <div className="col-sm-4">
+                <div className="form-group">
+                  <label>In stock</label>
+                  <select className='form-control'  id='stock' name='stock' value={this.state.stock} onChange={this.handleChange}>
+                    <option value="" disabled>Choose your option</option>
+                    <option value={true}>true</option>
+                    <option value={false}>false</option>
+                  </select>
+                </div>
               </div>
 
-              <div className="input-field col s4">
-                <label className='active' htmlFor="numberOfStock">Number of Stock</label>
-                <input
-                  placeholder="Number of Stock"
-                  id="numberOfStock"
-                  name='numberOfStock'
-                  value={this.state.numberOfStock}
-                  onChange={this.handleChange}
-                  type='number'
-                />
-              <span className='red-text wrong addProductForm-invalid-span'>{this.state.errors.numberOfStock}</span>
+              <div className="col-sm-4">
+                <div className="form-group">
+                  <label className='active' htmlFor="numberOfStock">Number of Stock</label>
+                  <input
+                    className='form-control'
+                    placeholder="Number of Stock"
+                    id="numberOfStock"
+                    name='numberOfStock'
+                    value={this.state.numberOfStock}
+                    onChange={this.handleChange}
+                    type='number'
+                  />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.numberOfStock}</span>
+                </div>
               </div>
-            </div>
+
+            </div>{/* end of the row Size */}
 
             {/* row Sold By */}
             <div className="row">
-              <div className="input-field col s4">
-                <label className='active' htmlFor="soldBy">Sold By</label>
-                <input
-                  placeholder="Sold By"
-                  id="soldBy"
-                  name='soldBy'
-                  type="text"
-                  value={this.state.soldBy}
-                  onChange={this.handleChange}
-                  onBlur={this.handleOnBlur}
-                  required
-                />
-              <span className='red-text wrong addProductForm-invalid-span'>{this.state.errors.soldBy}</span>
+              <div className="col-sm-6">
+                <div className='form-group'>
+                  <label className='' htmlFor="soldBy">Sold By</label>
+                  <input
+                    className='form-control'
+                    placeholder="Sold By"
+                    id="soldBy"
+                    name='soldBy'
+                    type="text"
+                    value={this.state.soldBy}
+                    onChange={this.handleChange}
+                    onBlur={this.handleOnBlur}
+                    required
+                  />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.soldBy}</span>
+                </div>
               </div>
             </div>{/* end of input fields */}
 
             {/* row */}
             {/* department selector */}
             <div className="row">
-              <div className="col s4">
-                <label>Department</label>
-                <select
-                  className='browser-default'
-                  id='department'
-                  value={this.state.department}
-                  name='department'
-                  onChange={this.handleSelect}
-                  onBlur={this.handleOnBlur}
-                >
-                  <option value="" disabled>Choose your option</option>
-                  {departments}
-                </select>
-                <span className='red-text invalid-span'>{this.state.errors.department}</span>
+
+              <div className="col-sm-4">
+                <div className='form-group'>
+                  <label>Department</label>
+                  <select
+                    className='form-control'
+                    id='department'
+                    value={this.state.department}
+                    name='department'
+                    onChange={this.handleSelect}
+                    onBlur={this.handleOnBlur}
+                  >
+                    <option value="" disabled>Choose your option</option>
+                    {departments}
+                  </select>
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.department}</span>
+                </div>
               </div>
 
-              <div className="col s4">
-                <label>Category</label>
-                <select required
-                  className='browser-default'
-                  id='category'
-                  value={this.state.category}
-                  name='category'
-                  onChange={this.handleSelect}
-                  onBlur={this.handleOnBlur}
-                >
-                  <option value="" disabled>Choose your option</option>
-                  {category}
-                </select>
-                <span className='red-text invalid-span '>{this.state.errors.category}</span>
+              <div className="col-sm-4">
+                <div className='form-group'>
+                  <label>Category</label>
+                  <select required
+                    className='form-control'
+                    id='category'
+                    value={this.state.category}
+                    name='category'
+                    onChange={this.handleSelect}
+                    onBlur={this.handleOnBlur}
+                  >
+                    <option value="" disabled>Choose your option</option>
+                    {category}
+                  </select>
+                  <span className='text-danger addProductForm-invalid-span '>{this.state.errors.category}</span>
+                </div>
               </div>
 
-              <div className="col s4">
-                <label>Product Type</label>
-                <select required
-                  className='browser-default'
-                  id='type'
-                  value={this.state.type}
-                  name='type'
-                  onChange={this.handleSelect}
-                  onBlur={this.handleOnBlur}
-                >
-                  <option value="" disabled>Choose your option</option>
-                  {types}
-                </select>
-                <span className='red-text invalid-span'>{this.state.errors.type}</span>
+              <div className="col-sm-4">
+                <div className='form-group'>
+                  <label>Product Type</label>
+                  <select required
+                    className='form-control'
+                    id='type'
+                    value={this.state.type}
+                    name='type'
+                    onChange={this.handleSelect}
+                    onBlur={this.handleOnBlur}
+                  >
+                    <option value="" disabled>Choose your option</option>
+                    {types}
+                  </select>
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.type}</span>
+                </div>
               </div>
-            </div>
-            {/* end of department selector */}
+            </div>{/* end of department selector */}
 
             {/* upload image
                 #1 display:none is for the input element. it's for the hide the default file chooseing text
                 #2 use label to replace the look of the input element
             */}
              <div className='row'>
-               <div className='col s6 m6'>
-                <label htmlFor="images" className='file-field input-field btn'>Upload images <div className='red-text' style={{ textTransform: 'capitalize' }}>{this.state.errors.images}</div></label>
-                <input
-                  style={{ display:'none'}}
-                  id='images'
-                  name='images'
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  onChange={this.handleFileSelect}
-                />
-
+               <div className='col-sm-12'>
+                 <div className='form-group'>
+                    <label htmlFor="images" className='btn btn-default'>Upload images</label>
+                    <input
+                      style={{ display:'none'}}
+                      id='images'
+                      name='images'
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={this.handleFileSelect}
+                    />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.images}</span>
+                </div>
               </div>
             </div>
 
             <div className='row'>
-              <div className='col'>
+              <div className='col-sm-12'>
                 <div className='AddProductForm-image-preview'>
                   {filesPreviewDiv}
                 </div>{/* end of upload image */}
               </div>
             </div>
 
+            <hr/>
+
             <div className='row'>
-              <div className='col s6 m6 left'>
-                <button className='waves-effect waves-light btn' onClick={this.handleClearForm}>Clear</button>
+              <div className='col-xs-6 col-sm-6'>
+                <button className='btn btn-default' onClick={this.handleClearForm}>Clear</button>
               </div>
-              <div className='col s6 m6'>
-                <button id='AddProductForm-upload-btn' className='waves-effect waves-light btn right' onClick={this.handleUploadProduct}>Upload product</button>
+              <div className='col-xs-6 col-sm-6'>
+                <button id='AddProductForm-upload-btn' className='pull-right btn btn-primary' onClick={this.handleUploadProduct}>Upload product</button>
               </div>
             </div>
 
-          </div>
-        </div>
 
       </div>
     )

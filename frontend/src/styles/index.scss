@@ -7,6 +7,7 @@
 }
 
 body {
+  // overflow:hidden; hide the scrollbar
 }
 
 .hide {
@@ -44,3 +45,4 @@ body {
 @import './category/index.scss';
 @import './learning/index.scss';
 @import './user/index.scss';
+@import './leftSideBar/index.scss';

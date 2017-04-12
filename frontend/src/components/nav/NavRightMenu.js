@@ -18,10 +18,10 @@ const NavRightMenu = (props) => {
   return(
     <div className='NavRightMenu-container'>
       <ul className='NavRightMenu-ul'>
-        <li className='NavRightMenu-department' onMouseLeave={props.hideMaskUI} onMouseEnter={props.showMaskUI} >
+        {/*<li className='NavRightMenu-department' onMouseLeave={props.hideMaskUI} onMouseEnter={props.showMaskUI} >
           DEPARTMENTS
           <Menu />
-        </li>
+        </li>*/}
         <li className='NavRightMenu-li'>
           <Link to='/shop' style={colorChange} activeClassName="NavRightMenu-link-active">SHOP ALL</Link>
         </li>

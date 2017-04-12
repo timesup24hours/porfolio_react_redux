@@ -66,10 +66,10 @@ export class ProductInTheCart extends Component {
 
             <div className='ProductInTheCart-div ProductInTheCart-info-quantity-section'>
               <div className='ProductInTheCart-info-quantity'><strong>Quantity:</strong> {this.props.product.quantity}</div>
-              <div id='ProductInTheCart-add' className='ProductInTheCart-info-quantity-change' onClick={this.handleAddQuantity}>Add</div>
+              <span id='ProductInTheCart-add' className='ProductInTheCart-info-quantity-change glyphicon glyphicon-plus' aria-hidden="true" onClick={this.handleAddQuantity}></span>
               {this.props.product.quantity === 1
                 ? null
-                : <div id='ProductInTheCart-substract' className='ProductInTheCart-info-quantity-change' onClick={this.handleSubtractQuantity}>Substract</div>
+                : <span id='ProductInTheCart-substract' className='ProductInTheCart-info-quantity-change glyphicon glyphicon-minus' onClick={this.handleSubtractQuantity}></span>
               }{/*? <div className='ProductInTheCart-info-quantity-change' onClick={this.handleOpen}>remove</div>*/}
             </div>
             <div className='ProductInTheCart-info-seller text-flow'>Sold by : {soldBy || ''}</div>
@@ -79,7 +79,7 @@ export class ProductInTheCart extends Component {
         <div className='ProductInTheCart-right-session'>
           <button
             id='ProductInTheCart-open-dialog'
-            className='waves-effect waves-light btn pink'
+            className='btn btn-danger'
             onClick={this.handleOpen} >
             Remove
           </button>

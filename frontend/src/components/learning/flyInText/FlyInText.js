@@ -4,7 +4,7 @@ class FlyInText extends Component {
 
   componentDidMount() {
     this.timeout = setTimeout(function () {
-      document.querySelector('.fly-in-text').classList.remove('hidden')
+      document.querySelector('.fly-in-text').classList.remove('fly-hidden')
     }, 500);
   }
 
@@ -15,7 +15,7 @@ class FlyInText extends Component {
   render() {
     return (
       <div className='FlyInText'>
-        <ul className="fly-in-text hidden">
+        <ul className="fly-in-text fly-hidden">
           <li>W</li>
           <li>E</li>
           <li>L</li>

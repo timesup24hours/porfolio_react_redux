@@ -46,7 +46,7 @@ const Gallery = props => {
       let _event = ev || window.event;  //兼容多个浏览器的event参数模式
 
       let left = _event.pageX - container.offsetLeft - previewImg.offsetLeft - floatBox.offsetWidth / 2  - 20;
-      let top = _event.pageY - container.offsetTop - previewImg.offsetTop - floatBox.offsetHeight / 2 - 164;
+      let top = _event.pageY - container.offsetTop - previewImg.offsetTop - floatBox.offsetHeight / 2 - 138;
 
       if (left < 0) {
         left = 0;

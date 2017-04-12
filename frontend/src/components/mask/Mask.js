@@ -9,7 +9,7 @@ const Mask = (props) => {
   }
   let hide = props.nav.mask.show ? '' : 'hide'
   return(
-    <div className={`Mask-container ${hide}`} onClick={toggleMask}>
+    <div className={`Mask-container ${hide}`} onClick={props.onClick || toggleMask}>
 
     </div>
   )

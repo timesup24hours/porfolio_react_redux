@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { scrollTo } from '../../utils'
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 const ScrollDownButton = props => {
 
@@ -17,9 +18,9 @@ const ScrollDownButton = props => {
 
   return(
     <div className={`ScrollDownButton-container animated bounceIn`} onTouchTap={handleScrollDown}>
-      <button className='btn-floating btn-large blue'>
+      <FloatingActionButton className='flexCenter blue'>
         <i className="material-icons ScrollDownButton-icon">keyboard_arrow_down</i>
-      </button>
+      </FloatingActionButton>
     </div>
   )
 }

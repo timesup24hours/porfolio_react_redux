@@ -19,10 +19,15 @@ class ProfileForm extends Component {
     homephone: this.props.user.contact ? this.props.user.contact.homephone : '',
     workphone: this.props.user.contact ? this.props.user.contact.workphone : '',
     errors: '',
-    isLoading: false
+    isLoading: false,
+    valid: '',
   }
 
   componentDidMount() {
+    this.setState({
+      errors: validate(this.state).errors,
+      valid: validate(this.state).valid
+    })
     initialValidate()
   }
 
@@ -52,7 +57,10 @@ class ProfileForm extends Component {
   }
 
   handleOnBlur = e => {
-    this.setState({ errors: validate(this.state).errors })
+    this.setState({
+      errors: validate(this.state).errors,
+      valid: validate(this.state).valid
+    })
   }
 
   render() {
@@ -60,173 +68,221 @@ class ProfileForm extends Component {
       return <option key={key} value={key}>{key}</option>
     })
     return (
-      <div className="row">
-        <div className="col s12">
+      <div className='ProfileForm container'>
 
-          {/* row */}
-          <div className='row'>
-            <div className="input-field col s6">
-              <input
-                defaultValue={this.state.username || ''}
-                readOnly
-                disabled
-                id='ProfileForm-username'
-                name="username"
-                type="text"
-                className="validate"/>
-              <label className="active" htmlFor="ProfileForm-username">Username (not editable)</label>
-            </div>
-          </div>
-          {/* row */}
-          <div className="row">
-            <div className="input-field col s6">
-              <input
-                onBlur={this.handleOnBlur}
-                placeholder="Nick Name"
-                onChange={this.handleOnChange}
-                value={this.state.nickname  || ''}
-                maxLength={12}
-                id='ProfileForm-nickname'
-                name="nickname"
-                type="text"
-                className="validate"/>
-              <label className="active" htmlFor="ProfileForm-nickname">Nick Name</label>
-            </div>
 
-            <div className="input-field col s6">
-              <input
-                onBlur={this.handleOnBlur}
-                placeholder="Email"
-                onChange={this.handleOnChange}
-                value={this.state.email  || ''}
-                id='ProfileForm-email'
-                name="email"
-                type="text"
-                className={classnames({ 'invalid': this.state.errors.email })}/>
-              <label className="active"
-                data-error={this.state.errors.email}
-                htmlFor="ProfileForm-email">Email</label>
-            </div>
-          </div>
-
-          {/* row */}
-          <div className='row'>
-            <div className="input-field col s6">
-              <input
-                onBlur={this.handleOnBlur}
-                value={this.state.street  || ''}
-                onChange={this.handleOnChange}
-                placeholder="Street"
-                id='ProfileForm-street'
-                name="street"
-                type="text"
-                className="validate"/>
-              <label className="active" htmlFor="ProfileForm-street">Street</label>
-            </div>
-
-            <div className="input-field col s6">
-              <input
-                onBlur={this.handleOnBlur}
-                placeholder="City"
-                onChange={this.handleOnChange}
-                value={this.state.city  || ''}
-                id='ProfileForm-city  '
-                name="city"
-                type="text"
-                className="validate"/>
-              <label className="active" htmlFor="ProfileForm-city">City</label>
-            </div>
-          </div>
-          {/* row */}
-          <div className='row'>
-            <div className="col s6">
-              <label>State</label>
-              <select
-                className="browser-default"
-                id='ProfileForm-state'
-                name='state'
-                value={this.state.state  || ''}
-                onChange={this.handleOnChange}>\
-                  <option disabled>Choose your state</option>
-                  {options}
-              </select>
-            </div>
-
-            <div className="input-field col s6">
-              <input
-                onBlur={this.handleOnBlur}
-                placeholder="Zip Code"
-                onChange={this.handleOnChange}
-                value={this.state.zipcode  || ''}
-                pattern="^\d{5}$"
-                id='ProfileForm-zipcode'
-                name="zipcode"
-                type="text"
-                className="validate ProfileForm-zipcode"/>
-              <label className="active" htmlFor="ProfileForm-zipcode">Zip Code</label>
-            </div>
-          </div>
-          {/* row */}
-          <div className='row'>
-            <div className="input-field col s4">
-              <input
-                onBlur={this.handleOnBlur}
-                value={this.state.cellphone  || ''}
-                onChange={this.handleOnChange}
-                placeholder="Cell Phone"
-                id='ProfileForm-cellphone'
-                pattern="^\d{3}-\d{3}-\d{4}$"
-                name="cellphone"
-                type="tel"
-                className={classnames('ProfileForm-cellphone', { 'invalid': this.state.errors.cellphone })}/>
-              <label className="active"
-                data-error={this.state.errors.cellphone}
-                htmlFor="ProfileForm-cellphone">Cell Phone</label>
-            </div>
-
-            <div className="input-field col s4">
-              <input
-                onBlur={this.handleOnBlur}
-                placeholder="Home Phone"
-                onChange={this.handleOnChange}
-                value={this.state.homephone  || ''}
-                id='ProfileForm-homephone'
-                name="homephone"
-                type="tel"
-                className={classnames('ProfileForm-homephone', { 'invalid': this.state.errors.homephone })}/>
-              <label className="active"
-                data-error={this.state.errors.homephone}
-                htmlFor="ProfileForm-homephone">Home Phone</label>
-            </div>
-
-            <div className="input-field col s4">
-              <input
-                onBlur={this.handleOnBlur}
-                placeholder="Work Phone"
-                maxLength="12"
-                onChange={this.handleOnChange}
-                value={this.state.workphone || ''}
-                id='ProfileForm-workphone'
-                name="workphone"
-                type="tel"
-                className={classnames('ProfileForm-workphone', { 'invalid': this.state.errors.workphone })}/>
-              <label className="active"
-                data-error={this.state.errors.workphone}
-                htmlFor="ProfileForm-workphone">Work Phone</label>
-            </div>
-          </div>
-          {/* row */}
-          <div className='row'>
-            <div className='col s12'>
-              <div className='ProfileForm-submitButton right'>
-                <button
-                  disabled={this.state.isLoading || !validate(this.state).isValid}
-                  className='waves-effect waves-light btn'
-                  onClick={e => this.handleSubmit(e)} >UPDATE</button>
+            {/* row */}
+            <div className='row'>
+              <div className="col-sm-6 col-xs-12">
+                <div className='form-group'>
+                  <label className="" htmlFor="ProfileForm-username">Username (not editable)</label>
+                  <input
+                    className="form-control"
+                    defaultValue={this.state.username || ''}
+                    readOnly
+                    disabled
+                    id='ProfileForm-username'
+                    name="username"
+                    type="text"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+
+            {/* row */}
+            <div className='row'>
+
+              <div className="col-sm-6 col-xs-12">
+                <div className='form-group'>
+                  <label className="" htmlFor="ProfileForm-nickname">Nick Name</label>
+                  <input
+                    className="form-control"
+                    onBlur={this.handleOnBlur}
+                    placeholder="Nick Name"
+                    onChange={this.handleOnChange}
+                    value={this.state.nickname  || ''}
+                    maxLength={12}
+                    id='ProfileForm-nickname'
+                    name="nickname"
+                    type="text"
+                  />
+                </div>
+              </div>
+
+
+              <div className="col-sm-6 col-xs-12">
+                  <div className={classnames('form-group', {'has-error' : this.state.errors.email, 'has-success': this.state.valid.email})}>
+                  <label
+                    className="control-label"
+                    htmlFor="ProfileForm-email">Email</label>
+                  <input
+                    onBlur={this.handleOnBlur}
+                    placeholder="Email"
+                    onChange={this.handleOnChange}
+                    value={this.state.email  || ''}
+                    id='ProfileForm-email'
+                    name="email"
+                    type="text"
+                    className='form-control'
+                  />
+                  <span className='text-danger ProfileForm-invalid-span'>{this.state.errors.email}</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* row */}
+            <div className='row'>
+
+              <div className="col-sm-6 col-xs-12">
+                <div className='form-group'>
+                  <label className="" htmlFor="ProfileForm-street">Street</label>
+                  <input
+                    className="form-control"
+                    onBlur={this.handleOnBlur}
+                    value={this.state.street  || ''}
+                    onChange={this.handleOnChange}
+                    placeholder="Street"
+                    id='ProfileForm-street'
+                    name="street"
+                    type="text"
+                  />
+                </div>
+              </div>
+
+              <div className="col-sm-6 col-xs-12">
+                <div className='form-group'>
+                  <label className="" htmlFor="ProfileForm-city">City</label>
+                  <input
+                    className="form-control"
+                    onBlur={this.handleOnBlur}
+                    placeholder="City"
+                    onChange={this.handleOnChange}
+                    value={this.state.city  || ''}
+                    id='ProfileForm-city  '
+                    name="city"
+                    type="text"
+                  />
+                </div>
+              </div>
+
+            </div>
+
+            {/* row */}
+            <div className='row'>
+
+              <div className="col-sm-6 col-xs-12">
+                <div className='form-group'>
+                  <label>State</label>
+                  <select
+                    className="form-control"
+                    id='ProfileForm-state'
+                    name='state'
+                    value={this.state.state  || ''}
+                    onChange={this.handleOnChange}
+                  >
+                    <option disabled>Choose your state</option>
+                    {options}
+                  </select>
+                </div>
+              </div>
+
+              <div className="col-sm-6 col-xs-12">
+                <div className='form-group'>
+                  <label className="" htmlFor="ProfileForm-zipcode">Zip Code</label>
+                  <input
+                    className="form-control ProfileForm-zipcode"
+                    onBlur={this.handleOnBlur}
+                    placeholder="Zip Code"
+                    onChange={this.handleOnChange}
+                    value={this.state.zipcode  || ''}
+                    pattern="^\d{5}$"
+                    id='ProfileForm-zipcode'
+                    name="zipcode"
+                    type="text"
+                  />
+                </div>
+              </div>
+
+            </div>
+
+            {/* row */}
+            <div className='row'>
+
+              <div className="col-sm-4 col-xs-12">
+                <div className={classnames('form-group', {'has-error' : this.state.errors.cellphone, 'has-success': this.state.valid.cellphone})}>
+                  <label className="control-label"
+                    htmlFor="ProfileForm-cellphone">Cell Phone</label>
+                  <input
+                    onBlur={this.handleOnBlur}
+                    value={this.state.cellphone  || ''}
+                    onChange={this.handleOnChange}
+                    placeholder="Cell Phone"
+                    id='ProfileForm-cellphone'
+                    pattern="^\d{3}-\d{3}-\d{4}$"
+                    name="cellphone"
+                    type="tel"
+                    className='ProfileForm-cellphone form-control'
+                  />
+                  <span className='help-inline text-danger ProfileForm-invalid-span'>{this.state.errors.cellphone}</span>
+                </div>
+              </div>
+
+              <div className="col-sm-4 col-xs-12">
+                <div className={classnames('form-group', {'has-error' : this.state.errors.homephone, 'has-success': this.state.valid.homephone})}>
+                  <label className="control-label"
+                    htmlFor="ProfileForm-homephone">Home Phone</label>
+                  <input
+                    onBlur={this.handleOnBlur}
+                    placeholder="Home Phone"
+                    onChange={this.handleOnChange}
+                    value={this.state.homephone  || ''}
+                    id='ProfileForm-homephone'
+                    name="homephone"
+                    type="tel"
+                    className='ProfileForm-homephone form-control'
+                  />
+                  <span className='text-danger ProfileForm-invalid-span'>{this.state.errors.homephone}</span>
+                </div>
+              </div>
+
+              <div className="col-sm-4 col-xs-12">
+                <div className={classnames('form-group', {'has-error' : this.state.errors.workphone, 'has-success': this.state.valid.workphone})}>
+                  <label className="control-label"
+                    htmlFor="ProfileForm-workphone">Work Phone</label>
+                  <input
+                    onBlur={this.handleOnBlur}
+                    placeholder="Work Phone"
+                    maxLength="12"
+                    onChange={this.handleOnChange}
+                    value={this.state.workphone || ''}
+                    id='ProfileForm-workphone'
+                    name="workphone"
+                    type="tel"
+                    className='ProfileForm-workphone form-control'
+                  />
+                </div>
+              </div>
+
+            </div>
+
+            {/* row */}
+            <div className='row'>
+
+              <div className='col-sm-12'>
+                <div className='ProfileForm-submitButton pull-right'>
+                  <button
+                    disabled={this.state.isLoading || !validate(this.state).isValid}
+                    className='btn btn-primary'
+                    onClick={e => this.handleSubmit(e)}
+                  >
+                    UPDATE
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
 
 
       </div>

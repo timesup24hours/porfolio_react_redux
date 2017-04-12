@@ -16,6 +16,8 @@ import LoadingSignature from './LoadingSignature/LoadingSignature'
 // <CaptainAmericaShieldSVG />
 import StepByStepForm from './StepByStepForm/StepByStepForm'
 import NotificationAlertModal from './NotificationAlertModal/NotificationAlertModal'
+import AnimatingTheMoments from './AnimatingTheMoments/AnimatingTheMoments'
+import Slides from './AnimatingTheMoments/Slides'
 
 class Learning extends Component {
 
@@ -31,6 +33,9 @@ class Learning extends Component {
         <ScrollControlledSVGLineAnimation />
         <StepByStepForm />
         <NotificationAlertModal />
+        <AnimatingTheMoments >
+          <Slides />
+        </AnimatingTheMoments>
       </div>
     )
   }

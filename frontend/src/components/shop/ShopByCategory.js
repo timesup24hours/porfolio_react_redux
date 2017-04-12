@@ -23,12 +23,12 @@ class ShopByCategory extends Component {
   render() {
     return (
       <div className='ShopByCategory-container marginTop50px'>
-        <nav>
-          <div className="nav-wrapper blue">
-            <Link to={`/shop/${this.context.router.params.department}`} className="breadcrumb">{routeParamsFormatToName(this.context.router.params.department)}</Link>
-            <Link to={`/shop/${this.context.router.params.department}/${this.context.router.params.category}`} className="breadcrumb">{routeParamsFormatToName(this.context.router.params.category)}</Link>
-          </div>
-        </nav>
+
+        <ol className="breadcrumb">
+          <li><Link to={`/shop/${this.context.router.params.department}`} className="breadcrumb">{routeParamsFormatToName(this.context.router.params.department)}</Link></li>
+          <li><Link to={`/shop/${this.context.router.params.department}/${this.context.router.params.category}`} className="breadcrumb">{routeParamsFormatToName(this.context.router.params.category)}</Link></li>
+        </ol>
+
         {this.props.product.currentCategoryProducts.length > 0 && !this.props.product.error
             ?
               (<div className='ShopByCategory-product-display'>

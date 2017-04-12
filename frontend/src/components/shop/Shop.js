@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Product from '../product/Product'
 import { connect } from 'react-redux'
 import * as productActions from '../../store/actions/productActions'
+import LeftSideBar from '../leftSideBar/LeftSideBar'
 
 class Shop extends Component {
 
@@ -20,6 +21,7 @@ class Shop extends Component {
 
     return (
       <div className='Shop-container'>
+        <LeftSideBar />
         <div className='Shop-product-holder'>
           {products}
         </div>

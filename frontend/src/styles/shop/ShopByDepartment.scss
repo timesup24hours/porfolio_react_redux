@@ -1,5 +1,14 @@
 .ShopByDepartment-container {
 
+  ol {
+    padding-left: 36px;
+    &:hover {
+      cursor: pointer;
+      user-select: none;
+      a { text-decoration: none; }
+    }
+  }
+
 }
 
 .ShopByDepartment-category-button {
