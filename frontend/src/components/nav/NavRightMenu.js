@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router'
 import { profileMenuOpen } from '../../store/actions/navActions'
 import { Link } from 'react-router'
 import UserAvatar from './UserAvatar'
-import Menu from '../menu/Menu'
+// import Menu from '../menu/Menu'
 import * as UIActions from '../../store/actions/UIActions'
 
 const NavRightMenu = (props) => {

@@ -23,9 +23,9 @@
   position: relative;
   .LoginForm-input-error {
     font-size: 12px;
-    position: absolute;
-    bottom: -2px;
-    left: 0;
+    // position: absolute;
+    // bottom: -2px;
+    margin-left: 6px;
     width: 100%;
   }
 }

@@ -24,17 +24,16 @@ const validate = values => {
 }
 
 const renderField = ({ input, name, label, type, meta: { asyncValidating, touched, error } }) => {
-  return <div className={classnames('LoginForm-input', 'input-field', { 'async-validating': asyncValidating })}>
+  return <div className={classnames('LoginForm-input', 'form-group', { 'async-validating': asyncValidating })}>
+          <label className="control-label" htmlFor={name}>{label}</label>
             <input
               {...input}
               type={type}
               name={name}
               placeholder={label}
-              className={classnames('validate', { 'invalid': touched && error })}
+              className={classnames('form-control', { 'invalid': touched && error })}
             />
-            <label className="active"
-              htmlFor={name}>{label}</label>
-            {touched && error && <span className='LoginForm-input-error red-text'>{error}</span>}
+            {touched && error && <span className='LoginForm-input-error text-danger'>{error}</span>}
           </div>
 }
 

@@ -4,8 +4,6 @@ import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward'
-import ArrowBack from 'material-ui/svg-icons/hardware/keyboard-backspace'
-import CallReceived from 'material-ui/svg-icons/communication/call-received'
 import { injectStyle } from '../../utils';
 
 class LeftSideBar extends Component {
@@ -40,8 +38,8 @@ class LeftSideBar extends Component {
           height: '50px',
           width: '50px',
           left: '205px',
-          transition: 'background-color 300ms linear',
-          transition: 'opacity 3000ms linear',
+          transition: 'background-color 300ms linear', // eslint-disable-line
+          transition: 'opacity 3000ms linear', // eslint-disable-line 
           WebkitAnimation: 'pulse 2s linear infinite, btnOpacity 3000ms linear forwards 1000ms',
           opacity: '0',
         },
