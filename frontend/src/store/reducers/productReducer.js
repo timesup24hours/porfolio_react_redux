@@ -21,6 +21,7 @@ export default (state = initialState, action = {}) => {
     case actionTypes.PRODUCT_ADD_PRODUCT_REQUEST:
     case actionTypes.PRODUCT_SET_CURRENT_CATEGORY_PRODUCT_REQUEST:
     case actionTypes.PRODUCT_GET_CURRENT_CATEGORY_PRODUCT_REQUEST:
+    case actionTypes.PRODUCT_GET_CURRENT_PRODUCT_REVIEW_REQUEST:
       return {
         ...state,
         currentCategoryProducts: [],

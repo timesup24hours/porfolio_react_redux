@@ -10,6 +10,9 @@ import * as menuActions from '../store/actions/menuActions'
 import Snackbar from 'material-ui/Snackbar'
 import { snackbarClose } from '../store/actions/snackbarActions'
 import { connect } from 'react-redux'
+import NotificationAlert from './notification/NotificationAlert'
+import NotificationSlide from './notification/NotificationSlide'
+import { UInotificationSlideCancel } from '../store/actions/UIActions'
 
 class App extends Component {
 
@@ -47,6 +50,11 @@ class App extends Component {
         <Logo />
         <Mask />
         <NavLeftMenu />
+        <NotificationSlide
+          content={this.props.UI.notificationSlide.content}
+          open={this.props.UI.notificationSlide.open}
+          cancel={this.props.UInotificationSlideCancel}
+        />
         <div className='App-children'>
           {this.props.UI.mask.show ? <div className='App-mask' /> : null}
           {this.props.children}
@@ -57,6 +65,11 @@ class App extends Component {
             onRequestClose={() => this.props.snackbarClose()}
           />
         </div>
+
+        <NotificationAlert
+          show={this.props.UI.notificationAlert.show}
+          content={this.props.UI.notificationAlert.content}
+        />
 
       </div>
     )
@@ -72,5 +85,6 @@ const mapDispatchToProps = dispatch => ({
   getCartRequest: () => dispatch(cartActions.getCartRequest()),
   getCategoryRequest: () => dispatch(menuActions.getCategoryRequest()),
   snackbarClose: () => dispatch(snackbarClose()),
+  UInotificationSlideCancel: () => dispatch(UInotificationSlideCancel()),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(App)

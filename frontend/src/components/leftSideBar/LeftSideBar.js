@@ -10,6 +10,7 @@ class LeftSideBar extends Component {
   constructor(props) {
     super(props);
 
+    // define keyframe in component
     const keyframesStyle1 = `
       @-webkit-keyframes pulse {
         0%   { background-color: #fecd6d; }
@@ -27,6 +28,7 @@ class LeftSideBar extends Component {
       }
     `;
 
+    // append css in style sheet
     injectStyle(keyframesStyle1);
     injectStyle(keyframesStyle2);
 
@@ -39,7 +41,7 @@ class LeftSideBar extends Component {
           width: '50px',
           left: '205px',
           transition: 'background-color 300ms linear', // eslint-disable-line
-          transition: 'opacity 3000ms linear', // eslint-disable-line 
+          transition: 'opacity 3000ms linear', // eslint-disable-line
           WebkitAnimation: 'pulse 2s linear infinite, btnOpacity 3000ms linear forwards 1000ms',
           opacity: '0',
         },
@@ -55,6 +57,7 @@ class LeftSideBar extends Component {
     router: React.PropTypes.object,
   }
 
+  // resize function for event listener
   resizeListener = () => {
     if(window.matchMedia("(max-width: 500px)").matches) {
       this.setState({ navShow: true })
@@ -66,6 +69,7 @@ class LeftSideBar extends Component {
   }
 
   componentDidMount() {
+    this.resizeListener()
     window.addEventListener('resize', this.resizeListener)
   }
 
@@ -73,6 +77,7 @@ class LeftSideBar extends Component {
     window.removeEventListener('resize', this.resizeListener)
   }
 
+  // onclick function for button and mask. hide and show the left side bar
   handleShowLeftSideBar = (e) => {
     if(document.querySelector('.LeftSideBar').style.left !== '0px') {
       document.querySelector('.LeftSideBar').style.left = '0px'

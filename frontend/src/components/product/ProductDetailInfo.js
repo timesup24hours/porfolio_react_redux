@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ProductDetailInfo = props => {
-  const { brand, desc, name, listDesc, numberOfStock, onSale, price, salePrice, size, soldBy, stock } = props.product
+  const { brand, name, listDesc, numberOfStock, onSale, price, salePrice, size, soldBy, stock } = props.product
 
   let listDescDom = null
 
@@ -54,12 +54,13 @@ const ProductDetailInfo = props => {
 
       <br/>
 
+      {/* Long Description
       <div className='row'>
         <div className='col-sm-12'>
           <div>Description: </div>
           <p className='text-muted ProductDetailInfo-desc'>{desc}</p>
         </div>
-      </div>
+      </div>*/}
 
     </div>
   )

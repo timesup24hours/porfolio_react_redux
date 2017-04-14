@@ -5,7 +5,6 @@ import Edit from 'material-ui/svg-icons/editor/border-color'
 import Save from 'material-ui/svg-icons/content/save'
 import Cancel from 'material-ui/svg-icons/navigation/cancel'
 import { connect } from 'react-redux'
-import * as commentActions from '../../store/actions/commentActions'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import TextFieldGroupMaterialUI from '../common/TextFieldGroupMaterialUI'
@@ -52,13 +51,13 @@ export class CommentList extends Component {
 
   handleSave = () => {
     if(this.state.comment !== this.props.comment) {
-      this.props.commentEditRequest({ id: this.props.commentId, comment: this.state.comment })
+      this.props.editRequest({ id: this.props.commentId, comment: this.state.comment })
     }
     this.setState({ editorOpen: false })
   }
 
   handleDeleteComment = () => {
-    this.props.commentDeleteRequest(this.props.commentId)
+    this.props.deleteRequest(this.props.commentId)
     this.handleClose()
   }
 
@@ -189,13 +188,10 @@ CommentList.propTypes = {
 }
 
 const mapDispatchToProps = dispatch => ({
-  commentDeleteRequest: commentId => dispatch(commentActions.commentDeleteRequest(commentId)),
-  commentEditRequest: paypload => dispatch(commentActions.commentEditRequest(paypload)),
   snackbarClose: () => dispatch(snackbarClose()),
 })
 
 const mapStateToProps = state => ({
-  comments: state.comment,
   snackbar: state.snackbar,
   auth: state.auth,
 })

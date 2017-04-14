@@ -18,7 +18,7 @@ const sortByDate = (a, b) => {
 }
 
 const editComment = (state, id, comment) => {
-  return state.map( (c, i) => {
+  return state.map((c, i) => {
     if(c._id === id) {
       return {
         ...c,
@@ -94,7 +94,7 @@ export default (state = initialState, action = {}) => {
     case actionTypes.COMMENT_DELETE_SUCCESS:
       return {
         ...state,
-        comments: state.comments.filter( c => c._id !== action.payload.commentId)
+        comments: state.comments.filter(c => c._id !== action.payload.commentId)
       }
     case actionTypes.COMMENT_EDIT_SUCCESS:
       return {

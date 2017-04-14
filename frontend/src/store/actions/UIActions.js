@@ -14,3 +14,7 @@ export const navBarFontColorChangeToWhiteUI = () => ({
 export const navBarFontColorChangeToBlackUI = () => ({
   type: actionTypes.UI_CHANGE_NAV_BAR_FONT_COLOR_TO_BLACK
 })
+
+export const UInotificationSlideCancel = () => ({
+  type: actionTypes.UI_NOTIFICATION_SLIDE_HIDE,
+})

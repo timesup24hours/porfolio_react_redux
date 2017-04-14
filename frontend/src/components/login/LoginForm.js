@@ -47,6 +47,8 @@ class LoginForm extends Component {
   componentWillUpdate(nextProps) {
     if(nextProps.auth.token)
       this.context.router.goBack()
+    if(nextProps.auth.token && this.context.router.getCurrentLocation().pathname === '/login')
+      this.context.router.push('/')
   }
 
   login = (values) => {

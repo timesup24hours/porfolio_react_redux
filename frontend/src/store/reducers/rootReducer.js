@@ -15,6 +15,7 @@ import menuReducer from './menuReducer'
 import UIReducer from './UIReducer'
 import addProductFormReducer from './addProductFormReducer'
 import paymentReducer from './paymentReducer'
+import reviewReducer from './reviewReducer'
 
 export default combineReducers({
   routing: routerReducer,
@@ -33,4 +34,5 @@ export default combineReducers({
   UI: UIReducer,
   addProductForm: addProductFormReducer,
   payment: paymentReducer,
+  review: reviewReducer,
 });

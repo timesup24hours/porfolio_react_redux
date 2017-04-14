@@ -1,9 +1,10 @@
 .SignupForm-container {
-  margin: 15% auto 0px;
+  margin: 0px auto 0px;
   width: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: calc(100vh - 50px);
 }
 
 .SignupForm-container {
@@ -29,6 +30,6 @@
 
 @media screen and (max-width: 800px) {
   .SignupForm-container {
-    margin: 25% auto 0px;
+    margin: 0px auto 0px;
   }
 }

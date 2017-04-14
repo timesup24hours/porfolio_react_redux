@@ -24,7 +24,10 @@ export class Comment extends Component {
                 user={m.user}
                 loginUserId={this.props.auth.user ? this.props.auth.user._id : ''}
                 createdAt={m.createdAt}
-                comment={m.comment} />
+                comment={m.comment}
+                deleteRequest={this.props.commentDeleteRequest}
+                editRequest={this.props.commentEditRequest}
+             />
     })
 
     return(
@@ -48,6 +51,8 @@ const mapStateToProps = state => ({
   comment: state.comment,
 })
 const mapDispatchToProps = dispatch => ({
+  commentDeleteRequest: commentId => dispatch(commentActions.commentDeleteRequest(commentId)),
+  commentEditRequest: paypload => dispatch(commentActions.commentEditRequest(paypload)),
   commentGetAllRequest: () => dispatch(commentActions.commentGetAllRequest()),
 })
 

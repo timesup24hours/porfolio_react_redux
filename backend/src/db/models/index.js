@@ -7,6 +7,7 @@ import Department from './department'
 import Category from './category'
 import SubCategory from './subCategory'
 import Menu from './menu'
+import Review from './review'
 
 export {
   User,
@@ -17,5 +18,6 @@ export {
   Department,
   Category,
   SubCategory,
-  Menu
+  Menu,
+  Review,
 }

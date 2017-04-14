@@ -12,5 +12,14 @@ export default (app) => {
     res.status(200).json({ success: true, comments })
   }))
 
+  app.get('/api/comment_review/:id', asyncRequest(async (req, res, next) => {
+
+    const id = req.params.id
+
+    let reviews = await Comment.find({ productId: id })
+    .populate('user', 'local.username local.nickname')
+
+    res.status(200).json({ success: true, reviews })
+  }))
 
 }

@@ -3,12 +3,12 @@ import LeftPanel from './LeftPanel'
 import RightPanel from './RightPanel'
 import { routeNameFormatBackToLink } from '../../utils'
 import { Link } from 'react-router'
+import ProductDescription from './ProductDescription'
+import CustomerReview from './CustomerReview'
 
 const ProductDetail = props => {
   const department = routeNameFormatBackToLink(props.product.department)
   const category = routeNameFormatBackToLink(props.product.category)
-
-
 
   return (
     <div className='ProductDetail-container'>
@@ -22,6 +22,15 @@ const ProductDetail = props => {
         <LeftPanel product={props.product} />
         <RightPanel product={props.product} cart={props.cart}/>
       </div>
+      <ProductDescription desc={props.product.desc} />
+      <hr/>
+      <CustomerReview
+        review={props.review}
+        product={props.product}
+        auth={props.auth}
+        deleteRequest={props.deleteRequest}
+        editRequest={props.editRequest}
+      />
     </div>
   )
 }

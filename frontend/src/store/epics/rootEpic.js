@@ -10,6 +10,8 @@ import { cartAddEpic, cartGetEpic, changeQuantityOfProductIntheCartEpic,
   emptyCartRequestEpic } from './cartEpic'
 import { menuGetAllEpic } from './menuEpic'
 import { paymentRequestEpic } from './paymentEpic'
+import * as reviewEpic from './reviewEpic'
+import { logoutEpic } from './logoutEpic'
 
 export default combineEpics(
   // signupEpic,
@@ -32,4 +34,9 @@ export default combineEpics(
   paymentRequestEpic,
   emptyCartRequestEpic,
   paymentRequestEpic,
+  reviewEpic.reviewSubmitRequestEpic,
+  reviewEpic.getProductReviewEpic,
+  reviewEpic.reviewDeleteRequestEpic,
+  reviewEpic.reviewEditRequestEpic,
+  logoutEpic,
 );

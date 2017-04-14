@@ -6,7 +6,7 @@ export const loginRequestAction = payload => ({
   payload,
 })
 
-export const logoutAction = () => ({
+export const logoutAction = dispatch => ({
   type: actionTypes.LOGIN_OUT,
 })
 

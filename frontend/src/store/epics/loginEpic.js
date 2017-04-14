@@ -7,18 +7,29 @@ export const loginEpic = action$ => action$
   .switchMap(({ payload }) => Observable
     .ajax.post('/api/login', payload)
     .map(res => res.response)
-    .mergeMap(response => Observable.of(
-      {
-        type: actionTypes.LOGIN_SUCCESS,
-        payload: response,
-      },
-      {
-        type: actionTypes.COMMENT_CLEAR_ERROR
-      },
-      {
-        type: actionTypes.CART_GET_REQUEST
-      }
-    ))
+    .flatMap(response =>
+      Observable.concat(
+        Observable.of(
+          {
+            type: actionTypes.LOGIN_SUCCESS,
+            payload: response,
+          },
+          {
+            type: actionTypes.UI_NOTIFICATION_ALERT_SHOW,
+            payload: 'You have successfully login. Welcome'
+          },
+          {
+            type: actionTypes.CART_GET_REQUEST
+          }
+        ),
+        Observable.of(
+          {
+            type: actionTypes.COMMENT_CLEAR_ERROR
+          },
+        ),
+        Observable.timer(7000).mapTo({ type: actionTypes.UI_NOTIFICATION_ALERT_HIDE })
+      )
+    )
     .catch(error => Observable.of(
       {
         type: actionTypes.LOGIN_FAIL,
@@ -27,3 +38,54 @@ export const loginEpic = action$ => action$
     ))
 
   )
+
+
+/*
+ *  another way to dispatch multiple actions
+ */
+
+// .mergeMap(response => Observable.of(
+//   {
+//     type: actionTypes.LOGIN_SUCCESS,
+//     payload: response,
+//   },
+//   {
+//     type: actionTypes.UI_NOTIFICATION_ALERT_SHOW,
+//     payload: 'You have successfully login. Welcome'
+//   },
+//   {
+//     type: actionTypes.COMMENT_CLEAR_ERROR
+//   },
+//   {
+//     type: actionTypes.CART_GET_REQUEST
+//   }
+// ))
+
+
+/*
+ *  another way to dispatch multiple actions (at different time)
+ */
+
+// .flatMap(response =>
+//   Observable.concat(
+//     Observable.of(
+//       {
+//         type: actionTypes.LOGIN_SUCCESS,
+//         payload: response,
+//       },
+//       {
+//         type: actionTypes.UI_NOTIFICATION_ALERT_SHOW,
+//         payload: 'You have successfully login. Welcome'
+//       },
+//       {
+//         type: actionTypes.CART_GET_REQUEST
+//       }
+//     ),
+//     Observable.of(
+//       {
+//         type: actionTypes.COMMENT_CLEAR_ERROR
+//       },
+//     ),
+//     Observable.timer(7000).mapTo({ type: actionTypes.UI_NOTIFICATION_ALERT_HIDE })
+//   )
+// )

@@ -1,14 +1,16 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, formValueSelector } from 'redux-form'
 import { signupRequestAction, signupSuccess, signupFail } from '../../store/actions/authActions'
 import RaisedButton from 'material-ui/RaisedButton'
 import { asyncValidate } from './asyncValidate'
 import { validate } from './validate'
-import Notification from '../notification/Notification'
+import NotificationModal from '../notification/NotificationModal'
 import axios from 'axios'
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
 import classnames from 'classnames';
+const selector = formValueSelector('SignupForm')
+
 
 class SignupForm extends Component {
   state = {
@@ -62,25 +64,32 @@ class SignupForm extends Component {
 
     return (
       <div className='SignupForm-container'>
-        <form onSubmit={handleSubmit(this.signup)} className='SignupForm-form' >
-          <div className='row'>
-            <Field name="username" type="text" component={this.renderField} label="Username"/>
-          </div>
-          <div className='row'>
-            <Field name="password" component={this.renderField} label="Password"/>
-          </div>
-          <div className='row'>
-            <Field name="passwordConfirm" component={this.renderField} label="Password Confirmation"/>
-          </div>
-          <div className='SignupForm-loginButton'>
-            <RaisedButton
-              label="Signup"
-              type="submit"
-              disabled={pristine || submitting || invalid || this.props.auth.status === 'pending'}
-            />
-          </div>
-        </form>
-        <Notification cancellable={false} show={submitSucceeded} content='You have signup successfully' email={this.props.auth.user ? this.props.auth.user.username : null} />
+        {!submitSucceeded
+          ? <form onSubmit={handleSubmit(this.signup)} className='SignupForm-form' >
+              <div className='row'>
+                <Field name="username" type="text" component={this.renderField} label="Username"/>
+              </div>
+              <div className='row'>
+                <Field name="password" component={this.renderField} label="Password"/>
+              </div>
+              <div className='row'>
+                <Field name="passwordConfirm" component={this.renderField} label="Password Confirmation"/>
+              </div>
+              <div className='SignupForm-loginButton'>
+                <RaisedButton
+                  label="Signup"
+                  type="submit"
+                  disabled={pristine || submitting || invalid || this.props.auth.status === 'pending'}
+                />
+              </div>
+            </form>
+          : null
+        }
+        <NotificationModal
+          show={submitSucceeded}
+          title='SIGN UP'
+          content={`Welcome ${this.props.username} You have signup successfully`}
+        />
       </div>
     )
   }
@@ -92,6 +101,7 @@ SignupForm.contextTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
+  username: selector(state, 'username'), // 'formValueSelector' select the values of the form
 })
 
 const mapDispatchToProps = dispatch => ({

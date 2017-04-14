@@ -333,6 +333,7 @@
     -webkit-transition: all 450ms cubic-bezier(0, 0.6, 0.35, 1.4);
     transition: all 450ms cubic-bezier(0, 0.6, 0.35, 1.4);
   }
+  
   .section-alert .alert-element .icon {
     padding: 20px;
     background: #0097A7;
@@ -340,6 +341,7 @@
     border-radius: 4px 0px 0px 4px;
     overflow: hidden;
   }
+
   .section-alert .alert-element .icon i {
     -webkit-transform: scale(0.2) translateY(50px);
             transform: scale(0.2) translateY(50px);
@@ -347,6 +349,7 @@
     -webkit-transition: all 400ms cubic-bezier(0, 0.6, 0.35, 1.4) 600ms;
     transition: all 400ms cubic-bezier(0, 0.6, 0.35, 1.4) 600ms;
   }
+
   .section-alert .alert-element .section-text {
     background: rgba(0, 0, 0, 0.8);
     padding: 0 20px;
@@ -365,6 +368,7 @@
             transform-origin: center left;
     opacity: 0;
   }
+
   .section-alert .alert-element.is-active {
     opacity: 1;
     -webkit-transform: rotate(0deg) scale(1);

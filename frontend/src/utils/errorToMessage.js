@@ -38,3 +38,13 @@ export const shopByCategoryErrorToMessage = (error) => {
   }
   return error.message
 }
+
+export const reivewErrorToMessage = (error) => {
+  if (error.status === 400) {
+    return 'content is required!'
+  }
+  if (error.status === 500) {
+    return 'something went wrong, please try again later!'
+  }
+  return error.message
+}
