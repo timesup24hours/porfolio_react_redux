@@ -1,0 +1,33 @@
+.NotificationSlide {
+  display: none;
+  z-index: 40000;
+  position: fixed;
+  top: 50px;
+  background: rgba(0, 0, 0, 0.3);
+  height: 0px;
+  width: 100%;
+  color: white;
+  // background: #E91E63;
+  background: lightgreen;
+  border-left: 3px solid black;
+  transition: height 400ms cubic-bezier(0.25, 0.39, 0.39, 2.01);
+
+  &.is-open {
+    display: block;
+    font-weight: 100;
+    font-size: 2rem;
+    line-height: 50px;
+    height: 50px;
+    padding-left: 20px;
+  }
+
+  .NotificationSlide-cancel {
+    padding-right: 10px;
+    height: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+}
