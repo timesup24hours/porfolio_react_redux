@@ -5,17 +5,14 @@ import Edit from 'material-ui/svg-icons/editor/border-color'
 import Save from 'material-ui/svg-icons/content/save'
 import Cancel from 'material-ui/svg-icons/navigation/cancel'
 import { connect } from 'react-redux'
-import Dialog from 'material-ui/Dialog'
-import FlatButton from 'material-ui/FlatButton'
 import TextFieldGroupMaterialUI from '../common/TextFieldGroupMaterialUI'
-import Snackbar from 'material-ui/Snackbar'
-import { snackbarClose } from '../../store/actions/snackbarActions'
 import UserAvatar from '../nav/UserAvatar'
 import UserPopUpProfile from '../user/UserPopUpProfile'
+import * as UIActions from '../../store/actions/UIActions'
+import * as actionTypes from '../../store/actions/actionTypes'
 
 export class CommentList extends Component {
   state = {
-    open: false,
     editorOpen: false,
     comment: '',
     profileShow: false,
@@ -25,20 +22,22 @@ export class CommentList extends Component {
     this.setState({ comment: this.props.comment })
   }
 
-  handleRequestClose = () => {
-    this.props.snackbarClose()
-  }
-
   openEditor = () => {
     this.setState({ editorOpen: true })
   }
 
   handleOpen = () => {
-    this.setState({ open: true })
-  }
-
-  handleClose = () => {
-    this.setState({ open: false })
+    this.props.handleOpenDialog({
+      title: 'Delete Confirm',
+      content: 'This comment would be deleted permanently.',
+      action: {
+        type: actionTypes.COMMENT_DELETE_REQUEST,
+        payload: {
+          id: this.props.commentId
+        }
+      },
+      trueBtnText: 'Delete',
+    })
   }
 
   handleCancel = () => {
@@ -73,19 +72,6 @@ export class CommentList extends Component {
 
   render() {
     const { user, loginUserId, createdAt } = this.props
-    const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onTouchTap={this.handleClose}
-      />,
-      <FlatButton
-        label="Delete"
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={this.handleDeleteComment}
-      />,
-    ]
 
     return (
       <div className='CommentList-container'>
@@ -154,26 +140,6 @@ export class CommentList extends Component {
           }
         </div>{/* comment */}
 
-
-        <Dialog
-          title="Delete Confirm"
-          actions={actions}
-          modal={false}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
-        >
-          This comment would be deleted permanently.
-        </Dialog>
-
-
-
-        <Snackbar
-          open={this.props.snackbar.open}
-          message={this.props.snackbar.message}
-          autoHideDuration={5000}
-          onRequestClose={this.handleRequestClose}
-        />
-
       </div>
     )
   }
@@ -188,7 +154,7 @@ CommentList.propTypes = {
 }
 
 const mapDispatchToProps = dispatch => ({
-  snackbarClose: () => dispatch(snackbarClose()),
+  handleOpenDialog: payload => dispatch(UIActions.handleOpenDialog(payload)),
 })
 
 const mapStateToProps = state => ({
