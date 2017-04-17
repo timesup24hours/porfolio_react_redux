@@ -7,15 +7,15 @@ import ProductDescription from './ProductDescription'
 import CustomerReview from './CustomerReview'
 
 const ProductDetail = props => {
-  const department = routeNameFormatBackToLink(props.product.department)
-  const category = routeNameFormatBackToLink(props.product.category)
+  const department = routeNameFormatBackToLink(props.product.department.name)
+  const category = routeNameFormatBackToLink(props.product.category.name)
 
   return (
     <div className='ProductDetail-container'>
 
       <ol className="breadcrumb">
-        <li><Link to={`/shop/${department}`} className="breadcrumb">{props.product.department}</Link></li>
-        <li><Link to={`/shop/${department}/${category}`} className="breadcrumb">{props.product.category}</Link></li>
+        <li><Link to={`/shop/${department}`} className="breadcrumb">{props.product.department.name}</Link></li>
+        <li><Link to={`/shop/${department}/${category}`} className="breadcrumb">{props.product.category.name}</Link></li>
       </ol>
 
       <div className='ProductDetail-detail-holder'>

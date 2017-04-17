@@ -93,18 +93,18 @@ class LeftSideBar extends Component {
   render() {
     const { style } = this.state
 
-    const menu = this.props.menu.department.map((d, di) => {
+    const menu = this.props.menu.categories ? this.props.menu.categories.map((d, di) => {
       return (<ListItem
                 style={{ fontSize: '14px', hoverColor: 'grey' }}
                 key={di}
-                primaryText={d.name.name}
+                primaryText={d.department}
                 initiallyOpen={false}
                 primaryTogglesNestedList={false}
                 nestedItems={
-                  d.children.map((c, ci) => {
+                  d.category.map((c, ci) => {
                     return c.name ?
                     (<ListItem
-                        onClick={() => this.context.router.push(`/shop/${d.name.to}/${c.to}`)}
+                        onClick={() => this.context.router.push(`/shop/${d.to}/${c.to}`)}
                         style={{ fontSize: '12px' }}
                         key={ci}
                         primaryText={c.name}
@@ -113,7 +113,7 @@ class LeftSideBar extends Component {
 
                 }
                />)
-    })
+    }) : null
 
     return (
       <div className='LeftSideBar'>

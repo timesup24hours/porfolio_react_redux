@@ -18,7 +18,7 @@ export default (app) => {
     department = new Department()
 
     department.name = unescape(name)
-    department.to = routeNameFormatToLink(name)
+    department.to = routeNameFormatToLink(unescape(name))
     if(desc) department.desc = desc
 
     await department.save()

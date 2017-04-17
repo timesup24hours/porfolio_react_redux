@@ -8,7 +8,7 @@ const getTypesFromMenu = (category, type) => {
 }
 
 const initialState = {
-  categories: categories,
+  categories: null,
   department: getTypesFromMenu(categories, 'department'),
   category: getTypesFromMenu(categories, 'category'),
   types: getTypesFromMenu(categories, 'types'),

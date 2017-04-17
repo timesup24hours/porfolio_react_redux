@@ -4,7 +4,7 @@ import CategoryForm from './CategoryForm'
 
 export const CategoryPage = props => {
 
-  return !props.menu.pending ?
+  return props.menu.success ?
     (<div id='CategoryPage-container' className='CategoryPage-container'>
       <CategoryForm menu={props.menu} />
     </div>) : null

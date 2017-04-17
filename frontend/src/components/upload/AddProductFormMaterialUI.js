@@ -285,64 +285,38 @@ class AddProductForm extends Component {
      *  select input const render variable
      */
     // display departments
-    const departments = this.props.menu.department.map((d, i) => {
-      return <option key={i} value={d.name.name}>{d.name.name}</option>
+    let departments = null
+    let category = null
+    let subCategory = null
+
+    departments = this.props.menu.categories.map((d, i) => {
+      return <option key={i} value={d._id}>{d.department}</option>
     })
 
     // display category
-    let category = null
+    category = this.props.menu.categories.map((d, i) => {
+      if(d._id ===  this.state.department) {
+        return d.category.map((d, i) => {
+          return <option key={i} value={d._id}>{d.name}</option>
+        })
+      }
+      return false
+    })
 
-    if(this.state.department) {
-      category = this.props.menu.department.map((d, i) => {
-        if(d.name.name === this.state.department) {
-           return d.children.map((c, i) => {
-             return c.name && <option key={i} value={c.name}>{c.name}</option>
-           })
-        }
-        return false
-      })
-    }
-    // display types
-    let types = null
-
-    if(this.state.category) {
-      types = this.props.menu.category.map((c, i) => {
-        if(c.name.name === this.state.category) {
-           return c.children.map((t, i) => {
-             return c.name && <option key={i} value={t.name}>{t.name}</option>
-           })
-        }
-        return false
-      })
-    }
-
-
-    // if(this.state.department) {
-    //   selectedDepartment = this.props.menu.department.filter((d, i) =>  d.id === this.state.department)
-    //   if(selectedDepartment.length) {
-    //     category = selectedDepartment[0].children.map((c, i) => {
-    //       if(c.name) {
-    //         return <option key={i} value={c.id}>{c.name}</option>
-    //       }
-    //       return false
-    //     })
-    //   }
-    // }
-    // // display types
-    // let selectedCategory = null
-    // let types = null
-    //
-    // if(this.state.category) {
-    //   selectedCategory = this.props.menu.category.filter((c, i) => c.id === this.state.category)
-    //   if(selectedCategory.length) {
-    //     types = selectedCategory[0].children.map((t, i) => {
-    //       if(t.name) {
-    //         return <option key={i} value={t.id}>{t.name}</option>
-    //       }
-    //       return false
-    //     })
-    //   }
-    // } // end of select input group
+    // display subCategory
+    subCategory = this.props.menu.categories.map((d, i) => {
+      if(d._id === this.state.department) {
+        return d.category.map((c, i) => {
+          if(c._id === this.state.category) {
+            return c.subcategory.map((c, i) => {
+              return <option key={i} value={c._id}>{c.name}</option>
+            })
+          }
+          return false
+        })
+      }
+      return false
+    })
 
     /*
      *  dynamically add input field to the dom
@@ -632,7 +606,7 @@ class AddProductForm extends Component {
                     onBlur={this.handleOnBlur}
                   >
                     <option value="" disabled>Choose your option</option>
-                    {types}
+                    {subCategory}
                   </select>
                   <span className='text-danger addProductForm-invalid-span'>{this.state.errors.type}</span>
                 </div>

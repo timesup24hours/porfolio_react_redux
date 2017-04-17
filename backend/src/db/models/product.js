@@ -11,9 +11,9 @@ const Product = new Schema({
   // department: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
   // category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
   // type: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
-  department: String,
-  category: String,
-  type: String,
+  department: { type: mongoose.Schema.Types.ObjectId, ref: 'Department' },
+  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
+  subCategory: { type: mongoose.Schema.Types.ObjectId, ref: 'SubCategory' },
   stock: { type: Boolean },
   numberOfStock: { type: Number },
   onSale: { type: Boolean },
@@ -22,20 +22,20 @@ const Product = new Schema({
   soldBy: { type: String },
 })
 
-// let autoPopulateLead = function (next) {
-  // this.populate('department')
-  // this.populate('category')
-  // this.populate('type')
-  // this.populate({
-  //     path: 'category',
-  //     model: 'Category',
-  //   })
-  // this.populate('category')
-//   next()
-// };
-//
-// Product.
-//   pre('findOne', autoPopulateLead).
-//   pre('find', autoPopulateLead)
+let autoPopulateLead = function (next) {
+  this.populate('department')
+  this.populate('category')
+  this.populate('subCategory')
+  this.populate({
+      path: 'category',
+      model: 'Category',
+    })
+  this.populate('category')
+  next()
+};
+
+Product.
+  pre('findOne', autoPopulateLead).
+  pre('find', autoPopulateLead)
 
 export default mongoose.model('Product', Product)
