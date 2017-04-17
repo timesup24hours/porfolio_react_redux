@@ -9,7 +9,6 @@ import TextFieldGroupMaterialUI from '../common/TextFieldGroupMaterialUI'
 import UserAvatar from '../nav/UserAvatar'
 import UserPopUpProfile from '../user/UserPopUpProfile'
 import * as UIActions from '../../store/actions/UIActions'
-import * as actionTypes from '../../store/actions/actionTypes'
 
 export class CommentList extends Component {
   state = {
@@ -29,9 +28,9 @@ export class CommentList extends Component {
   handleOpen = () => {
     this.props.handleOpenDialog({
       title: 'Delete Confirm',
-      content: 'This comment would be deleted permanently.',
+      content: 'It would be deleted permanently.',
       action: {
-        type: actionTypes.COMMENT_DELETE_REQUEST,
+        type: this.props.deleteType,
         payload: {
           id: this.props.commentId
         }

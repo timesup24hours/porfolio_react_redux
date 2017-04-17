@@ -21,6 +21,9 @@ const ProfileMenu = ({ handleLogout, id, cart }) => (
         <MenuItem
           primaryText="Upload Product"
           onClick={() => browserHistory.push(`/upload_product`)} />
+        <MenuItem
+          primaryText="Category setup"
+          onClick={() => browserHistory.push(`/category_setup`)} />
         <MenuItem primaryText="Log out" onClick={handleLogout} />
       </Menu>
     </Paper>

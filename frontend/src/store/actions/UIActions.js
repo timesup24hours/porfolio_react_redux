@@ -18,3 +18,20 @@ export const navBarFontColorChangeToBlackUI = () => ({
 export const UInotificationSlideCancel = () => ({
   type: actionTypes.UI_NOTIFICATION_SLIDE_HIDE,
 })
+
+/*
+ *  Dialog
+ */
+export const handleCloseDialog = () => ({
+  type: actionTypes.UI_DIALOG_CLOSE
+})
+
+export const handleOpenDialog = payload => ({
+  type: actionTypes.UI_DIALOG_OPEN,
+  payload,
+})
+
+export const handleDialogComfirmAction = payload => ({
+  type: actionTypes.UI_DIALOG_SET_ACTION,
+  payload,
+})

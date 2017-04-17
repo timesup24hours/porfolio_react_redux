@@ -12,7 +12,10 @@ import { snackbarClose } from '../store/actions/snackbarActions'
 import { connect } from 'react-redux'
 import NotificationAlert from './notification/NotificationAlert'
 import NotificationSlide from './notification/NotificationSlide'
-import { UInotificationSlideCancel } from '../store/actions/UIActions'
+import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton'
+import * as UIActions from '../store/actions/UIActions'
+import { store } from '../store/configStore'
 
 class App extends Component {
 
@@ -30,13 +33,27 @@ class App extends Component {
   // }
 
   componentDidMount() {
-    // this.props.getCategoryRequest()
+    this.props.getCategoryRequest()
     if(localStorage.getItem('user.data')) {
       this.props.getCartRequest()
     }
   }
 
   render() {
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onTouchTap={this.props.handleCloseDialog}
+      />,
+      <FlatButton
+        label={this.props.UI.dialog.trueBtnText || 'Comfirm'}
+        primary={true}
+        keyboardFocused={true}
+        onTouchTap={() => store.dispatch(this.props.UI.dialog.action)}
+      />,
+    ]
+
     return (
       <div className='App-container'>
         <LoadingBar
@@ -50,11 +67,14 @@ class App extends Component {
         <Logo />
         <Mask />
         <NavLeftMenu />
-        <NotificationSlide
-          content={this.props.UI.notificationSlide.content}
-          open={this.props.UI.notificationSlide.open}
-          cancel={this.props.UInotificationSlideCancel}
-        />
+        {this.props.UI.notificationSlide.open
+          ? <NotificationSlide
+              content={this.props.UI.notificationSlide.content}
+              open={this.props.UI.notificationSlide.open}
+              cancel={this.props.UInotificationSlideCancel}
+            />
+          : null
+        }
         <div className='App-children'>
           {this.props.UI.mask.show ? <div className='App-mask' /> : null}
           {this.props.children}
@@ -71,6 +91,16 @@ class App extends Component {
           content={this.props.UI.notificationAlert.content}
         />
 
+        <Dialog
+          title={this.props.UI.dialog.title}
+          actions={actions}
+          modal={false}
+          open={this.props.UI.dialog.open}
+          onRequestClose={this.props.handleCloseDialog}
+        >
+          {this.props.UI.dialog.content}
+        </Dialog>
+
       </div>
     )
   }
@@ -85,6 +115,7 @@ const mapDispatchToProps = dispatch => ({
   getCartRequest: () => dispatch(cartActions.getCartRequest()),
   getCategoryRequest: () => dispatch(menuActions.getCategoryRequest()),
   snackbarClose: () => dispatch(snackbarClose()),
-  UInotificationSlideCancel: () => dispatch(UInotificationSlideCancel()),
+  UInotificationSlideCancel: () => dispatch(UIActions.UInotificationSlideCancel()),
+  handleCloseDialog: () => dispatch(UIActions.handleCloseDialog()),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(App)

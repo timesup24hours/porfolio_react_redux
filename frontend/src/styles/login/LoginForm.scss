@@ -1,5 +1,5 @@
 .LoginForm-container {
-  margin: 50px auto 0px;
+  margin: 0px auto 0px;
   height: calc(100vh - 50px);
   width: auto;
   display: flex;
@@ -33,6 +33,6 @@
 
 @media screen and (max-width: 800px) {
   .LoginForm-container {
-    margin: 35% auto 0px;
+    margin: 0px auto 0px;
   }
 }

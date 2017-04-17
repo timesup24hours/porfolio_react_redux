@@ -11,4 +11,5 @@
   "requireTrailingComma": false,
   "requirePaddingNewLinesAfterBlocks": false,
   "disallowTrailingWhitespace": false,
+  "disallowQuotedKeysInObjects": false,
 }

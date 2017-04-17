@@ -46,12 +46,15 @@ export const reviewDeleteRequestEpic = action$ => action$
   .ofType(actionTypes.REVIEW_DELETE_REQUEST)
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.delete(`/api/review/${payload}`, headers)
+    .ajax.delete(`/api/review/${payload.id}`, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
         type: actionTypes.REVIEW_DELETE_REQUEST_SUCCESS,
         payload: response,
+      },
+      {
+        type: actionTypes.UI_DIALOG_CLOSE,
       },
       {
         type: actionTypes.SNACKBAR_OPEN,

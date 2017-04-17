@@ -31,7 +31,10 @@ export const commentDeleteEpic = action$ => action$
       {
         type: actionTypes.COMMENT_DELETE_SUCCESS,
         payload: response,
-      }
+      },
+      {
+        type: actionTypes.UI_DIALOG_CLOSE,
+      },
     ))
     .catch(error => Observable.of(
       {

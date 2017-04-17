@@ -2,6 +2,8 @@ import React from 'react'
 import CommentList from '../comment/CommentList'
 import ReviewForm from './ReviewForm'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
+import * as actionTypes from '../../store/actions/actionTypes'
+
 
 const CustomerReview = props => {
 
@@ -14,6 +16,7 @@ const CustomerReview = props => {
               createdAt={r.createdAt}
               comment={r.review}
               deleteRequest={props.deleteRequest}
+              deleteType={actionTypes.REVIEW_DELETE_REQUEST}
               editRequest={props.editRequest}
              />
   })

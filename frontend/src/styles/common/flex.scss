@@ -9,3 +9,10 @@
   flex-direction: row;
   flex-flow: wrap;
 }
+
+.flexEndCenterWrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-flow: wrap;
+}

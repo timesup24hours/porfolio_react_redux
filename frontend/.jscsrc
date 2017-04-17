@@ -12,4 +12,5 @@
   "disallowMultipleLineStrings": false,
   "disallowTrailingWhitespace": false,
   "requireTrailingComma": false,
+  "disallowMultipleVarDecl": false,
 }

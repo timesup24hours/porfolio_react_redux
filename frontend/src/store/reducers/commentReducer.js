@@ -33,6 +33,7 @@ export default (state = initialState, action = {}) => {
   switch (action.type) {
     case actionTypes.COMMENT_SUBMITTING:
     case actionTypes.COMMENT_EDIT_REQUEST:
+    case actionTypes.COMMENT_GET_ALL_REQUEST:
       return {
         ...state,
         pending: true,
@@ -89,11 +90,21 @@ export default (state = initialState, action = {}) => {
     case actionTypes.COMMENT_GET_ALL_SUCCESS:
       return {
         ...state,
+        pending: false,
+        success: true,
+        fail: false,
+        errors: {},
+        error: false,
         comments: action.payload.comments.sort(sortByDate).reverse()
       }
     case actionTypes.COMMENT_DELETE_SUCCESS:
       return {
         ...state,
+        pending: false,
+        success: true,
+        fail: false,
+        errors: {},
+        error: false,
         comments: state.comments.filter(c => c._id !== action.payload.commentId)
       }
     case actionTypes.COMMENT_EDIT_SUCCESS:

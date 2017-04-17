@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes'
-import { store } from '../configStore'
+// import { store } from '../configStore'
 
 const initialState = {
   mask: {
@@ -15,6 +15,12 @@ const initialState = {
   notificationSlide: {
     content: '',
     open: false,
+  },
+  dialog: {
+    open: false,
+    title: '',
+    content: '',
+    action: null,
   }
 }
 
@@ -86,6 +92,24 @@ export default (state = initialState, action = {}) => {
         notificationSlide: {
           content: '',
           open: false,
+        }
+      }
+    case actionTypes.UI_DIALOG_CLOSE:
+      return {
+        ...state,
+        dialog: {
+          open: false,
+        }
+      }
+    case actionTypes.UI_DIALOG_OPEN:
+      return {
+        ...state,
+        dialog: {
+          open: true,
+          title: action.payload.title,
+          content: action.payload.content,
+          action: action.payload.action,
+          trueBtnText: action.payload.trueBtnText,
         }
       }
     default:
