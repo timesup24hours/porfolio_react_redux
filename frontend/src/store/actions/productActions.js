@@ -23,3 +23,7 @@ export const setCurrentDepartmentAndCategory = payload => ({
   type: actionTypes.PRODUCT_SET_CURRENT_DEPARTMENT_AND_CATEGORY,
   payload,
 })
+
+export const getProductsByOwner = () => ({
+  type: actionTypes.PRODUCT_GET_PRODUCT_BY_OWNER_REQUEST
+})

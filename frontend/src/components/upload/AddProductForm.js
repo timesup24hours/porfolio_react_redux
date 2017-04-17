@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
-import Divider from 'material-ui/Divider'
-import Paper from 'material-ui/Paper'
-import TextFieldGroup from '../common/TextFieldGroup'
 import { bytesToSize } from '../../utils'
-import Cancel from 'material-ui/svg-icons/navigation/cancel'
-import RaisedButton from 'material-ui/RaisedButton'
 import { connect } from 'react-redux'
 import * as productActions from '../../store/actions/productActions'
 import * as addProductFormActions from '../../store/actions/addProductFormActions'
+import { addProductionFormValidation, submitValidation } from './addProductionFormValidation'
 
 const initialState = {
   department: localStorage.getItem('addProductForm-department') || '',
@@ -25,6 +21,7 @@ const initialState = {
   size: localStorage.getItem('addProductForm-size') || '',
   images: [],
   soldBy: localStorage.getItem('addProductForm-soldBy') || '',
+  errors: {},
 }
 
 const clearState = {
@@ -38,11 +35,12 @@ const clearState = {
   brand: '',
   price: '',
   salePrice: '',
-  listDesc: '',
+  listDesc: [],
   onSale: false,
   size: '',
   images: [],
-  soldBy: ''
+  soldBy: '',
+  errors: {},
 }
 
 class AddProductForm extends Component {
@@ -72,6 +70,34 @@ class AddProductForm extends Component {
     this.setState(clearState)
   }
 
+  // get all name and value method
+  getFormNameAndValue = (listDesc, images) => ({
+    [document.querySelector('#name').name]: document.querySelector('#name').value,
+    [document.querySelector('#category').name]: document.querySelector('#category').value,
+    [document.querySelector('#type').name]: document.querySelector('#type').value,
+    [document.querySelector('#stock').name]: document.querySelector('#stock').value,
+    [document.querySelector('#numberOfStock').name]: document.querySelector('#numberOfStock').value,
+    [document.querySelector('#desc').name]: document.querySelector('#desc').value,
+    [document.querySelector('#name').name]: document.querySelector('#name').value,
+    [document.querySelector('#brand').name]: document.querySelector('#brand').value,
+    [document.querySelector('#salePrice').name]: document.querySelector('#salePrice').value,
+    listDesc: listDesc || this.state.listDesc,
+    [document.querySelector('#onSale').name]: document.querySelector('#onSale').value,
+    [document.querySelector('#size').name]: document.querySelector('#size').value,
+    [document.querySelector('#images').name]: images || this.state.images,
+    [document.querySelector('#soldBy').name]: document.querySelector('#soldBy').value,
+  })
+
+  // validating form value for disable the upload btn or Note
+  validatingFormValueDisableUploadButton = (listDesc, images) => {
+    const { isValid } = submitValidation(this.getFormNameAndValue(listDesc, images))
+    if(!isValid) {
+      document.querySelector('#AddProductForm-upload-btn').disabled = true
+      // this.setState({ errors })
+    } else {
+      document.querySelector('#AddProductForm-upload-btn').disabled = false
+    }
+  }
 
   /*
    *  remove the dynamically added input field (listDesc)
@@ -81,7 +107,24 @@ class AddProductForm extends Component {
       this.setState({
         listDesc: newListDesc
       })
+      // this.validatingFormValueDisableUploadButton(newListDesc)
       localStorage.setItem('addProductForm-listDesc', JSON.stringify(newListDesc))
+   }
+
+
+   handleListDescError = e => {
+     if(e.target.id === 'listDesc') {
+       if(this.state.errors.listDesc === 'At least 2 Brief Description' && this.state.listDesc.length >= 2) {
+         let copy = Object.assign({}, this.state.errors)
+         delete copy.listDesc
+         this.setState({ errors: copy })
+       }
+       if(this.state.errors.listDesc === 'required' && this.state.listDesc.length !== 0) {
+         let copy = Object.assign({}, this.state.errors)
+         delete copy.listDesc
+         this.setState({ errors: copy })
+       }
+     }
    }
 
   /*
@@ -92,8 +135,10 @@ class AddProductForm extends Component {
       if (ldi !== index) return l
       return { ...l, name: e.target.value }
     })
-
+    addProductionFormValidation(e)
+    this.handleListDescError(e)
     this.setState({ listDesc: newListDesc })
+    // this.validatingFormValueDisableUploadButton(newListDesc)
     localStorage.setItem('addProductForm-listDesc', JSON.stringify(newListDesc))
   }
 
@@ -101,25 +146,30 @@ class AddProductForm extends Component {
    * increase the listDesc length in order to dynamically map the input field to the dom
    */
   handleAddBriefDescription = () => {
-    if(this.state.listDesc.length < 10) {
+    // this.validatingFormValueDisableUploadButton(this.state.listDesc.concat({ name: '' }))
+    if(this.state.listDesc.length < 9) {
       this.setState({ listDesc: this.state.listDesc.concat({ name: '' }) })
     }
   }
 
-  isValid = () => {
-    const { errors, isValid } = validate(this.state)
-
-    if (!isValid) {
-      this.setState({ errors })
-    }
-
-    return isValid
+  // handle onBlue event
+  handleOnBlur = (e) => {
+    // this.validatingFormValueDisableUploadButton()
+    addProductionFormValidation(e)
+    this.handleListDescError(e)
   }
 
   /*
    * set value of the select element to localStorage and reset the state
    */
   handleSelect = e => {
+    addProductionFormValidation(e)
+    // this.validatingFormValueDisableUploadButton()
+    if(e.target.name === 'department') {
+      this.setState({ 'category': '' })
+      this.setState({ 'type': '' })
+    }
+    if(e.target.name === 'category') this.setState({ 'type': '' })
     localStorage.setItem(`addProductForm-${e.target.name}`, e.target.value)
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -128,14 +178,24 @@ class AddProductForm extends Component {
    * set value of the select element to localStorage and reset the state
    */
   handleChange = (e) => {
+    addProductionFormValidation(e)
+    // this.validatingFormValueDisableUploadButton()
     localStorage.setItem(`addProductForm-${e.target.name}`, e.target.value)
     this.setState({ [e.target.name]: e.target.value })
   }
+
   /*
    *  Assign: turn the files object into array, and set to the state
    *  Explain: handle the onchange event in the <input type='file'/>
    */
   handleFileSelect = evt => {
+    if(evt.target.files.length !== 0) {
+      let copy = Object.assign({}, this.state.errors)
+      delete copy.images
+      this.setState({ errors: copy })
+    }
+
+    addProductionFormValidation(evt)
     // get the files(FileList) object from the Dom's <input type='file'/> element
     let filelist = evt.target.files
 
@@ -144,6 +204,7 @@ class AddProductForm extends Component {
     for(let i = 0; i < filelist.length; i++) {
       images.push(filelist[i])
     }
+    // this.validatingFormValueDisableUploadButton(undefined, images)
     // concat the coming object and seset the state
     this.setState({ images: this.state.images.concat(images) })
   }
@@ -153,6 +214,7 @@ class AddProductForm extends Component {
    */
   handleRemoveImage = (index) => {
     this.setState({ images: this.state.images.filter((img, i) => i !== index) })
+    // this.validatingFormValueDisableUploadButton(undefined, this.state.images.filter((img, i) => i !== index))
   }
 
   /*
@@ -161,13 +223,20 @@ class AddProductForm extends Component {
   handleUploadProduct = (e) => {
     e.preventDefault()
 
+    const { isValid, errors } = submitValidation(this.state)
+    if(!isValid) {
+      // document.querySelector('#AddProductForm-upload-btn').disabled = true
+      this.setState({ errors })
+      return false
+    }
+    document.querySelector('#desc').parentElement.firstChild.textContent = 'Long Description'
+
     // Learning Note: inorder to make NPM package multer wokring at server side,
     // this step has to perform, append each file objec to the new FormData
     let data = new FormData()
     this.state.images.forEach((e, i) => {
       data.append(`image-${i}`, e)
     })
-
     // Learning Note: append key and,
     // value to the new FormData to post File object and form text to server
     data.append('department', this.state.department)
@@ -180,7 +249,7 @@ class AddProductForm extends Component {
     data.append('brand', this.state.brand)
     data.append('price', this.state.price)
     data.append('salePrice', this.state.salePrice)
-    data.append('listDesc', this.state.listDesc)
+    data.append('listDesc', JSON.stringify(this.state.listDesc))
     data.append('onSale', this.state.onSale)
     data.append('size', this.state.size)
     data.append('soldBy', this.state.soldBy)
@@ -202,10 +271,13 @@ class AddProductForm extends Component {
     // Note: window.URL.createObjectURL(files[0]), turn the file object to dataURL for <img src="" alt=""/>
     // Note: usr the "escape(f.name)" method if necessary to change the white space to % sign
     let filesPreviewDiv = this.state.images.map((f, i) => {
-      return (<div key={i}>
-                <Cancel onClick={() => this.handleRemoveImage(i)}/>
+      return (<div className='AddProductForm-image-each' key={i}>
+                <div className='AddProductForm-image-cancel'>
+                <i className="material-icons hover-cursor-pointer"
+                  onClick={() => this.handleRemoveImage(i)}>cancel</i>
+                </div>
                 <img style={{ width: '200px', height: '200px' }} src={window.URL.createObjectURL(f)} alt=""/>
-                <div>{f.name} ({f.type}) - size: {bytesToSize(f.size)}</div>
+                <div className='AddProductForm-image-text flow-text'>{f.name} ({f.type}) - size: {bytesToSize(f.size)}</div>
               </div>)
     })
 
@@ -213,39 +285,38 @@ class AddProductForm extends Component {
      *  select input const render variable
      */
     // display departments
-    const departments = this.props.menu.department.map((d, i) => {
-      return <option key={i} value={d._id}>{d.name.name}</option>
-    })
-    // display category
-    let selectedDepartment = null
+    let departments = null
     let category = null
+    let subCategory = null
 
-    if(this.state.department) {
-      selectedDepartment = this.props.menu.department.filter((d, i) =>  d._id === this.state.department)
-      if(selectedDepartment.length) {
-        category = selectedDepartment[0].children.map((c, i) => {
-          if(c.name) {
-            return <option key={i} value={c._id}>{c.name}</option>
+    departments = this.props.menu.categories.map((d, i) => {
+      return <option key={i} value={d._id}>{d.department}</option>
+    })
+
+    // display category
+    category = this.props.menu.categories.map((d, i) => {
+      if(d._id ===  this.state.department) {
+        return d.category.map((d, i) => {
+          return <option key={i} value={d._id}>{d.name}</option>
+        })
+      }
+      return false
+    })
+
+    // display subCategory
+    subCategory = this.props.menu.categories.map((d, i) => {
+      if(d._id === this.state.department) {
+        return d.category.map((c, i) => {
+          if(c._id === this.state.category) {
+            return c.subcategory.map((c, i) => {
+              return <option key={i} value={c._id}>{c.name}</option>
+            })
           }
           return false
         })
       }
-    }
-    // display types
-    let selectedCategory = null
-    let types = null
-
-    if(this.state.category) {
-      selectedCategory = this.props.menu.category.filter((c, i) => c.parent === this.state.category)
-      if(selectedCategory.length) {
-        types = selectedCategory[0].children.map((t, i) => {
-          if(t.name) {
-            return <option key={i} value={t._id}>{t.name}</option>
-          }
-          return false
-        })
-      }
-    } // end of select input group
+      return false
+    })
 
     /*
      *  dynamically add input field to the dom
@@ -253,15 +324,25 @@ class AddProductForm extends Component {
     let listDescInputField = null
     if(this.state.listDesc.length)
       listDescInputField = this.state.listDesc.map((l, i) => {
-        return (<div key={i}>
-                  <input
-                    id={`listDesc${i}`}
-                    name={`listDesc${i}`}
-                    type="text"
-                    value={l.name}
-                    onChange={e => this.handleListDescChange(e, i)}
-                   />
-                  <Cancel onClick={(e) => this.handelListDescRemove(e, i)}/>
+        return (<div className='row' key={i}>
+                  <div className='col-sm-11'>
+                    <div className='form-group'>
+                      <input
+                        id='listDesc'
+                        name={`listDesc${i}`}
+                        type="text"
+                        value={l.name}
+                        onChange={e => this.handleListDescChange(e, i)}
+                        className="form-control"
+                        onBlur={this.handleOnBlur}
+                       />
+                      <div className='addProductForm-listDesc-cancel'>
+                        <i className="material-icons hover-cursor-pointer"
+                          onClick={(e) => this.handelListDescRemove(e, i)}>cancel</i>
+                      </div>
+                      <span className='text-danger addProductForm-invalid-span'>{this.state.errors[`listDesc${i}`]}</span>
+                    </div>
+                  </div>
                 </div>)
       })
 
@@ -269,146 +350,311 @@ class AddProductForm extends Component {
      *  return
      */
     return (
-      <div className='AddProductForm-container'>
-        <Paper zDepth={2}>
-          {/* input fields */}
-          <TextFieldGroup
-            classNameContainer='AddProductForm-input-container'
-            classNameLabel=''
-            classNameInput='AddProductForm-input-text'
-            classNameError='wrong'
-            label="Product name"
-            name='name'
-            value={this.state.name}
-            onChange={this.handleChange}  />
-          <Divider />
+      <div className='AddProductForm-container container'>
 
-          <TextFieldGroup
-            label="Brand name"
-            name='brand'
-            value={this.state.brand}
-            onChange={this.handleChange}  />
-          <Divider />
+            {/* row */}
+            <div className="row">
 
-          <label htmlFor="desc">Description</label>
-          <textarea
-            cols="40"
-            rows="5"
-            name='desc'
-            value={this.state.desc}
-            onChange={this.handleChange} ></textarea>
-          <Divider />
+              <div className='col-sm-6'>
+                <div className="form-group">
+                  <label className=''
+                    htmlFor="name">Product name</label>
+                  <input
+                    className='form-control'
+                    placeholder="Product name"
+                    id="name"
+                    name='name'
+                    type="text"
+                    value={this.state.name}
+                    onChange={this.handleChange}
+                    onBlur={this.handleOnBlur}
+                    required
+                    />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.name}</span>
+                </div>
+              </div>
 
-          <label htmlFor="">List of Description</label>
-            {listDescInputField}
-          <RaisedButton label="Add Description" onClick={this.handleAddBriefDescription}/>
-          <Divider />
+              <div className='col-sm-6'>
+                <div className="form-group">
+                  <label
+                    className=''
+                    htmlFor="brand">Brand name</label>
+                  <input
+                    className='form-control'
+                    placeholder="Brand name"
+                    id="brand"
+                    name='brand'
+                    type="text"
+                    value={this.state.brand}
+                    onChange={this.handleChange}
+                    onBlur={this.handleOnBlur}
+                    required
+                    />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.brand}</span>
+                </div>
+              </div>
 
-          <TextFieldGroup
-            label="Size"
-            name='size'
-            value={this.state.size}
-            onChange={this.handleChange} />
-          <Divider />
-
-          <TextFieldGroup
-            label="Price"
-            value={this.state.price}
-            name='price'
-            onChange={this.handleChange} />
-          <Divider />
-
-          <TextFieldGroup
-            label="Sale Price"
-            value={this.state.salePrice}
-            name='salePrice'
-            onChange={this.handleChange} />
-          <Divider />
-
-          <TextFieldGroup
-            label="Sold By"
-            value={this.state.soldBy}
-            name='soldBy'
-            onChange={this.handleChange} />
-          <Divider />
-
-          <div className='AddProductForm-stock'>
-            <TextFieldGroup
-              label="Number of Stock"
-              name='numberOfStock'
-              value={this.state.numberOfStock}
-              onChange={this.handleChange} />
-
-            <label htmlFor="stock">In stock</label>
-            <select id='stock' name='stock' value={this.state.stock} onChange={this.handleChange}>
-              <option value={true}>true</option>
-              <option value={false}>false</option>
-            </select>
-          </div>
-          <Divider />
-
-          <label htmlFor="onSale">On Sale</label>
-          <select id='onSale' name='onSale' value={this.state.onSale} onChange={this.handleChange}>
-            <option value={true}>true</option>
-            <option value={false}>false</option>
-          </select>
-          <Divider />  {/* end of input fields */}
-
-          {/* department selector */}
-          <div className='AddProductForm-category-selector-group'>
-            <div>
-              <label htmlFor="department">Department</label>
-              <select id='department' value={this.state.department} name='department' onChange={this.handleSelect}>
-                <option default disabled>select</option>
-                {departments}
-              </select>
             </div>
 
-            <div>
-              <label htmlFor="category">Category</label>
-              <select id='category' value={this.state.category} name='category' onChange={this.handleSelect}>
-                <option default disabled>select</option>
-                {category}
-              </select>
+            {/* row Long Description*/}
+            <div className="row">
+              <div className='col-sm-12'>
+                <div className="form-group">
+                  <label className=''
+                    htmlFor="desc">Long Description</label>
+                  <textarea
+                    style={{ resize: "vertical" }}
+                    rows='4'
+                    className='form-control'
+                    id="desc"
+                    name='desc'
+                    value={this.state.desc}
+                    onChange={this.handleChange}
+                    onBlur={this.handleOnBlur}
+                    required
+                  ></textarea>
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.desc}</span>
+                </div>
+              </div>
             </div>
 
-            <div>
-              <label htmlFor="type">Product Type</label>
-              <select id='type' value={this.state.type} name='type' onChange={this.handleSelect}>
-                <option default disabled>select</option>
-                {types}
-              </select>
+            {/* row List of Description */}
+            <div className="row">
+              <div className='col-sm-12'>
+                <div className='form-group'>
+                  <label htmlFor="">Brief of Description</label><br/>
+                  <button className='btn btn-default' onClick={this.handleAddBriefDescription}>Add Description</button>
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.listDesc}</span>
+                </div>
+              </div>
             </div>
-          </div>
-          <Divider />{/* end of department selector */}
+            <div className='container'>
+              {listDescInputField}
+            </div>
 
-          {/* upload image
-              #1 display:none is for the input element. it's for the hide the default file chooseing text
-              #2 use label to replace the look of the input element
-           */}
-          <label htmlFor="images" className='AddProductForm-upload-image-label'>Upload images</label>
-          <input
-            style={{display:'none'}}
-            id='images'
-            name='images'
-            type="file"
-            accept="image/*"
-            multiple onChange={this.handleFileSelect}/>
+            <hr/>
 
-          <div className='AddProductForm-image-preview'>
-            {filesPreviewDiv}
-          </div>{/* end of upload image */}
+            {/* row Price */}
+            <div className="row">
+              <div className='col-sm-4'>
+                <div className="form-group">
+                  <label className='' htmlFor="price">Price</label>
+                  <input
+                    className='form-control'
+                    placeholder="Price"
+                    id="price"
+                    name='price'
+                    value={this.state.price}
+                    onChange={this.handleChange}
+                    onBlur={this.handleOnBlur}
+                    required
+                    type='number'
+                  />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.price}</span>
+                </div>
+              </div>
 
-        </Paper>
 
-        <div className='row'>
-          <div className='col-xs-6 col-sm-6'>
-            <RaisedButton label="Clear" onClick={this.handleClearForm}/>
-          </div>
-          <div className='col-xs-6 col-sm-6'>
-            <RaisedButton label="upload product" primary={true} onClick={this.handleUploadProduct} />
-          </div>
-        </div>
+              <div className='col-sm-4'>
+                <div className="form-group">
+                  <label>On Sale</label>
+                  <select className="form-control" id='onSale' name='onSale' value={this.state.onSale} onChange={this.handleChange}>\
+                    <option disabled>Choose your option</option>
+                    <option value={true}>true</option>
+                    <option value={false}>false</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className='col-sm-4'>
+                <div className="form-group">
+                  <label className='' htmlFor="salePrice">Sale Price</label>
+                  <input
+                    className='form-control'
+                    placeholder="Sale Price"
+                    id="salePrice"
+                    name='salePrice'
+                    value={this.state.salePrice}
+                    onChange={this.handleChange}
+                    type='number'
+                  />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.salePrice}</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* row Size */}
+            <div className="row">
+
+              <div className="col-sm-4">
+                <div className="form-group">
+                  <label className='' htmlFor="size">Size</label>
+                  <input
+                    className='form-control'
+                    placeholder="Size"
+                    id="size"
+                    name='size'
+                    type="text"
+                    value={this.state.size}
+                    onChange={this.handleChange}
+                    onBlur={this.handleOnBlur}
+                  />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.size}</span>
+                </div>
+              </div>
+
+              <div className="col-sm-4">
+                <div className="form-group">
+                  <label>In stock</label>
+                  <select className='form-control'  id='stock' name='stock' value={this.state.stock} onChange={this.handleChange}>
+                    <option value="" disabled>Choose your option</option>
+                    <option value={true}>true</option>
+                    <option value={false}>false</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="col-sm-4">
+                <div className="form-group">
+                  <label className='active' htmlFor="numberOfStock">Number of Stock</label>
+                  <input
+                    className='form-control'
+                    placeholder="Number of Stock"
+                    id="numberOfStock"
+                    name='numberOfStock'
+                    value={this.state.numberOfStock}
+                    onChange={this.handleChange}
+                    type='number'
+                  />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.numberOfStock}</span>
+                </div>
+              </div>
+
+            </div>{/* end of the row Size */}
+
+            {/* row Sold By */}
+            <div className="row">
+              <div className="col-sm-6">
+                <div className='form-group'>
+                  <label className='' htmlFor="soldBy">Sold By</label>
+                  <input
+                    className='form-control'
+                    placeholder="Sold By"
+                    id="soldBy"
+                    name='soldBy'
+                    type="text"
+                    value={this.state.soldBy}
+                    onChange={this.handleChange}
+                    onBlur={this.handleOnBlur}
+                    required
+                  />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.soldBy}</span>
+                </div>
+              </div>
+            </div>{/* end of input fields */}
+
+            {/* row */}
+            {/* department selector */}
+            <div className="row">
+
+              <div className="col-sm-4">
+                <div className='form-group'>
+                  <label>Department</label>
+                  <select
+                    className='form-control'
+                    id='department'
+                    value={this.state.department}
+                    name='department'
+                    onChange={this.handleSelect}
+                    onBlur={this.handleOnBlur}
+                  >
+                    <option value="" disabled>Choose your option</option>
+                    {departments}
+                  </select>
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.department}</span>
+                </div>
+              </div>
+
+              <div className="col-sm-4">
+                <div className='form-group'>
+                  <label>Category</label>
+                  <select required
+                    className='form-control'
+                    id='category'
+                    value={this.state.category}
+                    name='category'
+                    onChange={this.handleSelect}
+                    onBlur={this.handleOnBlur}
+                  >
+                    <option value="" disabled>Choose your option</option>
+                    {category}
+                  </select>
+                  <span className='text-danger addProductForm-invalid-span '>{this.state.errors.category}</span>
+                </div>
+              </div>
+
+              <div className="col-sm-4">
+                <div className='form-group'>
+                  <label>Product Type</label>
+                  <select required
+                    className='form-control'
+                    id='type'
+                    value={this.state.type}
+                    name='type'
+                    onChange={this.handleSelect}
+                    onBlur={this.handleOnBlur}
+                  >
+                    <option value="" disabled>Choose your option</option>
+                    {subCategory}
+                  </select>
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.type}</span>
+                </div>
+              </div>
+            </div>{/* end of department selector */}
+
+            {/* upload image
+                #1 display:none is for the input element. it's for the hide the default file chooseing text
+                #2 use label to replace the look of the input element
+            */}
+             <div className='row'>
+               <div className='col-sm-12'>
+                 <div className='form-group'>
+                    <label htmlFor="images" className='btn btn-default'>Upload images</label>
+                    <input
+                      style={{ display:'none'}}
+                      id='images'
+                      name='images'
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={this.handleFileSelect}
+                    />
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.images}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className='row'>
+              <div className='col-sm-12'>
+                <div className='AddProductForm-image-preview'>
+                  {filesPreviewDiv}
+                </div>{/* end of upload image */}
+              </div>
+            </div>
+
+            <hr/>
+
+            <div className='row'>
+              <div className='col-xs-6 col-sm-6'>
+                <button className='btn btn-default' onClick={this.handleClearForm}>Clear</button>
+              </div>
+              <div className='col-xs-6 col-sm-6'>
+                <button id='AddProductForm-upload-btn' className='pull-right btn btn-primary' onClick={this.handleUploadProduct}>Upload product</button>
+              </div>
+            </div>
+
+
       </div>
     )
   }
@@ -416,8 +662,8 @@ class AddProductForm extends Component {
 }
 
 const mapStateToProps = state => ({
+  product: state.product,
   addProductForm: state.addProductForm,
-  menu: state.menu
 })
 
 const mapDispatchToProps = dispatch => ({

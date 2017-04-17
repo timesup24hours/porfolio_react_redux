@@ -13,6 +13,7 @@ const initialState = {
   errors: {
   },
   error: false,
+  onwerProducts: null,
 }
 
 export default (state = initialState, action = {}) => {
@@ -109,6 +110,29 @@ export default (state = initialState, action = {}) => {
         ...state,
         currentDepartment: action.payload.department,
         currentCategory: action.payload.category,
+      }
+    case actionTypes.PRODUCT_GET_PRODUCT_BY_OWNER_REQUEST_SUCCESS:
+      return {
+        ...state,
+        onwerProducts: action.payload.products,
+        pending: false,
+        success: true,
+        fail: false,
+        error: false,
+        errors: null,
+      }
+    case actionTypes.PRODUCT_GET_PRODUCT_BY_OWNER_REQUEST_FAIL:
+      return {
+        ...state,
+        pending: false,
+        success: false,
+        fail: true,
+        error: true,
+        errors: {
+          message: shopByCategoryErrorToMessage(action.payload),
+          error: action.payload,
+          status: action.payload.status,
+        },
       }
     default:
       return state

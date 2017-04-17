@@ -87,3 +87,23 @@ export const addProductEpic = action$ => action$
       },
     ))
   )
+
+export const getProductByOwnserEpic = action$ => action$
+  .ofType(actionTypes.PRODUCT_GET_PRODUCT_BY_OWNER_REQUEST)
+  .map(signRequest)
+  .switchMap(({ headers }) => Observable
+    .ajax.get(`/api/products_by_owner/`, headers)
+    .map(res => res.response)
+    .mergeMap(response => Observable.of(
+      {
+        type: actionTypes.PRODUCT_GET_PRODUCT_BY_OWNER_REQUEST_SUCCESS,
+        payload: response,
+      }
+    ))
+    .catch(error => Observable.of(
+      {
+        type: actionTypes.PRODUCT_GET_PRODUCT_BY_OWNER_REQUEST_FAIL,
+        payload: error,
+      }
+    ))
+  )

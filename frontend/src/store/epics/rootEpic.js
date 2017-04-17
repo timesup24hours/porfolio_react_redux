@@ -47,4 +47,5 @@ export default combineEpics(
   subCategoryEpic.addSubCategoryRequestEpic,
   subCategoryEpic.eidtSubCategoryRequestEpic,
   subCategoryEpic.deleteSubCategoryRequestEpic,
+  productEpic.getProductByOwnserEpic,
 );
