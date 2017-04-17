@@ -1,17 +1,39 @@
 import * as actionTypes from '../actions/actionTypes'
-import { categories } from './categories'
+// import { categories } from './categories'
 
-const getTypesFromMenu = (category, type) => {
-  return category.filter(c => {
-    return c.type === type
+const getDepartments = categories => {
+  return categories.filter(d => {
+    return d
   })
+}
+
+const getCategories = categories => {
+  let category = []
+  categories.forEach(d => {
+    d.category.forEach(c => {
+      category.push(c)
+    })
+  })
+  return category
+}
+
+const getSubCategories = categories => {
+  let subcategory = []
+  categories.forEach(d => {
+    d.category.forEach(c => {
+      c.subcategory.forEach(s => {
+        subcategory.push(s)
+      })
+    })
+  })
+  return subcategory
 }
 
 const initialState = {
   categories: null,
-  department: getTypesFromMenu(categories, 'department'),
-  category: getTypesFromMenu(categories, 'category'),
-  types: getTypesFromMenu(categories, 'types'),
+  department: null,
+  category: null,
+  types: null,
   pending: false,
   success: false,
   errors: {},
@@ -89,9 +111,9 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         categories: action.payload.menu,
-        department: getTypesFromMenu(action.payload.menu, 'department'),
-        category: getTypesFromMenu(action.payload.menu, 'category'),
-        types: getTypesFromMenu(action.payload.menu, 'types'),
+        department: getDepartments(action.payload.menu),
+        category: getCategories(action.payload.menu),
+        types: getSubCategories(action.payload.menu),
         success: true,
         pending: false,
       }

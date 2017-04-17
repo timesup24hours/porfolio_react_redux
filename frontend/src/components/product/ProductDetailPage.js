@@ -14,7 +14,7 @@ class ProductDetailPage extends Component {
   }
 
   render() {
-    if(this.props.product.success) {
+    if(this.props.product.currentProduct) {
       return (
         <div className='ProductDetailPage-container'>
           <ProductDetail

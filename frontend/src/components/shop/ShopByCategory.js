@@ -17,7 +17,13 @@ class ShopByCategory extends Component {
       department: { name: routeParamsFormatToName(this.context.router.params.department), to: this.context.router.params.department },
       category: { name: routeParamsFormatToName(this.context.router.params.category), to: this.context.router.params.category },
     })
-    this.props.getCurrentCategoryProductsRequest(routeParamsFormatToName(this.context.router.params.category))
+    let category = this.props.category.filter(c => {
+      if(c.to === this.context.router.params.category) {
+        return c
+      }
+      return false
+    })
+    this.props.getCurrentCategoryProductsRequest(category[0]._id)
   }
 
   render() {

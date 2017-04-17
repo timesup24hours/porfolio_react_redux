@@ -41,20 +41,20 @@ class ShopByDepartment extends Component {
   }
 
   handleChangeCategory = (d) => {
-    this.context.router.push(`/shop/${d.name.to}`)
+    this.context.router.push(`/shop/${d.to}`)
     document.querySelector('.dropdown').classList.remove('open')
   }
 
   renderDepartments = () => {
     if(routeParamsFormatToName(this.context.router.params.department)) {
-      return this.props.menu.department.map((d, i) => {
+      return this.props.menu.categories ? this.props.menu.categories.map((d, i) => {
         return (<ListItem
                   key={i}
                   onClick={() => this.handleChangeCategory(d)}
-                  primaryText={d.name.name}
-                  secondaryText={d.name.desc}
+                  primaryText={d.department}
+                  secondaryText={d.desc}
                 />)
-      })
+      }) : null
     }
   }
 
@@ -66,19 +66,19 @@ class ShopByDepartment extends Component {
 
   render() {
 
-    const renderCategory = this.props.menu.department.map((d, i) => {
-        if(d.name.to === this.context.router.params.department) {
-          return d.children.map((c, i) => {
+    const renderCategory = this.props.menu.categories ? this.props.menu.categories.map((d, i) => {
+        if(d.to === this.context.router.params.department) {
+          return d.category.map((c, i) => {
             return c.name ? <Link
                               className='btn hover-cursor-pointer flexRowWrap ShopByDepartment-category-button'
                               key={i}
-                              to={`/shop/${d.name.to}/${c.to}`}>
+                              to={`/shop/${d.to}/${c.to}`}>
                               {c.name}</Link>
                               : false
           })
         }
         return false
-      })
+      }) : null
 
 
     return (

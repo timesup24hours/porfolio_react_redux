@@ -1,11 +1,11 @@
-import { Product } from '../../db/models'
+import { Category, Product } from '../../db/models'
 import { asyncRequest } from '../../util'
 
 export default (app) => {
 
   app.get('/api/get_products_by_category/:category', asyncRequest(async (req, res, next) => {
     let products = null
-
+    console.log('req.params.category   ' , req.params.category);
     products = await Product.find({ category: req.params.category })
 
     if(products.length === 0) {

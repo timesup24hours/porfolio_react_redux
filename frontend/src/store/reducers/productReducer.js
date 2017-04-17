@@ -3,7 +3,7 @@ import { shopByCategoryErrorToMessage } from '../../utils'
 
 const initialState = {
   products: [],
-  currentProduct: {},
+  currentProduct: null,
   currentCategoryProducts: [],
   currentDepartment: '',
   currentCategory: '',

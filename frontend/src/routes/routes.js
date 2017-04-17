@@ -13,7 +13,7 @@ import Learning from '../components/learning/Learning'
 import Error404 from '../components/error404/Error404'
 import Profile from '../components/profile/Profile'
 import Shop from '../components/shop/Shop'
-import ShopByCategory from '../components/shop/ShopByCategory'
+import ShopByCategoryPage from '../components/shop/ShopByCategoryPage'
 import ShopByDepartment from '../components/shop/ShopByDepartment'
 import Cart from '../components/cart/Cart' // eslint-disable-line
 import ProductDetailPage from '../components/product/ProductDetailPage'
@@ -35,7 +35,7 @@ export default (
     <Route path='/upload_product' component={AddProductFormMaterialUI} />
     <Route path='/category_setup' component={CategoryPage} />
     <Route path='/product/:id' component={ProductDetailPage} />
-    <Route path='/shop/:department/:category' component={ShopByCategory} />
+    <Route path='/shop/:department/:category' component={ShopByCategoryPage} />
     <Route path='/shop/:department' component={ShopByDepartment} />
     <Route path="*" component={Error404} />
   </Route>
