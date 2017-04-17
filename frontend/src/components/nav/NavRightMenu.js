@@ -18,10 +18,14 @@ const NavRightMenu = (props) => {
   return(
     <div className='NavRightMenu-container'>
       <ul className='NavRightMenu-ul'>
-        {/*<li className='NavRightMenu-department' onMouseLeave={props.hideMaskUI} onMouseEnter={props.showMaskUI} >
-          DEPARTMENTS
-          <Menu />
-        </li>*/}
+        {/*
+          props.menu.categories
+          ? <li className='NavRightMenu-department' onMouseLeave={props.hideMaskUI} onMouseEnter={props.showMaskUI} >
+              DEPARTMENTS
+              <Menu menu={props.menu} />
+            </li>
+          : null
+        */}
         <li className='NavRightMenu-li'>
           <Link to='/shop' style={colorChange} activeClassName="NavRightMenu-link-active">SHOP ALL</Link>
         </li>
@@ -63,6 +67,7 @@ NavRightMenu.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth,
   UI: state.UI,
+  menu: state.menu,
 })
 
 const mapDispatchToProps = dispatch => ({

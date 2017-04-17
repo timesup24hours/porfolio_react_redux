@@ -20,6 +20,7 @@ const Product = new Schema({
   createdAt: { type: Date, default: Date.now },
   size: { type: String },
   soldBy: { type: String },
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 })
 
 let autoPopulateLead = function (next) {

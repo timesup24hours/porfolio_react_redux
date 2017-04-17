@@ -62,6 +62,7 @@ export default (app) => {
     product.onSale = req.body.onSale,
     product.size = req.body.size,
     product.soldBy = req.body.soldBy,
+    product.owner = req.user._id,
 
     await product.save()
 
