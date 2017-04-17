@@ -16,6 +16,8 @@ const storage = multer.diskStorage({
   },
 })
 
+const upload = multer({ storage })
+
 export default (app) => {
 
   app.put('/api/eidt_product', passport.authenticate('local-jwt'), upload.any(), asyncRequest(async (req, res, next) => {
