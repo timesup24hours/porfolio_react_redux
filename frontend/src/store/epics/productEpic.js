@@ -107,3 +107,23 @@ export const getProductByOwnserEpic = action$ => action$
       }
     ))
   )
+
+export const getCurrentEditProductsByOwnerEpic = action$ => action$
+  .ofType(actionTypes.PRODUCT_GET_CURRENT_EDIT_PRODUCT_BY_OWNER_REQUEST)
+  .map(signRequest)
+  .switchMap(({ payload, headers }) => Observable
+    .ajax.get(`/api/get_current_edit_product_by_owner/${payload}`, headers)
+    .map(res => res.response)
+    .mergeMap(response => Observable.of(
+      {
+        type: actionTypes.PRODUCT_GET_CURRENT_EDIT_PRODUCT_BY_OWNER_REQUEST_SUCCESS,
+        payload: response,
+      }
+    ))
+    .catch(error => Observable.of(
+      {
+        type: actionTypes.PRODUCT_GET_CURRENT_EDIT_PRODUCT_BY_OWNER_REQUEST_FAIL,
+        payload: error,
+      }
+    ))
+  )

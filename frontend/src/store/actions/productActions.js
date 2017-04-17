@@ -27,3 +27,8 @@ export const setCurrentDepartmentAndCategory = payload => ({
 export const getProductsByOwner = () => ({
   type: actionTypes.PRODUCT_GET_PRODUCT_BY_OWNER_REQUEST
 })
+
+export const getCurrentEditProductsByOwner = payload => ({
+  type: actionTypes.PRODUCT_GET_CURRENT_EDIT_PRODUCT_BY_OWNER_REQUEST,
+  payload,
+})

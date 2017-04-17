@@ -14,6 +14,7 @@ const initialState = {
   },
   error: false,
   onwerProducts: null,
+  currentEditProduct: null
 }
 
 export default (state = initialState, action = {}) => {
@@ -129,7 +130,30 @@ export default (state = initialState, action = {}) => {
         fail: true,
         error: true,
         errors: {
-          message: shopByCategoryErrorToMessage(action.payload),
+          message: shopByCategoryErrorToMessage(action.payload), // message needed to be corret
+          error: action.payload,
+          status: action.payload.status,
+        },
+      }
+    case actionTypes.PRODUCT_GET_CURRENT_EDIT_PRODUCT_BY_OWNER_REQUEST_SUCCESS:
+      return {
+        ...state,
+        currentEditProduct: action.payload.product,
+        pending: false,
+        success: true,
+        fail: false,
+        error: false,
+        errors: null,
+      }
+    case actionTypes.PRODUCT_GET_CURRENT_EDIT_PRODUCT_BY_OWNER_REQUEST_FAIL:
+      return {
+        ...state,
+        pending: false,
+        success: false,
+        fail: true,
+        error: true,
+        errors: {
+          message: shopByCategoryErrorToMessage(action.payload), // message needed to be corret
           error: action.payload,
           status: action.payload.status,
         },

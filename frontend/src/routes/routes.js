@@ -19,6 +19,7 @@ import Cart from '../components/cart/Cart' // eslint-disable-line
 import ProductDetailPage from '../components/product/ProductDetailPage'
 import AddProductPage from '../components/upload/AddProductPage'
 import EditProductPage from '../components/editProduct/EditProductPage'
+import EditProductFormPage from '../components/editProduct/EditProductFormPage'
 import CategoryPage from '../components/category/CategoryPage'
 
 
@@ -35,6 +36,7 @@ export default (
     <Route path='/cart' component={Cart} />
     <Route path='/upload_product' component={AddProductPage} />
     <Route path='/edit_product' component={EditProductPage} />
+    <Route path='/edit_product/:id' component={EditProductFormPage} />
     <Route path='/category_setup' component={CategoryPage} />
     <Route path='/product/:id' component={ProductDetailPage} />
     <Route path='/shop/:department/:category' component={ShopByCategoryPage} />

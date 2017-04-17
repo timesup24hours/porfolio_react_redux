@@ -12,9 +12,17 @@ const Product = props => {
   //   props.increaseQuantityOfProductInTheCart({ productId: _id })
   // }
 
+  const handleOnClick = () => {
+    if(browserHistory.getCurrentLocation().pathname === '/edit_product') {
+      browserHistory.push(`/edit_product/${_id}`)
+    } else {
+      browserHistory.push(`/product/${_id}`)
+    }
+  }
+
   return (
     <div className='Product-container' style={{ cursor: 'pointer' }}
-      onClick={() => browserHistory.push(`/product/${_id}`)}>
+      onClick={handleOnClick}>
 
             <div className="Product-image">
               <img
