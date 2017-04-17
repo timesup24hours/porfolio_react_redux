@@ -1,13 +1,13 @@
 import passport from 'passport'
 import jwt from 'jsonwebtoken'
 import { SubCategory } from '../../db/models'
-import { asyncRequest } from '../../util'
+import { asyncRequest, routeNameFormatToLink, getMenu } from '../../util'
 
 export default (app) => {
 
-  app.put('/api/subCategory', passport.authenticate('local-jwt'), asyncRequest(async (req, res, next) => {
+  app.put('/api/edit_subCategory', passport.authenticate('local-jwt'), asyncRequest(async (req, res, next) => {
 
-    const { id, name, categoryId } = req.body
+    const { id, name, parentId } = req.body
 
     if(!id) {
       res.status(400).json({ error: { id: 'id is required' } })
@@ -16,14 +16,16 @@ export default (app) => {
 
     let subCategory = null
 
-    subCategory = await SubCategory.findOne({ _id: id })
+    subCategory = await SubCategory.findOneAndUpdate({ _id: id },
+      { $set:
+        { "name": unescape(name),
+          "to": routeNameFormatToLink(unescape(name))
+        },
+      })
 
-    if(name) subCategory.name = name
-    if(categoryId) subCategory.categoryId = categoryId
+    let menu = await getMenu()
 
-    await subCategory.save()
-
-    res.status(201).json({ success: true, subCategory })
+    res.status(201).json({ success: true, menu })
   }))
 
 

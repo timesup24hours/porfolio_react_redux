@@ -2,6 +2,7 @@ import { mongoose, Schema } from '../../db'
 
 const Department = new Schema({
   name: { type: String, required: true },
+  to: { type: String },
   desc: { type: String },
   categoryId: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }],
 })

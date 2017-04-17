@@ -1,13 +1,13 @@
 import passport from 'passport'
 import jwt from 'jsonwebtoken'
-import { Category } from '../../db/models'
-import { asyncRequest } from '../../util'
+import { Department, Category } from '../../db/models'
+import { asyncRequest, getMenu, routeNameFormatToLink } from '../../util'
 
 export default (app) => {
 
   app.post('/api/category', passport.authenticate('local-jwt'), asyncRequest(async (req, res, next) => {
 
-    const { name, subCategoryId, departmentId, desc } = req.body
+    const { name, subCategoryId, parentId, desc } = req.body
 
     if(!name) {
       res.status(400).json({ errors: { name: 'name is required' } })
@@ -18,14 +18,20 @@ export default (app) => {
 
     category = new Category()
 
-    category.name = name
+    category.name = unescape(name)
+    category.to = routeNameFormatToLink(unescape(name))
     if(desc) category.desc = desc
-    category.departmentId = departmentId
-    category.subCategoryId.push(subCategoryId)
+    category.departmentId = parentId
+    if(subCategoryId) category.subCategoryId.push(subCategoryId)
 
     await category.save()
 
-    res.status(201).json({ success: true, category })
+    let department = await Department.findOneAndUpdate({ _id: parentId }, { $push: { "categoryId": category._id } })
+    // let department = await Department.update({ _id: departmentId }, { $push: { "categoryId": category._id } })
+
+    let menu = await getMenu()
+
+    res.status(201).json({ success: true, menu })
   }))
 
 

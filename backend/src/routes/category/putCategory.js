@@ -1,11 +1,11 @@
 import passport from 'passport'
 import jwt from 'jsonwebtoken'
 import { Category } from '../../db/models'
-import { asyncRequest } from '../../util'
+import { asyncRequest, routeNameFormatToLink, getMenu } from '../../util'
 
 export default (app) => {
 
-  app.put('/api/category', passport.authenticate('local-jwt'), asyncRequest(async (req, res, next) => {
+  app.put('/api/eidt_category', passport.authenticate('local-jwt'), asyncRequest(async (req, res, next) => {
 
     const { id, name, desc, departmentId, subCategoryId } = req.body
 
@@ -16,16 +16,16 @@ export default (app) => {
 
     let category = null
 
-    category = await Category.findOneAndUpdate({ _id: id }, { $set: { "departmentId": departmentId } })
-    
-    // if(name) category.name = name
-    // if(desc) category.desc = desc
-    // if(departmentId) category.departmentId
-    // if(subCategoryId) category.subCategoryId.push(subCategoryId)
-    //
-    // await category.save()
+    category = await Category.findOneAndUpdate({ _id: id },
+      { $set:
+        { "name": unescape(name),
+          "to": routeNameFormatToLink(unescape(name))
+        },
+      })
 
-    res.status(201).json({ success: true, category })
+    let menu = await getMenu()
+
+    res.status(201).json({ success: true, menu })
   }))
 
 

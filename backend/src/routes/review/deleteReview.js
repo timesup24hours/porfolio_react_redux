@@ -7,6 +7,7 @@ export default (app) => {
 
   app.delete('/api/review/:id', passport.authenticate('local-jwt'), asyncRequest(async (req, res, next) => {
     const reviewId = req.params.id
+    console.log(reviewId);
     let review = null
 
     if(!reviewId) {
