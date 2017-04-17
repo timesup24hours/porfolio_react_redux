@@ -22,7 +22,8 @@ export default (app) => {
 
   app.put('/api/eidt_product', passport.authenticate('local-jwt'), upload.any(), asyncRequest(async (req, res, next) => {
 
-    let product = await Product.findOne({ _id: id })
+
+    let product = await Product.findOne({ _id: req.body.id })
 
     if(product.owner !== req.user._id) {
       res.status(400).json({ success: true, error: 'no right to edit' })
