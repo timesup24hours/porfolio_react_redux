@@ -127,3 +127,58 @@ export const getCurrentEditProductsByOwnerEpic = action$ => action$
       }
     ))
   )
+
+export const editProductEpic = action$ => action$
+  .ofType(actionTypes.PRODUCT_EDIT_PRODUCT_REQUEST)
+  .map(signRequest)
+  .switchMap(({ payload, headers }) => Observable
+    .ajax.put(`/api/eidt_product`, payload, headers)
+    .map(res => res.response)
+    .mergeMap(response => Observable.of(
+      {
+        type: actionTypes.PRODUCT_EDIT_PRODUCT_REQUEST_SUCCESS,
+        payload: response,
+      },
+      {
+        type: actionTypes.SNACKBAR_OPEN,
+        payload: 'Product has been editted Successfully',
+      },
+    ))
+    .catch(error => Observable.of(
+      {
+        type: actionTypes.PRODUCT_EDIT_PRODUCT_REQUEST_FAIL,
+        payload: error,
+      },
+      {
+        type: actionTypes.SNACKBAR_OPEN,
+        payload: 'some field are needed',
+      },
+    ))
+  )
+
+export const deleteProductEpic = action$ => action$
+  .ofType(actionTypes.PRODUCT_DELETE_PRODUCT_REQUEST)
+  .map(signRequest)
+  .switchMap(({ payload, headers }) => Observable
+    .ajax.put(`/api/delete_product`, payload, headers)
+    .map(res => res.response)
+    .mergeMap(response => Observable.of(
+      {
+        type: actionTypes.PRODUCT_DELETE_PRODUCT_REQUEST_SUCCESS,
+        payload: response,
+      },
+      {
+        type: actionTypes.UI_DIALOG_CLOSE,
+      },
+      {
+        type: actionTypes.SNACKBAR_OPEN,
+        payload: 'Product has been deleted Successfully',
+      },
+    ))
+    .catch(error => Observable.of(
+      {
+        type: actionTypes.PRODUCT_DELETE_PRODUCT_REQUEST_FAIL,
+        payload: error,
+      }
+    ))
+  )

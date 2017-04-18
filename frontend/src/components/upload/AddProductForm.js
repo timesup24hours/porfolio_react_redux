@@ -5,10 +5,18 @@ import * as productActions from '../../store/actions/productActions'
 import * as addProductFormActions from '../../store/actions/addProductFormActions'
 import { addProductionFormValidation, submitValidation } from './addProductionFormValidation'
 
+const isEmpty = (obj) => {
+  for(let key in obj) {
+    if(obj.hasOwnProperty(key))
+      return false
+  }
+  return true
+}
+
 const initialState = {
   department: localStorage.getItem('addProductForm-department') || '',
   category: localStorage.getItem('addProductForm-category') || '',
-  type: localStorage.getItem('addProductForm-type') || '',
+  subCategory: localStorage.getItem('addProductForm-subCategory') || '',
   stock: localStorage.getItem('addProductForm-stock') || true,
   numberOfStock: localStorage.getItem('addProductForm-numberOfStock') || '',
   desc: localStorage.getItem('addProductForm-desc') || '',
@@ -27,7 +35,7 @@ const initialState = {
 const clearState = {
   department: '',
   category: '',
-  type: '',
+  subCategory: '',
   stock: true,
   numberOfStock: '',
   desc: '',
@@ -54,7 +62,7 @@ class AddProductForm extends Component {
   handleClearForm = () => {
     localStorage.removeItem('addProductForm-department')
     localStorage.removeItem('addProductForm-category')
-    localStorage.removeItem('addProductForm-type')
+    localStorage.removeItem('addProductForm-subCategory')
     localStorage.removeItem('addProduct-stock')
     localStorage.removeItem('addProductForm-numberOfStock')
     localStorage.removeItem('addProductForm-desc')
@@ -74,7 +82,7 @@ class AddProductForm extends Component {
   getFormNameAndValue = (listDesc, images) => ({
     [document.querySelector('#name').name]: document.querySelector('#name').value,
     [document.querySelector('#category').name]: document.querySelector('#category').value,
-    [document.querySelector('#type').name]: document.querySelector('#type').value,
+    [document.querySelector('#subCategory').name]: document.querySelector('#subCategory').value,
     [document.querySelector('#stock').name]: document.querySelector('#stock').value,
     [document.querySelector('#numberOfStock').name]: document.querySelector('#numberOfStock').value,
     [document.querySelector('#desc').name]: document.querySelector('#desc').value,
@@ -135,8 +143,9 @@ class AddProductForm extends Component {
       if (ldi !== index) return l
       return { ...l, name: e.target.value }
     })
-    addProductionFormValidation(e)
     this.handleListDescError(e)
+    let errors = addProductionFormValidation(e, this.state.errors)
+    this.setState({ errors })
     this.setState({ listDesc: newListDesc })
     // this.validatingFormValueDisableUploadButton(newListDesc)
     localStorage.setItem('addProductForm-listDesc', JSON.stringify(newListDesc))
@@ -154,8 +163,8 @@ class AddProductForm extends Component {
 
   // handle onBlue event
   handleOnBlur = (e) => {
-    // this.validatingFormValueDisableUploadButton()
-    addProductionFormValidation(e)
+    let errors = addProductionFormValidation(e, this.state.errors)
+    this.setState({ errors })
     this.handleListDescError(e)
   }
 
@@ -163,13 +172,13 @@ class AddProductForm extends Component {
    * set value of the select element to localStorage and reset the state
    */
   handleSelect = e => {
-    addProductionFormValidation(e)
-    // this.validatingFormValueDisableUploadButton()
+    let errors = addProductionFormValidation(e, this.state.errors)
+    this.setState({ errors })
     if(e.target.name === 'department') {
       this.setState({ 'category': '' })
-      this.setState({ 'type': '' })
+      this.setState({ 'subCategory': '' })
     }
-    if(e.target.name === 'category') this.setState({ 'type': '' })
+    if(e.target.name === 'category') this.setState({ 'subCategory': '' })
     localStorage.setItem(`addProductForm-${e.target.name}`, e.target.value)
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -178,8 +187,8 @@ class AddProductForm extends Component {
    * set value of the select element to localStorage and reset the state
    */
   handleChange = (e) => {
-    addProductionFormValidation(e)
-    // this.validatingFormValueDisableUploadButton()
+    let errors = addProductionFormValidation(e, this.state.errors)
+    this.setState({ errors })
     localStorage.setItem(`addProductForm-${e.target.name}`, e.target.value)
     this.setState({ [e.target.name]: e.target.value })
   }
@@ -195,7 +204,8 @@ class AddProductForm extends Component {
       this.setState({ errors: copy })
     }
 
-    addProductionFormValidation(evt)
+    let errors = addProductionFormValidation(evt, this.state.errors)
+    this.setState({ errors })
     // get the files(FileList) object from the Dom's <input type='file'/> element
     let filelist = evt.target.files
 
@@ -241,7 +251,7 @@ class AddProductForm extends Component {
     // value to the new FormData to post File object and form text to server
     data.append('department', this.state.department)
     data.append('category', this.state.category)
-    data.append('type', this.state.type)
+    data.append('subCategory', this.state.subCategory)
     data.append('stock', this.state.stock)
     data.append('numberOfStock', this.state.numberOfStock)
     data.append('desc', this.state.desc)
@@ -596,19 +606,19 @@ class AddProductForm extends Component {
 
               <div className="col-sm-4">
                 <div className='form-group'>
-                  <label>Product Type</label>
+                  <label>Product subCategory</label>
                   <select required
                     className='form-control'
-                    id='type'
-                    value={this.state.type}
-                    name='type'
+                    id='subCategory'
+                    value={this.state.subCategory}
+                    name='subCategory'
                     onChange={this.handleSelect}
                     onBlur={this.handleOnBlur}
                   >
                     <option value="" disabled>Choose your option</option>
                     {subCategory}
                   </select>
-                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.type}</span>
+                  <span className='text-danger addProductForm-invalid-span'>{this.state.errors.subCategory}</span>
                 </div>
               </div>
             </div>{/* end of department selector */}
@@ -650,7 +660,11 @@ class AddProductForm extends Component {
                 <button className='btn btn-default' onClick={this.handleClearForm}>Clear</button>
               </div>
               <div className='col-xs-6 col-sm-6'>
-                <button id='AddProductForm-upload-btn' className='pull-right btn btn-primary' onClick={this.handleUploadProduct}>Upload product</button>
+                <button
+                  disabled={!isEmpty(this.state.errors)}
+                  id='AddProductForm-upload-btn'
+                  className='pull-right btn btn-primary'
+                  onClick={this.handleUploadProduct}>Upload product</button>
               </div>
             </div>
 

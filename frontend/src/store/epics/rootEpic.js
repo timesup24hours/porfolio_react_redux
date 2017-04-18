@@ -48,4 +48,7 @@ export default combineEpics(
   subCategoryEpic.eidtSubCategoryRequestEpic,
   subCategoryEpic.deleteSubCategoryRequestEpic,
   productEpic.getProductByOwnserEpic,
+  productEpic.getCurrentEditProductsByOwnerEpic,
+  productEpic.editProductEpic,
+  productEpic.deleteProductEpic,
 );

@@ -21,32 +21,34 @@ const upload = multer({ storage })
 export default (app) => {
 
   app.put('/api/eidt_product', passport.authenticate('local-jwt'), upload.any(), asyncRequest(async (req, res, next) => {
-
+    console.log('req.body: ', req.body);
 
     let product = await Product.findOne({ _id: req.body.id })
 
-    if(product.owner !== req.user._id) {
+    if(JSON.stringify(product.owner) !== JSON.stringify(req.user._id)) {
       res.status(400).json({ success: true, error: 'no right to edit' })
       return
     }
 
-    if(req.files && req.files.length === 0) {
+    if(req.files && req.files.length === 0 && JSON.parse(req.body.images).length === 0) {
       res.status(400).json({ error: 'images if required' })
       return
     }
 
     const validatedBody = validateAddProductBody(sanitizationProductBody(req.body).data)
+    console.log(validatedBody.error);
     if(!validatedBody.valid) {
       res.status(400).json({ error: 'invalided data' })
       // res.status(400).json({ error: 'invalided data', error: validatedBody.error })
       return
     }
 
-    let images = []
+    let newImages = []
     req.files.forEach(f => {
-      images.push(f.filename)
+      newImages.push(f.filename)
     })
 
+    product.listDesc = []
     product.name = req.body.name,
     product.brand = req.body.brand,
     product.price = req.body.price,
@@ -55,9 +57,9 @@ export default (app) => {
       product.listDesc.push(l)
     })
     product.department = req.body.department
-    product.type = req.body.type
+    product.subCategory = req.body.subCategory
     product.desc = req.body.desc,
-    product.images = images,
+    product.images = newImages.concat(JSON.parse(req.body.images)),
     product.category = req.body.category,
     product.stock = req.body.stock,
     product.numberOfStock = req.body.numberOfStock,
@@ -68,7 +70,7 @@ export default (app) => {
 
     await product.save()
 
-    res.status(200).json({ success: true, products })
+    res.status(200).json({ success: true, product })
   }))
 
 }
@@ -100,7 +102,7 @@ const sanitizationProductBody = data => {
       size: { type: 'string', optional: true },
       department: { type: 'string', optional: false },
       category: { type: 'string', optional: false },
-      type: { type: 'string', optional: false },
+      subCategory: { type: 'string', optional: false },
       soldBy: { type: 'string', optional: false },
     }
   }
@@ -168,9 +170,10 @@ const validateAddProductBody = (data) => {
           type: 'string',
           optional: false,
       },
-      type: {
+      subCategory: {
           type: 'string',
           optional: false,
+          minLength: 1,
       },
       soldBy: {
           type: 'string',

@@ -1,6 +1,12 @@
 import * as actionTypes from '../actions/actionTypes'
 import { shopByCategoryErrorToMessage } from '../../utils'
 
+const deleteProduct = (products, id) => {
+  return products.filter((p, i) => {
+    return p._id !== id
+  })
+}
+
 const initialState = {
   products: [],
   currentProduct: null,
@@ -136,6 +142,7 @@ export default (state = initialState, action = {}) => {
         },
       }
     case actionTypes.PRODUCT_GET_CURRENT_EDIT_PRODUCT_BY_OWNER_REQUEST_SUCCESS:
+    case actionTypes.PRODUCT_EDIT_PRODUCT_REQUEST_SUCCESS:
       return {
         ...state,
         currentEditProduct: action.payload.product,
@@ -146,6 +153,8 @@ export default (state = initialState, action = {}) => {
         errors: null,
       }
     case actionTypes.PRODUCT_GET_CURRENT_EDIT_PRODUCT_BY_OWNER_REQUEST_FAIL:
+    case actionTypes.PRODUCT_EDIT_PRODUCT_REQUEST_FAIL:
+    case actionTypes.PRODUCT_DELETE_PRODUCT_REQUEST_FAIL:
       return {
         ...state,
         pending: false,
@@ -157,6 +166,17 @@ export default (state = initialState, action = {}) => {
           error: action.payload,
           status: action.payload.status,
         },
+      }
+    case actionTypes.PRODUCT_DELETE_PRODUCT_REQUEST_SUCCESS:
+      return {
+        ...state,
+        products: deleteProduct(state.products, action.payload.productId),
+        currentEditProduct: null,
+        pending: false,
+        success: true,
+        fail: false,
+        error: false,
+        errors: null,
       }
     default:
       return state

@@ -3,17 +3,20 @@ import isEmpty from 'lodash/isEmpty';
 // var Cleave = require('cleave.js');
 require('cleave.js/dist/addons/cleave-phone.us');
 
-export const addProductionFormValidation = e => {
+export const addProductionFormValidation = (e, errors) => {
   if(e.target.name === 'name') {
     if(e.target.name === 'name' && e.target.hasAttribute('required') && e.target.value === '') {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = 'required'
+      errors.name = 'required'
     } else if(e.target.name === 'name' && e.target.value.length < 6 && e.target.value.length >= 1) {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `too short (${e.target.value.length}/6)`
+      errors.name = `too short (${e.target.value.length}/6)`
     } else {
       e.target.classList.remove('invalid')
       e.target.nextSibling.textContent = ''
+      if(errors && errors.name) delete errors.name
     }
   }
 
@@ -21,12 +24,15 @@ export const addProductionFormValidation = e => {
     if(e.target.name === 'brand' && e.target.hasAttribute('required') && e.target.value.length === 0) {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = 'required'
+      errors.brand = 'required'
     } else if(e.target.name === 'brand' && e.target.value.length < 6 && e.target.value.length >= 1) {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `too short (${e.target.value.length}/6)`
+      errors.brand = `too short (${e.target.value.length}/6)`
     } else {
       e.target.classList.remove('invalid')
       e.target.nextSibling.textContent = ''
+      if(errors && errors.brand) delete errors.brand
     }
   }
 
@@ -34,9 +40,11 @@ export const addProductionFormValidation = e => {
     if(e.target.value === '') {
       e.target.classList.add('invalid')
       e.target.parentElement.lastChild.textContent = 'required'
+      errors.listDesc = 'required'
     } else {
       e.target.classList.remove('invalid')
       e.target.parentElement.lastChild.textContent = ''
+      if(errors && errors.listDesc) delete errors.listDesc
     }
   }
 
@@ -44,21 +52,26 @@ export const addProductionFormValidation = e => {
     if(e.target.hasAttribute('required') && e.target.value.length === 0) {
       e.target.classList.add('invalid')
       e.target.parentElement.lastChild.textContent = 'required'
+      errors.desc = 'required'
     } else if(e.target.value.length < 6 && e.target.value.length >= 1) {
       e.target.classList.add('invalid')
       e.target.parentElement.lastChild.textContent = `too short (${e.target.value.length}/6)`
       e.target.parentElement.firstChild.textContent = 'Long Description'
+      errors.desc = `too short (${e.target.value.length}/6)`
     } else if(e.target.value.length > 300 && e.target.value.length >= 1) {
       e.target.classList.add('invalid')
       e.target.parentElement.lastChild.textContent = `too long (${e.target.value.length}/300)`
       e.target.parentElement.firstChild.textContent = 'Long Description'
+      errors.desc = `too long (${e.target.value.length}/300)`
     } else if(e.target.value.length <= 300 && e.target.value.length >= 1) {
       e.target.classList.remove('invalid')
       e.target.parentElement.lastChild.textContent = ''
       e.target.parentElement.firstChild.textContent = `Long Description (${e.target.value.length}/300)`
+      if(errors && errors.desc) delete errors.desc
     } else {
       e.target.classList.remove('invalid')
       e.target.parentElement.lastChild.textContent = ''
+      if(errors && errors.desc) delete errors.desc
     }
   }
 
@@ -66,12 +79,15 @@ export const addProductionFormValidation = e => {
     if(e.target.hasAttribute('required') && e.target.value.length === 0) {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = 'required'
+      errors.price = 'required'
     } else if(!Number.isInteger(parseInt(e.target.value, 10))) {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `invalid value`
+      errors.price = 'invalid value'
     } else {
       e.target.classList.remove('invalid')
       e.target.nextSibling.textContent = ''
+      if(errors && errors.price) delete errors.price
     }
   }
 
@@ -79,9 +95,11 @@ export const addProductionFormValidation = e => {
     if(!Number.isInteger(parseInt(e.target.value, 10))) {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `invalid value`
+      errors.salePrice = 'invalid value'
     } else {
       e.target.classList.remove('invalid')
       e.target.nextSibling.textContent = ''
+      if(errors && errors.salePrice) delete errors.salePrice
     }
   }
 
@@ -90,13 +108,16 @@ export const addProductionFormValidation = e => {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `too long (${e.target.value.length}/50)`
       e.target.previousSibling.textContent = 'Size'
+      errors.size = `too long (${e.target.value.length}/50)`
     } else if(e.target.value.length <= 50 && e.target.value.length >= 1) {
       e.target.classList.remove('invalid')
       e.target.nextSibling.textContent = ''
       e.target.previousSibling.textContent = `Size (${e.target.value.length}/50)`
+      if(errors && errors.size) delete errors.size
     } else {
       e.target.classList.remove('invalid')
       e.target.nextSibling.textContent = ''
+      if(errors && errors.size) delete errors.size
     }
   }
 
@@ -104,9 +125,11 @@ export const addProductionFormValidation = e => {
     if(!Number.isInteger(parseInt(e.target.value, 10))) {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `invalid value`
+      errors.numberOfStock = 'invalid value'
     } else {
       e.target.classList.remove('invalid')
       e.target.nextSibling.textContent = ''
+      if(errors && errors.numberOfStock) delete errors.numberOfStock
     }
   }
 
@@ -115,12 +138,15 @@ export const addProductionFormValidation = e => {
     if(e.target.hasAttribute('required') && e.target.value === '') {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = 'required'
+      errors.soldBy = 'required'
     } else if(e.target.value.length > 30 && e.target.value.length >= 1) {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `too long (${e.target.value.length}/30)`
+      errors.soldBy = `too long (${e.target.value.length}/30)`
     } else {
       e.target.classList.remove('invalid')
       e.target.nextSibling.textContent = ''
+      if(errors && errors.soldBy) delete errors.soldBy
     }
   }
 
@@ -128,9 +154,11 @@ export const addProductionFormValidation = e => {
     if(e.target.value === '') {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `required`
+      errors.department = 'required'
     } else {
       e.target.classList.remove('invalid')
       e.target.nextSibling.textContent = ''
+      if(errors && errors.department) delete errors.department
     }
   }
 
@@ -138,21 +166,27 @@ export const addProductionFormValidation = e => {
     if(e.target.value === '') {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `required`
+      errors.category = 'required'
     } else {
       e.target.classList.remove('invalid')
       e.target.nextSibling.textContent = ''
+      if(errors && errors.category) delete errors.category
     }
   }
 
-  if(e.target.name === 'type') {
+  if(e.target.name === 'subCategory') {
     if(e.target.value === '') {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `required`
+      errors.subCategory = 'required'
     } else {
       e.target.classList.remove('invalid')
       e.target.nextSibling.textContent = ''
+      if(errors && errors.subCategory) delete errors.subCategory
     }
   }
+
+  return errors
 
   // if(e.target.name === 'images') {
     // e.target.nextSibling.textContent = ''
@@ -206,7 +240,7 @@ export const addProductionFormValidation = e => {
 // }
 
 export const submitValidation = data => {
-  
+
   let errors = {}
   if(data.name === '') {
     errors.name = 'required'
@@ -275,8 +309,8 @@ export const submitValidation = data => {
     errors.category = 'required'
   }
 
-  if(data.type === '') {
-    errors.type = 'required'
+  if(data.subCategory === '') {
+    errors.subCategory = 'required'
   }
 
   if(data.images.length === 0) {

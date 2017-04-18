@@ -5,11 +5,19 @@ import { asyncRequest } from '../../util'
 
 export default (app) => {
 
-  app.delete('/api/product', passport.authenticate('local-jwt'), asyncRequest(async (req, res, next) => {
+  app.put('/api/delete_product', passport.authenticate('local-jwt'), asyncRequest(async (req, res, next) => {
+
     const productId = req.body.id
 
     if(!productId) {
       res.status(400).json({ error: 'product id is required' })
+      return
+    }
+
+    let product = await Product.findOne({ _id: productId })
+
+    if(JSON.stringify(product.owner) !== JSON.stringify(req.user._id)) {
+      res.status(400).json({ success: true, error: 'no right to delete' })
       return
     }
 

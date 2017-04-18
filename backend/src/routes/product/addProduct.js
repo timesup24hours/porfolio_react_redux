@@ -53,7 +53,7 @@ export default (app) => {
       product.listDesc.push(l)
     })
     product.department = req.body.department
-    product.type = req.body.type
+    product.subCategory = req.body.subCategory
     product.desc = req.body.desc,
     product.images = images,
     product.category = req.body.category,
@@ -99,7 +99,7 @@ const sanitizationProductBody = data => {
       size: { type: 'string', optional: true },
       department: { type: 'string', optional: false },
       category: { type: 'string', optional: false },
-      type: { type: 'string', optional: false },
+      subCategory: { type: 'string', optional: false },
       soldBy: { type: 'string', optional: false },
     }
   }
@@ -167,7 +167,7 @@ const validateAddProductBody = (data) => {
           type: 'string',
           optional: false,
       },
-      type: {
+      subCategory: {
           type: 'string',
           optional: false,
       },

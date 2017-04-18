@@ -19,7 +19,7 @@ var Product = new _db.Schema({
   // type: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
   department: String,
   category: String,
-  type: String,
+  subCategory: String,
   stock: { type: Boolean },
   numberOfStock: { type: Number },
   onSale: { type: Boolean },

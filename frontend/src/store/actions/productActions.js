@@ -32,3 +32,13 @@ export const getCurrentEditProductsByOwner = payload => ({
   type: actionTypes.PRODUCT_GET_CURRENT_EDIT_PRODUCT_BY_OWNER_REQUEST,
   payload,
 })
+
+export const editProductRequest = payload => ({
+  type: actionTypes.PRODUCT_EDIT_PRODUCT_REQUEST,
+  payload,
+})
+
+export const deleteProductRequest = payload => ({
+  type: actionTypes.PRODUCT_DELETE_PRODUCT_REQUEST,
+  payload,
+})
