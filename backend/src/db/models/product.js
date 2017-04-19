@@ -21,6 +21,7 @@ const Product = new Schema({
   size: { type: String },
   soldBy: { type: String },
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  deleted: { type: Boolean, default: false },
 })
 
 let autoPopulateLead = function (next) {

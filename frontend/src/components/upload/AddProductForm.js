@@ -204,8 +204,8 @@ class AddProductForm extends Component {
       this.setState({ errors: copy })
     }
 
-    let errors = addProductionFormValidation(evt, this.state.errors)
-    this.setState({ errors })
+    // let errors = addProductionFormValidation(evt, this.state.errors)
+    // this.setState({ errors })
     // get the files(FileList) object from the Dom's <input type='file'/> element
     let filelist = evt.target.files
 

@@ -6,7 +6,7 @@ export default (app) => {
 
   app.get('/api/products_by_owner', passport.authenticate('local-jwt'), asyncRequest(async (req, res, next) => {
 
-    let products = await Product.find({ owner: req.user._id })
+    let products = await Product.find({ owner: req.user._id, deleted: { $ne: true } })
 
     res.status(200).json({ success: true, products })
   }))

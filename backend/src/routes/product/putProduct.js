@@ -23,7 +23,7 @@ export default (app) => {
   app.put('/api/eidt_product', passport.authenticate('local-jwt'), upload.any(), asyncRequest(async (req, res, next) => {
     console.log('req.body: ', req.body);
 
-    let product = await Product.findOne({ _id: req.body.id })
+    let product = await Product.findOne({ _id: req.body.id, deleted: { $ne: true } })
 
     if(JSON.stringify(product.owner) !== JSON.stringify(req.user._id)) {
       res.status(400).json({ success: true, error: 'no right to edit' })
@@ -48,11 +48,11 @@ export default (app) => {
       newImages.push(f.filename)
     })
 
-    product.listDesc = []
     product.name = req.body.name,
     product.brand = req.body.brand,
     product.price = req.body.price,
     product.salePrice = req.body.salePrice,
+    product.listDesc = []
     req.body.listDesc.forEach((l, i) => {
       product.listDesc.push(l)
     })

@@ -8,7 +8,7 @@ export default (app) => {
 
     let product = null
 
-    product = await Product.findById(req.params.id)
+    product = await Product.findOne({ _id: req.params.id, deleted: { $ne: true } })
 
     if(!product) {
       res.status(400).json({ success: false, error: 'product has not found' })

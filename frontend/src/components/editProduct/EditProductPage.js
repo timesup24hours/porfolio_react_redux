@@ -14,7 +14,7 @@ class EditProductPage extends Component {
   render() {
 
     return this.props.product.onwerProducts ? (
-      <div className='EditProductPage marginTop50px container'>
+      <div className='EditProductPage container' style={{ marginTop: '70px', display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
         {this.props.product.onwerProducts.map((p, i) => {
           return <Product key={i} product={p} />
         })}

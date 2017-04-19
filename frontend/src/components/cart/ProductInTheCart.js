@@ -49,11 +49,18 @@ export class ProductInTheCart extends Component {
         onTouchTap={this.handleConfirmRemoveItemFromCart}
       />,
     ]
-    const { images, _id, name, price, soldBy  } = this.props.product.product
+    const { images, _id, name, price, soldBy, deleted  } = this.props.product.product
     return (
       <div className='ProductInTheCart-container'>
 
         <div className='ProductInTheCart-info-container'>
+
+          {deleted
+            ? <div className='ProductInTheCart-product-deleted flexCenter'>
+                <div>this product has been deleted by seller</div>
+              </div>
+            : null
+          }
           <div className='ProductInTheCart-img'>
             <img src={`/images/products/${images[0]}`} alt=""/>
           </div>

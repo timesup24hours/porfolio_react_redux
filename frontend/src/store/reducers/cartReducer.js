@@ -66,9 +66,11 @@ const getProductsAndQuantitiesFromCartArray = (cartArray, cartProducts) => {
   return cart
 }
 
-const getTheTotalQuantityOfAllProducts = (cartArray) => {
-  let total = cartArray.reduce((sum, cur) => {
-    return sum += cur.quantity
+const getTheTotalQuantityOfAllProducts = (cartArray, cartProducts) => {
+  let store = getProductsAndQuantitiesFromCartArray(cartArray, cartProducts)
+  let total = store.reduce((sum, cur) => {
+    if(!cur.product.deleted)  sum += cur.quantity
+    return sum
   }, 0)
   return total
 }
@@ -76,7 +78,8 @@ const getTheTotalQuantityOfAllProducts = (cartArray) => {
 const getTheTotalOfAllProducts = (cartArray, cartProducts) => {
   let store = getProductsAndQuantitiesFromCartArray(cartArray, cartProducts)
   let total = store.reduce((sum, cur) => {
-    return sum += cur.total
+    if(!cur.product.deleted) sum += cur.total
+    return sum
   }, 0)
   return total
 }
@@ -108,7 +111,7 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         cart: getProductsAndQuantitiesFromCartArray(action.payload.cart, action.payload.cartProducts),
-        totalQuantity: getTheTotalQuantityOfAllProducts(action.payload.cart),
+        totalQuantity: getTheTotalQuantityOfAllProducts(action.payload.cart, action.payload.cartProducts),
         total: getTheTotalOfAllProducts(action.payload.cart, action.payload.cartProducts),
         pending: false,
         success: true,

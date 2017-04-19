@@ -1,3 +1,9 @@
 .ProductDescription {
-  padding: 0px 20px;
+  padding: 0px 35px;
+}
+
+@media only screen and (max-width: 820px){
+  .ProductDescription {
+    padding: 0px 20px;
+  }
 }

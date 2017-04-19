@@ -14,21 +14,30 @@ export default (app) => {
       return
     }
 
-    let product = await Product.findOne({ _id: productId })
+    let product = await Product.findOne({ _id: productId, deleted: { $ne: true } })
+
+    if(!product) {
+      res.status(400).json({ success: true, error: 'no such product' })
+      return
+    }
 
     if(JSON.stringify(product.owner) !== JSON.stringify(req.user._id)) {
       res.status(400).json({ success: true, error: 'no right to delete' })
       return
     }
 
-    const deletedResult = await Product.remove({ _id: productId })
+    product.deleted = true
 
-    if(deletedResult.result.n !== 1) {
-      res.status(400).json({ error: 'fail to delete, could not find the product' })
-      return
-    }
+    await product.save()
 
-    res.status(202).json({ success: true, productId })
+    // const deletedResult = await Product.remove({ _id: productId })
+    //
+    // if(deletedResult.result.n !== 1) {
+    //   res.status(400).json({ error: 'fail to delete, could not find the product' })
+    //   return
+    // }
+
+    res.status(202).json({ success: true, product })
     return
   }))
 
