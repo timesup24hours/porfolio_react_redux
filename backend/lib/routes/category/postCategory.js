@@ -30,13 +30,13 @@ exports.default = function (app) {
 
   app.post('/api/category', _passport2.default.authenticate('local-jwt'), (0, _util.asyncRequest)(function () {
     var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(req, res, next) {
-      var _req$body, name, subCategoryId, departmentId, desc, category;
+      var _req$body, name, subCategoryId, parentId, desc, category, department, menu;
 
       return _regenerator2.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _req$body = req.body, name = _req$body.name, subCategoryId = _req$body.subCategoryId, departmentId = _req$body.departmentId, desc = _req$body.desc;
+              _req$body = req.body, name = _req$body.name, subCategoryId = _req$body.subCategoryId, parentId = _req$body.parentId, desc = _req$body.desc;
 
               if (name) {
                 _context.next = 4;
@@ -52,19 +52,31 @@ exports.default = function (app) {
 
               category = new _models.Category();
 
-              category.name = name;
+              category.name = unescape(name);
+              category.to = (0, _util.routeNameFormatToLink)(unescape(name));
               if (desc) category.desc = desc;
-              category.departmentId = departmentId;
-              category.subCategoryId.push(subCategoryId);
+              category.departmentId = parentId;
+              if (subCategoryId) category.subCategoryId.push(subCategoryId);
 
-              _context.next = 12;
+              _context.next = 13;
               return category.save();
 
-            case 12:
-
-              res.status(201).json({ success: true, category: category });
-
             case 13:
+              _context.next = 15;
+              return _models.Department.findOneAndUpdate({ _id: parentId }, { $push: { "categoryId": category._id } });
+
+            case 15:
+              department = _context.sent;
+              _context.next = 18;
+              return (0, _util.getMenu)();
+
+            case 18:
+              menu = _context.sent;
+
+
+              res.status(201).json({ success: true, menu: menu });
+
+            case 20:
             case 'end':
               return _context.stop();
           }

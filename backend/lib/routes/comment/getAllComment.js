@@ -52,4 +52,34 @@ exports.default = function (app) {
       return _ref.apply(this, arguments);
     };
   }()));
+
+  app.get('/api/comment_review/:id', (0, _util.asyncRequest)(function () {
+    var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2(req, res, next) {
+      var id, reviews;
+      return _regenerator2.default.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              id = req.params.id;
+              _context2.next = 3;
+              return _models.Comment.find({ productId: id }).populate('user', 'local.username local.nickname');
+
+            case 3:
+              reviews = _context2.sent;
+
+
+              res.status(200).json({ success: true, reviews: reviews });
+
+            case 5:
+            case 'end':
+              return _context2.stop();
+          }
+        }
+      }, _callee2, undefined);
+    }));
+
+    return function (_x4, _x5, _x6) {
+      return _ref2.apply(this, arguments);
+    };
+  }()));
 };

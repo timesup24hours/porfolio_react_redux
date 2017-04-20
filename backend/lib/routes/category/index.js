@@ -16,10 +16,20 @@ var _putCategory = require('./putCategory');
 
 var _putCategory2 = _interopRequireDefault(_putCategory);
 
+var _deleteCategory = require('./deleteCategory');
+
+var _deleteCategory2 = _interopRequireDefault(_deleteCategory);
+
+var _getByCategoryProduct = require('./getByCategoryProduct');
+
+var _getByCategoryProduct2 = _interopRequireDefault(_getByCategoryProduct);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (app) {
   (0, _getCategory2.default)(app);
   (0, _postCategory2.default)(app);
   (0, _putCategory2.default)(app);
+  (0, _deleteCategory2.default)(app);
+  (0, _getByCategoryProduct2.default)(app);
 };

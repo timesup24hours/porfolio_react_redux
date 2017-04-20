@@ -48,6 +48,10 @@ var _charge = require('./charge');
 
 var _charge2 = _interopRequireDefault(_charge);
 
+var _review = require('./review');
+
+var _review2 = _interopRequireDefault(_review);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (app) {
@@ -62,4 +66,5 @@ exports.default = function (app) {
    (0, _subCategory2.default)(app);
    (0, _menu2.default)(app);
    (0, _charge2.default)(app);
+   (0, _review2.default)(app);
 };

@@ -39,3 +39,21 @@ Object.defineProperty(exports, 'getProductsAndQuantitiesFromCartArray', {
     return _getProductsAndQuantitiesFromCartArray.getProductsAndQuantitiesFromCartArray;
   }
 });
+
+var _getMenu = require('./getMenu');
+
+Object.defineProperty(exports, 'getMenu', {
+  enumerable: true,
+  get: function get() {
+    return _getMenu.getMenu;
+  }
+});
+
+var _routeNameFormatToLink = require('./routeNameFormatToLink');
+
+Object.defineProperty(exports, 'routeNameFormatToLink', {
+  enumerable: true,
+  get: function get() {
+    return _routeNameFormatToLink.routeNameFormatToLink;
+  }
+});

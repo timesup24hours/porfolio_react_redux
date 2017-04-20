@@ -30,13 +30,13 @@ exports.default = function (app) {
 
   app.post('/api/department', _passport2.default.authenticate('local-jwt'), (0, _util.asyncRequest)(function () {
     var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(req, res, next) {
-      var _req$body, name, categoryId, department;
+      var _req$body, name, desc, categoryId, department, menu;
 
       return _regenerator2.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _req$body = req.body, name = _req$body.name, categoryId = _req$body.categoryId;
+              _req$body = req.body, name = _req$body.name, desc = _req$body.desc, categoryId = _req$body.categoryId;
 
               if (name) {
                 _context.next = 4;
@@ -52,17 +52,24 @@ exports.default = function (app) {
 
               department = new _models.Department();
 
-              department.name = name;
-              department.categoryId.push(categoryId);
+              department.name = unescape(name);
+              department.to = (0, _util.routeNameFormatToLink)(unescape(name));
+              if (desc) department.desc = desc;
 
-              _context.next = 10;
+              _context.next = 11;
               return department.save();
 
-            case 10:
-
-              res.status(201).json({ success: true, department: department });
-
             case 11:
+              _context.next = 13;
+              return (0, _util.getMenu)();
+
+            case 13:
+              menu = _context.sent;
+
+
+              res.status(201).json({ success: true, menu: menu });
+
+            case 15:
             case 'end':
               return _context.stop();
           }

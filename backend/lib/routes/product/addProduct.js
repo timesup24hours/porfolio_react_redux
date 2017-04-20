@@ -68,10 +68,14 @@ exports.default = function (app) {
               return _context.abrupt('return');
 
             case 3:
+
+              if (req.body.salePrice) req.body.salePrice = parseInt(req.body.salePrice.split(',').join(''));
+              req.body.price = parseInt(req.body.price.split(',').join(''));
+
               validatedBody = validateAddProductBody(sanitizationProductBody(req.body).data);
 
               if (validatedBody.valid) {
-                _context.next = 7;
+                _context.next = 9;
                 break;
               }
 
@@ -79,7 +83,7 @@ exports.default = function (app) {
               // res.status(400).json({ error: 'invalided data', error: validatedBody.error })
               return _context.abrupt('return');
 
-            case 7:
+            case 9:
               images = [];
 
               req.files.forEach(function (f) {
@@ -95,7 +99,7 @@ exports.default = function (app) {
                 product.listDesc.push(l);
               });
               product.department = req.body.department;
-              product.type = req.body.type;
+              product.subCategory = req.body.subCategory;
               product.desc = req.body.desc;
               product.images = images;
               product.category = req.body.category;
@@ -104,14 +108,15 @@ exports.default = function (app) {
               product.onSale = req.body.onSale;
               product.size = req.body.size;
               product.soldBy = req.body.soldBy;
-              _context.next = 24;
+              product.owner = req.user._id;
+              _context.next = 27;
               return product.save();
 
-            case 24:
+            case 27:
 
               res.status(201).json({ success: true, product: product });
 
-            case 25:
+            case 28:
             case 'end':
               return _context.stop();
           }
@@ -145,14 +150,14 @@ var sanitizationProductBody = function sanitizationProductBody(data) {
         optional: false
       },
       price: { type: 'number', optional: false },
-      salePrice: { type: 'number', optional: true, def: 0 },
+      salePrice: { type: 'number', optional: true },
       onSale: { type: 'boolean', optional: false },
       stock: { type: 'boolean', optional: true },
       numberOfStock: { type: 'number', optional: true, def: 0 },
       size: { type: 'string', optional: true },
       department: { type: 'string', optional: false },
       category: { type: 'string', optional: false },
-      type: { type: 'string', optional: false },
+      subCategory: { type: 'string', optional: false },
       soldBy: { type: 'string', optional: false }
     }
   };
@@ -219,7 +224,7 @@ var validateAddProductBody = function validateAddProductBody(data) {
         type: 'string',
         optional: false
       },
-      type: {
+      subCategory: {
         type: 'string',
         optional: false
       },

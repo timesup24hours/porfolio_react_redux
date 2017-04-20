@@ -30,12 +30,13 @@ exports.default = function (app) {
 
   app.post('/api/subCategory', _passport2.default.authenticate('local-jwt'), (0, _util.asyncRequest)(function () {
     var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(req, res, next) {
-      var name, subCategory;
+      var _req$body, name, desc, parentId, subCategory, category, menu;
+
       return _regenerator2.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              name = req.body.name;
+              _req$body = req.body, name = _req$body.name, desc = _req$body.desc, parentId = _req$body.parentId;
 
               if (name) {
                 _context.next = 4;
@@ -51,16 +52,29 @@ exports.default = function (app) {
 
               subCategory = new _models.SubCategory();
 
-              subCategory.name = name;
+              subCategory.name = unescape(name);
+              subCategory.to = (0, _util.routeNameFormatToLink)(unescape(name));
+              if (desc) subCategory.desc = desc;
 
-              _context.next = 9;
+              _context.next = 11;
               return subCategory.save();
 
-            case 9:
+            case 11:
+              _context.next = 13;
+              return _models.Category.findOneAndUpdate({ _id: parentId }, { $push: { "subCategoryId": subCategory._id } });
 
-              res.status(201).json({ success: true, subCategory: subCategory });
+            case 13:
+              category = _context.sent;
+              _context.next = 16;
+              return (0, _util.getMenu)();
 
-            case 10:
+            case 16:
+              menu = _context.sent;
+
+
+              res.status(201).json({ success: true, menu: menu });
+
+            case 18:
             case 'end':
               return _context.stop();
           }

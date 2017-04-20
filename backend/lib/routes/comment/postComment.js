@@ -32,7 +32,7 @@ exports.default = function (app) {
 
   app.post('/api/comment', _passport2.default.authenticate('local-jwt'), (0, _util.asyncRequest)(function () {
     var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(req, res, next) {
-      var comment;
+      var comment, reviews;
       return _regenerator2.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -49,19 +49,26 @@ exports.default = function (app) {
               comment = null;
 
 
-              comment = new _models.Comment({
-                comment: req.body.comment,
-                user: req.user
-              });
+              comment = new _models.Comment();
 
-              _context.next = 7;
+              comment.comment = req.body.comment;
+              comment.user = req.user._id;
+              if (req.body.productId) comment.productId = req.body.productId;
+
+              _context.next = 10;
               return comment.save();
 
-            case 7:
+            case 10:
+              _context.next = 12;
+              return _models.Comment.findOne({ _id: comment._id }).populate('user', '_id local.username local.nickname');
 
-              res.status(201).json({ success: true, comment: comment });
+            case 12:
+              reviews = _context.sent;
 
-            case 8:
+
+              res.status(201).json({ success: true, comment: reviews });
+
+            case 14:
             case 'end':
               return _context.stop();
           }

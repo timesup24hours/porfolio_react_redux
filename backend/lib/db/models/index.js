@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Menu = exports.SubCategory = exports.Category = exports.Department = exports.Cart = exports.Product = exports.Comment = exports.Message = exports.User = undefined;
+exports.Review = exports.Menu = exports.SubCategory = exports.Category = exports.Department = exports.Cart = exports.Product = exports.Comment = exports.Message = exports.User = undefined;
 
 var _user = require('./user');
 
@@ -41,6 +41,10 @@ var _menu = require('./menu');
 
 var _menu2 = _interopRequireDefault(_menu);
 
+var _review = require('./review');
+
+var _review2 = _interopRequireDefault(_review);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.User = _user2.default;
@@ -52,3 +56,4 @@ exports.Department = _department2.default;
 exports.Category = _category2.default;
 exports.SubCategory = _subCategory2.default;
 exports.Menu = _menu2.default;
+exports.Review = _review2.default;

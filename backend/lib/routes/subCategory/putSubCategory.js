@@ -28,15 +28,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (app) {
 
-  app.put('/api/subCategory', _passport2.default.authenticate('local-jwt'), (0, _util.asyncRequest)(function () {
+  app.put('/api/edit_subCategory', _passport2.default.authenticate('local-jwt'), (0, _util.asyncRequest)(function () {
     var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(req, res, next) {
-      var _req$body, id, name, categoryId, subCategory;
+      var _req$body, id, name, parentId, subCategory, menu;
 
       return _regenerator2.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _req$body = req.body, id = _req$body.id, name = _req$body.name, categoryId = _req$body.categoryId;
+              _req$body = req.body, id = _req$body.id, name = _req$body.name, parentId = _req$body.parentId;
 
               if (id) {
                 _context.next = 4;
@@ -49,23 +49,23 @@ exports.default = function (app) {
             case 4:
               subCategory = null;
               _context.next = 7;
-              return _models.SubCategory.findOne({ _id: id });
+              return _models.SubCategory.findOneAndUpdate({ _id: id }, { $set: { "name": unescape(name),
+                  "to": (0, _util.routeNameFormatToLink)(unescape(name))
+                }
+              });
 
             case 7:
               subCategory = _context.sent;
+              _context.next = 10;
+              return (0, _util.getMenu)();
+
+            case 10:
+              menu = _context.sent;
 
 
-              if (name) subCategory.name = name;
-              if (categoryId) subCategory.categoryId = categoryId;
-
-              _context.next = 12;
-              return subCategory.save();
+              res.status(201).json({ success: true, menu: menu });
 
             case 12:
-
-              res.status(201).json({ success: true, subCategory: subCategory });
-
-            case 13:
             case 'end':
               return _context.stop();
           }

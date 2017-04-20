@@ -28,7 +28,7 @@ exports.default = function (app) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _models.Product.find({});
+              return _models.Product.find({ deleted: { $ne: true } });
 
             case 2:
               products = _context.sent;

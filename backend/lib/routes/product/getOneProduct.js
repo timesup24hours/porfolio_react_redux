@@ -29,7 +29,7 @@ exports.default = function (app) {
             case 0:
               product = null;
               _context.next = 3;
-              return _models.Product.findById(req.params.id);
+              return _models.Product.findOne({ _id: req.params.id, deleted: { $ne: true } });
 
             case 3:
               product = _context.sent;

@@ -8,6 +8,7 @@ var _db = require('../../db');
 
 var Department = new _db.Schema({
   name: { type: String, required: true },
+  to: { type: String },
   desc: { type: String },
   categoryId: [{ type: _db.mongoose.Schema.Types.ObjectId, ref: 'Category' }]
 });

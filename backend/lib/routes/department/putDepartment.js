@@ -30,7 +30,7 @@ exports.default = function (app) {
 
   app.put('/api/department', _passport2.default.authenticate('local-jwt'), (0, _util.asyncRequest)(function () {
     var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(req, res, next) {
-      var _req$body, id, name, categoryId, department;
+      var _req$body, id, name, categoryId, department, menu;
 
       return _regenerator2.default.wrap(function _callee$(_context) {
         while (1) {
@@ -47,25 +47,41 @@ exports.default = function (app) {
               return _context.abrupt('return');
 
             case 4:
-              department = null;
-              _context.next = 7;
-              return _models.Department.findOne({ _id: id });
+              if (name) {
+                _context.next = 7;
+                break;
+              }
+
+              res.status(400).json({ error: { name: 'name is required' } });
+              return _context.abrupt('return');
 
             case 7:
+              department = null;
+              _context.next = 10;
+              return _models.Department.findOne({ _id: id });
+
+            case 10:
               department = _context.sent;
 
 
-              if (name) department.name = name;
+              if (name) department.name = unescape(name);
+              department.to = (0, _util.routeNameFormatToLink)(unescape(name));
               if (categoryId) department.categoryId = categoryId;
 
-              _context.next = 12;
+              _context.next = 16;
               return department.save();
 
-            case 12:
+            case 16:
+              _context.next = 18;
+              return (0, _util.getMenu)();
 
-              res.status(201).json({ success: true, department: department });
+            case 18:
+              menu = _context.sent;
 
-            case 13:
+
+              res.status(201).json({ success: true, menu: menu });
+
+            case 20:
             case 'end':
               return _context.stop();
           }

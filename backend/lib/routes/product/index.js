@@ -20,9 +20,17 @@ var _deleteProduct = require('./deleteProduct');
 
 var _deleteProduct2 = _interopRequireDefault(_deleteProduct);
 
-var _getByCategoryProduct = require('./getByCategoryProduct');
+var _getProductsByOwner = require('./getProductsByOwner');
 
-var _getByCategoryProduct2 = _interopRequireDefault(_getByCategoryProduct);
+var _getProductsByOwner2 = _interopRequireDefault(_getProductsByOwner);
+
+var _putProduct = require('./putProduct');
+
+var _putProduct2 = _interopRequireDefault(_putProduct);
+
+var _getCurrentEditProductByOnwer = require('./getCurrentEditProductByOnwer');
+
+var _getCurrentEditProductByOnwer2 = _interopRequireDefault(_getCurrentEditProductByOnwer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31,5 +39,7 @@ exports.default = function (app) {
   (0, _getOneProduct2.default)(app);
   (0, _addProduct2.default)(app);
   (0, _deleteProduct2.default)(app);
-  (0, _getByCategoryProduct2.default)(app);
+  (0, _getProductsByOwner2.default)(app);
+  (0, _putProduct2.default)(app);
+  (0, _getCurrentEditProductByOnwer2.default)(app);
 };

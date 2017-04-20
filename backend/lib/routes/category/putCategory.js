@@ -28,9 +28,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = function (app) {
 
-  app.put('/api/category', _passport2.default.authenticate('local-jwt'), (0, _util.asyncRequest)(function () {
+  app.put('/api/eidt_category', _passport2.default.authenticate('local-jwt'), (0, _util.asyncRequest)(function () {
     var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(req, res, next) {
-      var _req$body, id, name, desc, departmentId, subCategoryId, category;
+      var _req$body, id, name, desc, departmentId, subCategoryId, category, menu;
 
       return _regenerator2.default.wrap(function _callee$(_context) {
         while (1) {
@@ -49,22 +49,23 @@ exports.default = function (app) {
             case 4:
               category = null;
               _context.next = 7;
-              return _models.Category.findOneAndUpdate({ _id: id }, { $set: { "departmentId": departmentId } });
+              return _models.Category.findOneAndUpdate({ _id: id }, { $set: { "name": unescape(name),
+                  "to": (0, _util.routeNameFormatToLink)(unescape(name))
+                }
+              });
 
             case 7:
               category = _context.sent;
+              _context.next = 10;
+              return (0, _util.getMenu)();
+
+            case 10:
+              menu = _context.sent;
 
 
-              // if(name) category.name = name
-              // if(desc) category.desc = desc
-              // if(departmentId) category.departmentId
-              // if(subCategoryId) category.subCategoryId.push(subCategoryId)
-              //
-              // await category.save()
+              res.status(201).json({ success: true, menu: menu });
 
-              res.status(201).json({ success: true, category: category });
-
-            case 9:
+            case 12:
             case 'end':
               return _context.stop();
           }

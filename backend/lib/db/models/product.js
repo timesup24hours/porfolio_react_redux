@@ -17,31 +17,31 @@ var Product = new _db.Schema({
   // department: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
   // category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
   // type: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
-  department: String,
-  category: String,
-  subCategory: String,
+  department: { type: _db.mongoose.Schema.Types.ObjectId, ref: 'Department' },
+  category: { type: _db.mongoose.Schema.Types.ObjectId, ref: 'Category' },
+  subCategory: { type: _db.mongoose.Schema.Types.ObjectId, ref: 'SubCategory' },
   stock: { type: Boolean },
   numberOfStock: { type: Number },
   onSale: { type: Boolean },
   createdAt: { type: Date, default: Date.now },
   size: { type: String },
-  soldBy: { type: String }
+  soldBy: { type: String },
+  owner: { type: _db.mongoose.Schema.Types.ObjectId, ref: 'User' },
+  deleted: { type: Boolean, default: false }
 });
 
-// let autoPopulateLead = function (next) {
-// this.populate('department')
-// this.populate('category')
-// this.populate('type')
-// this.populate({
-//     path: 'category',
-//     model: 'Category',
-//   })
-// this.populate('category')
-//   next()
-// };
-//
-// Product.
-//   pre('findOne', autoPopulateLead).
-//   pre('find', autoPopulateLead)
+var autoPopulateLead = function autoPopulateLead(next) {
+  this.populate('department');
+  this.populate('category');
+  this.populate('subCategory');
+  this.populate({
+    path: 'category',
+    model: 'Category'
+  });
+  this.populate('category');
+  next();
+};
+
+Product.pre('findOne', autoPopulateLead).pre('find', autoPopulateLead);
 
 exports.default = _db.mongoose.model('Product', Product);

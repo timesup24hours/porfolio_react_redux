@@ -16,10 +16,15 @@ var _putDepartment = require('./putDepartment');
 
 var _putDepartment2 = _interopRequireDefault(_putDepartment);
 
+var _deleteDepartment = require('./deleteDepartment');
+
+var _deleteDepartment2 = _interopRequireDefault(_deleteDepartment);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (app) {
   (0, _getDepartment2.default)(app);
   (0, _postDepartment2.default)(app);
   (0, _putDepartment2.default)(app);
+  (0, _deleteDepartment2.default)(app);
 };
