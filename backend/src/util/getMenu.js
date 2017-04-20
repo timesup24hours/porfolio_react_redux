@@ -33,12 +33,13 @@ export const getMenu = () => {
                                       as: "category.subcategory",
                                     },
                         },
-                        // { // comment this block out would unfilter these two section in the query
-                        //   $project: {
-                        //     "category.subCategoryId": 0,
-                        //     "category.departmentId": 0,
-                        //   }
-                        // },
+                        { // comment this block out would unfilter these two section in the query
+                          $project: {
+                            _id: 1,
+                            "category.subCategoryId": 1,
+                            "category.departmentId": 1,
+                          }
+                        },
                         {
                           $group: {
                             _id: "$_id",
