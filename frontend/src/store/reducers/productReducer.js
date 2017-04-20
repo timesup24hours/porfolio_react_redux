@@ -170,6 +170,7 @@ export default (state = initialState, action = {}) => {
     case actionTypes.PRODUCT_DELETE_PRODUCT_REQUEST_SUCCESS:
       return {
         ...state,
+        onwerProducts: deleteProduct(state.onwerProducts, action.payload.product._id),
         products: deleteProduct(state.products, action.payload.product._id),
         currentEditProduct: null,
         pending: false,

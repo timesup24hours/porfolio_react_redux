@@ -28,7 +28,6 @@ class EditProductForm extends Component {
     errors: {},
   }
 
-
   /*
    * delete product
    */
@@ -429,6 +428,13 @@ class EditProductForm extends Component {
                     onBlur={this.handleOnBlur}
                     required
                     type='number'
+                    onKeyPress={e => {
+                      if(e.charCode === 101 || e.charCode === 45) {
+                        e.preventDefault()
+                      }
+                    }}
+                    min='0'
+                    step='any'
                   />
                   <span className='text-danger addProductForm-invalid-span'>{this.state.errors.price}</span>
                 </div>
@@ -457,6 +463,13 @@ class EditProductForm extends Component {
                     value={this.state.salePrice}
                     onChange={this.handleChange}
                     type='number'
+                    onKeyPress={e => {
+                      if(e.charCode === 101 || e.charCode === 45) {
+                        e.preventDefault()
+                      }
+                    }}
+                    min='0'
+                    step='any'
                   />
                   <span className='text-danger addProductForm-invalid-span'>{this.state.errors.salePrice}</span>
                 </div>
@@ -506,6 +519,13 @@ class EditProductForm extends Component {
                     value={this.state.numberOfStock}
                     onChange={this.handleChange}
                     type='number'
+                    onKeyPress={e => {
+                      if(e.charCode === 101 || e.charCode === 45) {
+                        e.preventDefault()
+                      }
+                    }}
+                    min='0'
+                    step='any'
                   />
                   <span className='text-danger addProductForm-invalid-span'>{this.state.errors.numberOfStock}</span>
                 </div>

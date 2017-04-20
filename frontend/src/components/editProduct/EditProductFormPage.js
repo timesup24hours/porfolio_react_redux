@@ -3,11 +3,18 @@ import { connect } from 'react-redux'
 import CircularProgress from 'material-ui/CircularProgress'
 import * as productActions from '../../store/actions/productActions'
 import EditProductForm from './EditProductForm'
+import { browserHistory } from 'react-router'
 
 class EditProductFormPage extends Component {
 
   componentDidMount() {
     this.props.getCurrentEditProductsByOwner(this.props.params.id)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.product.currentEditProduct && nextProps.product.currentEditProduct === null) {
+      browserHistory.push('/edit_product')
+    }
   }
 
   render() {

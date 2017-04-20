@@ -32,9 +32,9 @@ const NavRightMenu = (props) => {
         <li className='NavRightMenu-li'>
           <Link to='/comment' style={colorChange} activeClassName="NavRightMenu-link-active">COMMENT</Link>
         </li>
-        <li className='NavRightMenu-li'>
+        {/*<li className='NavRightMenu-li'>
           <Link to='/learning' style={colorChange} activeClassName="NavRightMenu-link-active">LEARNING</Link>
-        </li>
+        </li>*/}
         { props.auth.token
           ? <li className='NavRightMenu-li'
                 onClick={handleProfileMenuToggle}

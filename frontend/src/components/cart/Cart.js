@@ -48,7 +48,7 @@ export class Cart extends Component {
 
     return (
       <div className='Cart-container'>
-        {this.props.totalQuantity === 0
+        {this.props.cart.cart.length === 0
           ? <div className='Cart-no-items'>No items</div>
           : (<div className='Cart-wrapper'>
 

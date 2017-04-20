@@ -29,6 +29,10 @@ export default (app) => {
       return
     }
 
+    if(req.body.salePrice) req.body.salePrice = parseInt(req.body.salePrice.split(',').join(''))
+    req.body.price = parseInt(req.body.price.split(',').join(''))
+
+
     const validatedBody = validateAddProductBody(sanitizationProductBody(req.body).data)
     if(!validatedBody.valid) {
       res.status(400).json({ error: 'invalided data' })
@@ -92,7 +96,7 @@ const sanitizationProductBody = data => {
         optional: false,
       },
       price: { type: 'number', optional: false },
-      salePrice: { type: 'number', optional: true, def: 0 },
+      salePrice: { type: 'number', optional: true },
       onSale: { type: 'boolean', optional: false },
       stock: { type: 'boolean', optional: true },
       numberOfStock: { type: 'number', optional: true, def: 0 },

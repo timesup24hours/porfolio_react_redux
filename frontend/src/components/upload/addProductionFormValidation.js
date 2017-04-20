@@ -1,6 +1,6 @@
 // import validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
-// var Cleave = require('cleave.js');
+var Cleave = require('cleave.js');
 require('cleave.js/dist/addons/cleave-phone.us');
 
 export const addProductionFormValidation = (e, errors) => {
@@ -92,7 +92,13 @@ export const addProductionFormValidation = (e, errors) => {
   }
 
   if(e.target.name === 'salePrice') {
-    if(!Number.isInteger(parseInt(e.target.value, 10))) {
+    // let rule = new RegExp('^\d+(\.\d{1,2)?$')
+    // if(e.target.value && !rule.test(e.target.value)) {
+    //   e.target.classList.add('invalid')
+    //   e.target.nextSibling.textContent = `invalid value`
+    //   errors.salePrice = 'invalid value'
+    // } else
+    if(e.target.value && !Number.isInteger(parseInt(e.target.value, 10))) {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `invalid value`
       errors.salePrice = 'invalid value'
@@ -122,7 +128,7 @@ export const addProductionFormValidation = (e, errors) => {
   }
 
   if(e.target.name === 'numberOfStock') {
-    if(!Number.isInteger(parseInt(e.target.value, 10))) {
+    if(e.target.value &&  !Number.isInteger(parseInt(e.target.value, 10))) {
       e.target.classList.add('invalid')
       e.target.nextSibling.textContent = `invalid value`
       errors.numberOfStock = 'invalid value'
@@ -321,4 +327,14 @@ export const submitValidation = data => {
     errors: errors,
     isValid: isEmpty(errors),
   }
+}
+
+export const initialValidate = () => {
+  new Cleave('#salePrice', {
+    numeral: true,
+  });
+  new Cleave('#price', {
+    numeral: true,
+  });
+
 }

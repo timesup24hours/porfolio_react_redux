@@ -3,7 +3,7 @@ import { bytesToSize } from '../../utils'
 import { connect } from 'react-redux'
 import * as productActions from '../../store/actions/productActions'
 import * as addProductFormActions from '../../store/actions/addProductFormActions'
-import { addProductionFormValidation, submitValidation } from './addProductionFormValidation'
+import { addProductionFormValidation, submitValidation, initialValidate } from './addProductionFormValidation'
 
 const isEmpty = (obj) => {
   for(let key in obj) {
@@ -56,6 +56,10 @@ class AddProductForm extends Component {
 
   componentWillMount() {
     this.setState(initialState)
+  }
+
+  componentDidMount() {
+    initialValidate()
   }
 
   // handle clear the form data
@@ -112,15 +116,18 @@ class AddProductForm extends Component {
    */
    handelListDescRemove = (e, index) => {
       const newListDesc = this.state.listDesc.filter((s, ldi) => index !== ldi)
+      let errorCopy = this.state.errors
+      delete errorCopy[`listDesc${index}`]
       this.setState({
-        listDesc: newListDesc
+        listDesc: newListDesc,
+        errors: errorCopy,
       })
       // this.validatingFormValueDisableUploadButton(newListDesc)
       localStorage.setItem('addProductForm-listDesc', JSON.stringify(newListDesc))
    }
 
 
-   handleListDescError = e => {
+   handleListDescError = (e, index) => {
      if(e.target.id === 'listDesc') {
        if(this.state.errors.listDesc === 'At least 2 Brief Description' && this.state.listDesc.length >= 2) {
          let copy = Object.assign({}, this.state.errors)
@@ -133,6 +140,11 @@ class AddProductForm extends Component {
          this.setState({ errors: copy })
        }
      }
+     if(e.target.value.length !== 0) {
+       let copy = Object.assign({}, this.state.errors)
+       delete copy[`listDesc${index}`]
+       this.setState({ errors: copy })
+     }
    }
 
   /*
@@ -143,11 +155,12 @@ class AddProductForm extends Component {
       if (ldi !== index) return l
       return { ...l, name: e.target.value }
     })
-    this.handleListDescError(e)
     let errors = addProductionFormValidation(e, this.state.errors)
     this.setState({ errors })
+
+    this.handleListDescError(e, index)
+
     this.setState({ listDesc: newListDesc })
-    // this.validatingFormValueDisableUploadButton(newListDesc)
     localStorage.setItem('addProductForm-listDesc', JSON.stringify(newListDesc))
   }
 
@@ -165,7 +178,6 @@ class AddProductForm extends Component {
   handleOnBlur = (e) => {
     let errors = addProductionFormValidation(e, this.state.errors)
     this.setState({ errors })
-    this.handleListDescError(e)
   }
 
   /*
@@ -458,12 +470,23 @@ class AddProductForm extends Component {
                     onChange={this.handleChange}
                     onBlur={this.handleOnBlur}
                     required
-                    type='number'
                   />
                   <span className='text-danger addProductForm-invalid-span'>{this.state.errors.price}</span>
                 </div>
               </div>
+              {/*
 
+                type='number'
+                onKeyPress={e => {
+                  if(e.charCode === 101 || e.charCode === 45) {
+                    e.preventDefault()
+                  }
+                }}
+                min='0'
+                step='any'
+
+                }}
+                */}
 
               <div className='col-sm-4'>
                 <div className="form-group">
@@ -486,7 +509,11 @@ class AddProductForm extends Component {
                     name='salePrice'
                     value={this.state.salePrice}
                     onChange={this.handleChange}
-                    type='number'
+                    onKeyPress={e => {
+                      if(e.charCode === 101 || e.charCode === 45) {
+                        e.preventDefault()
+                      }
+                    }}
                   />
                   <span className='text-danger addProductForm-invalid-span'>{this.state.errors.salePrice}</span>
                 </div>
@@ -536,6 +563,13 @@ class AddProductForm extends Component {
                     value={this.state.numberOfStock}
                     onChange={this.handleChange}
                     type='number'
+                    onKeyPress={e => {
+                      if(e.charCode === 101 || e.charCode === 45 || e.charCode === 46) {
+                        e.preventDefault()
+                      }
+                    }}
+                    min='0'
+                    step='any'
                   />
                   <span className='text-danger addProductForm-invalid-span'>{this.state.errors.numberOfStock}</span>
                 </div>

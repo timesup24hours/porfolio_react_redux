@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes'
-// import { store } from '../configStore'
+import { browserHistory } from 'react-router'
 
 const initialState = {
   mask: {
@@ -23,6 +23,9 @@ const initialState = {
     action: null,
   }
 }
+
+// browserHistory.push('/') // work
+
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
@@ -111,6 +114,11 @@ export default (state = initialState, action = {}) => {
           action: action.payload.action,
           trueBtnText: action.payload.trueBtnText,
         }
+      }
+    case actionTypes.UI_ROUTE_CHANGE:
+      browserHistory.push('/')
+      return {
+        ...state
       }
     default:
       return state

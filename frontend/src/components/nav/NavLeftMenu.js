@@ -29,10 +29,10 @@ const NavLeftMenu = (props) => {
           <i className="material-icons">shopping_basket</i>
           <div>Shop</div>
         </li>
-        <li className='NavLeftMenu-li' onClick={() => browserHistory.push('/learning')}>
+        {/*<li className='NavLeftMenu-li' onClick={() => browserHistory.push('/learning')}>
           <Thumbup style={{ marginTop: '4px' }}/>
           <div>Learning</div>
-        </li>
+        </li>*/}
         { !props.auth.isAuthenticated
           ? [
               <li className='NavLeftMenu-li' key='NavLeftMenu-login' onClick={() => browserHistory.push('/login') }>

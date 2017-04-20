@@ -35,3 +35,8 @@ export const handleDialogComfirmAction = payload => ({
   type: actionTypes.UI_DIALOG_SET_ACTION,
   payload,
 })
+
+export const routeChange = payload => ({
+  type: actionTypes.UI_ROUTE_CHANGE,
+  payload,
+})
