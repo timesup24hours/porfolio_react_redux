@@ -1,4 +1,5 @@
 import React from 'react'
+import CheckBox from 'material-ui/svg-icons/toggle/check-box'
 
 const NotificationModal = props => {
   const active = props.show ? 'is-active' : ''
@@ -10,10 +11,11 @@ const NotificationModal = props => {
           <div className="NotificationModal-title">{props.title}</div>
           <div className="NotificationModal-body">
             <div
-              className="NotificationModal-img"
-              style={{ backgroundImage: "url(http://www.fillmurray.com/180/180)" }}>
+              className="NotificationModal-img flexCenter"
+              >
+              <CheckBox style={{ color: 'lightGreen', fontSize: '50px', height: '50px', width: '50px' }}/>
             </div>
-            <div className="NotificationModal-text">
+            <div className="NotificationModal-text flexCenter">
               <p>{props.content}</p>
             </div>
           </div>

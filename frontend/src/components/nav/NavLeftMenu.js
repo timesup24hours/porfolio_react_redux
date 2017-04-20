@@ -10,7 +10,7 @@ import { browserHistory } from 'react-router'
 
 import DirectionsWalk from 'material-ui/svg-icons/maps/directions-walk'
 import Message from 'material-ui/svg-icons/communication/message'
-import Thumbup from 'material-ui/svg-icons/action/thumb-up'
+// import Thumbup from 'material-ui/svg-icons/action/thumb-up'
 
 const NavLeftMenu = (props) => {
   const handleHideLeftMenu = () => {
