@@ -2,7 +2,7 @@ import getAllProduct from './getAllProduct'
 import getOneProduct from './getOneProduct'
 import addProduct from './addProduct'
 import deleteProduct from './deleteProduct'
-import getProductsByOwner from './getProductsByOwner'
+import getProductsByowner from './getProductsByowner'
 import putProduct from './putProduct'
 import getCurrentEditProductByOnwer from './getCurrentEditProductByOnwer'
 
@@ -11,7 +11,7 @@ export default (app) => {
   getOneProduct(app)
   addProduct(app)
   deleteProduct(app)
-  getProductsByOwner(app)
+  getProductsByowner(app)
   putProduct(app)
   getCurrentEditProductByOnwer(app)
 }
