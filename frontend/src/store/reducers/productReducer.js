@@ -32,8 +32,12 @@ export default (state = initialState, action = {}) => {
     case actionTypes.PRODUCT_GET_CURRENT_PRODUCT_REVIEW_REQUEST:
     case actionTypes.PRODUCT_EDIT_PRODUCT_REQUEST:
     case actionTypes.PRODUCT_DELETE_PRODUCT_REQUEST:
+    case actionTypes.PRODUCT_GET_CURRENT_EDIT_PRODUCT_BY_OWNER_REQUEST:
+    case actionTypes.PRODUCT_GET_ONE_REQUEST:
       return {
         ...state,
+        currentEditProduct: null,
+        currentProduct: null,
         currentCategoryProducts: [],
         pending: true,
         success: false,
