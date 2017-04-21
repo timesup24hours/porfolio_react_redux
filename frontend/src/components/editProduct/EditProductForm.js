@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { bytesToSize } from '../../utils'
 import { connect } from 'react-redux'
 import * as productActions from '../../store/actions/productActions'
-import { addProductionFormValidation, submitValidation } from '../upload/addProductionFormValidation'
+import { addProductionFormValidation, submitValidation } from './eidtProductionFormValidation'
 import * as UIActions from '../../store/actions/UIActions'
 import * as actionTypes from '../../store/actions/actionTypes'
 
