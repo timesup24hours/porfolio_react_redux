@@ -12,11 +12,11 @@ class EditProductFormPage extends Component {
     this.props.getCurrentEditProductsByOwner(this.props.params.id)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if(this.props.product.currentEditProduct && nextProps.product.currentEditProduct === null) {
-      browserHistory.push('/edit_product')
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if(this.props.product.currentEditProduct && nextProps.product.currentEditProduct === null) {
+  //     browserHistory.push('/edit_product')
+  //   }
+  // }
 
   render() {
     return this.props.product.currentEditProduct && this.props.menu.categories ? (
