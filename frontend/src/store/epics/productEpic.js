@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs/Observable'
 import * as actionTypes from '../actions/actionTypes'
 import { signRequest } from '../../utils'
+import { store } from '../configStore'
 
 export const productGetAllEpic = action$ => action$
   .ofType(actionTypes.PRODUCT_GET_ALL_REQUEST)
@@ -87,6 +88,11 @@ export const addProductEpic = action$ => action$
         payload: 'Fail to upload, some fields are required!',
       },
     ))
+    .finally(() => store.dispatch(
+      {
+        type: actionTypes.PRODUCT_RESET_STATUS
+      }
+    ))
   )
 
 export const getProductByOwnserEpic = action$ => action$
@@ -155,6 +161,11 @@ export const editProductEpic = action$ => action$
         payload: 'some field are needed',
       },
     ))
+    .finally(() => store.dispatch(
+      {
+        type: actionTypes.PRODUCT_RESET_STATUS
+      }
+    ))
   )
 
 export const deleteProductEpic = action$ => action$
@@ -180,6 +191,11 @@ export const deleteProductEpic = action$ => action$
       {
         type: actionTypes.PRODUCT_DELETE_PRODUCT_REQUEST_FAIL,
         payload: error,
+      }
+    ))
+    .finally(() => store.dispatch(
+      {
+        type: actionTypes.PRODUCT_RESET_STATUS
       }
     ))
   )

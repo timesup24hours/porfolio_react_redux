@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import CircularProgress from 'material-ui/CircularProgress'
 import * as productActions from '../../store/actions/productActions'
 import EditProductForm from './EditProductForm'
-// import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router'
 import LoadingMask from '../mask/LoadingMask'
 
 class EditProductFormPage extends Component {
@@ -12,11 +12,11 @@ class EditProductFormPage extends Component {
     this.props.getCurrentEditProductsByOwner(this.props.params.id)
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if(this.props.product.currentEditProduct && nextProps.product.currentEditProduct === null) {
-  //     browserHistory.push('/edit_product')
-  //   }
-  // }
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.product.redirect) {
+      browserHistory.push('/edit_product')
+    }
+  }
 
   render() {
     return this.props.product.currentEditProduct && this.props.menu.categories ? (

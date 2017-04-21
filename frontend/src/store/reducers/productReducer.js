@@ -20,15 +20,35 @@ const initialState = {
   },
   error: false,
   onwerProducts: null,
-  currentEditProduct: null
+  currentEditProduct: null,
+  redirect: false,
 }
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case actionTypes.PRODUCT_RESET_STATUS:
+      return {
+        ...state,
+        redirect: false,
+        pending: false,
+        success: false,
+        fail: false,
+        error: false,
+        errors: {},
+      }
     case actionTypes.PRODUCT_GET_ALL_REQUEST:
     case actionTypes.PRODUCT_ADD_PRODUCT_REQUEST:
     case actionTypes.PRODUCT_SET_CURRENT_CATEGORY_PRODUCT_REQUEST:
     case actionTypes.PRODUCT_GET_CURRENT_CATEGORY_PRODUCT_REQUEST:
+      return {
+        ...state,
+        currentCategoryProducts: [],
+        pending: true,
+        success: false,
+        fail: false,
+        error: false,
+        errors: {},
+      }
     case actionTypes.PRODUCT_EDIT_PRODUCT_REQUEST:
       return {
         ...state,
@@ -62,7 +82,6 @@ export default (state = initialState, action = {}) => {
         ...state,
         currentEditProduct: null,
         currentProduct: null,
-        currentCategoryProducts: [],
         pending: true,
         success: false,
         fail: false,
@@ -99,6 +118,7 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         products: state.products.concat([action.payload.product]),
+        redirect: true,
         pending: false,
         success: true,
         fail: false,
@@ -172,10 +192,20 @@ export default (state = initialState, action = {}) => {
         },
       }
     case actionTypes.PRODUCT_GET_CURRENT_EDIT_PRODUCT_BY_OWNER_REQUEST_SUCCESS:
+      return {
+        ...state,
+        currentEditProduct: action.payload.product,
+        pending: false,
+        success: true,
+        fail: false,
+        error: false,
+        errors: null,
+      }
     case actionTypes.PRODUCT_EDIT_PRODUCT_REQUEST_SUCCESS:
       return {
         ...state,
         currentEditProduct: action.payload.product,
+        redirect: true,
         pending: false,
         success: true,
         fail: false,
@@ -203,6 +233,7 @@ export default (state = initialState, action = {}) => {
         onwerProducts: deleteProduct(state.onwerProducts, action.payload.product._id),
         products: deleteProduct(state.products, action.payload.product._id),
         currentEditProduct: null,
+        redirect: true,
         pending: false,
         success: true,
         fail: false,
