@@ -8,7 +8,7 @@ export default (app) => {
   app.put('/api/department', passport.authenticate('local-jwt'), asyncRequest(async (req, res, next) => {
 
     const { id, name, categoryId } = req.body
-    
+
     if(!id) {
       res.status(400).json({ error: { id: 'id is required' } })
       return
@@ -25,7 +25,7 @@ export default (app) => {
 
     if(name) department.name = unescape(name)
     department.to = routeNameFormatToLink(unescape(name))
-    if(categoryId) department.categoryId = categoryId
+    if(category) department.category = categoryId
 
     await department.save()
 

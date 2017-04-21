@@ -269,7 +269,7 @@ class EditProductForm extends Component {
     let subCategory = null
 
     departments = this.props.menu.categories.map((d, i) => {
-      return <option key={i} value={d._id}>{d.department}</option>
+      return <option key={i} value={d._id}>{d.name}</option>
     })
 
     // display category
@@ -287,7 +287,7 @@ class EditProductForm extends Component {
       if(d._id === this.state.department) {
         return d.category.map((c, i) => {
           if(c._id === this.state.category) {
-            return c.subcategory.map((c, i) => {
+            return c.subCategory.map((c, i) => {
               return <option key={i} value={c._id}>{c.name}</option>
             })
           }

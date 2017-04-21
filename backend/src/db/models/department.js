@@ -4,7 +4,7 @@ const Department = new Schema({
   name: { type: String, required: true },
   to: { type: String },
   desc: { type: String },
-  categoryId: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }],
+  category: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }],
 })
 
 export default mongoose.model('Department', Department)

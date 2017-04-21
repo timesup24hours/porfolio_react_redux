@@ -27,7 +27,7 @@ class CategoryForm extends Component {
     let subCategories = null
 
     departments = this.props.menu.categories.map((d, i) => {
-      return <option key={i} value={d._id}>{d.department}</option>
+      return <option key={i} value={d._id}>{d.name}</option>
     })
 
     categories = this.props.menu.categories.map((d, i) => {
@@ -43,7 +43,7 @@ class CategoryForm extends Component {
       if(d._id === this.props.departmentSelector) {
         return d.category.map((c, i) => {
           if(c._id === this.props.categorySelector) {
-            return c.subcategory.map((c, i) => {
+            return c.subCategory.map((c, i) => {
               return <option key={i} value={c._id}>{c.name}</option>
             })
           }

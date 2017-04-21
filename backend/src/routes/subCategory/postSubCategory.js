@@ -8,7 +8,7 @@ export default (app) => {
   app.post('/api/subCategory', passport.authenticate('local-jwt'), asyncRequest(async (req, res, next) => {
 
     const { name, desc, parentId } = req.body
-    
+
     if(!name) {
       res.status(400).json({ errors: { name: 'name is required' } })
       return
@@ -24,7 +24,7 @@ export default (app) => {
 
     await subCategory.save()
 
-    let category = await Category.findOneAndUpdate({ _id: parentId }, { $push: { "subCategoryId": subCategory._id } })
+    let category = await Category.findOneAndUpdate({ _id: parentId }, { $push: { "subCategory": subCategory._id } })
     // let department = await Department.update({ _id: departmentId }, { $push: { "categoryId": category._id } })
 
     let menu = await getMenu()

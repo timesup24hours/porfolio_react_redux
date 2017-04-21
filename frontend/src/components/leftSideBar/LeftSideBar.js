@@ -97,7 +97,7 @@ class LeftSideBar extends Component {
       return (<ListItem
                 style={{ fontSize: '14px', hoverColor: 'grey' }}
                 key={di}
-                primaryText={d.department}
+                primaryText={d.name}
                 initiallyOpen={false}
                 primaryTogglesNestedList={false}
                 nestedItems={

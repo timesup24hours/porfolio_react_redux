@@ -22,11 +22,11 @@ export default (app) => {
     category.to = routeNameFormatToLink(unescape(name))
     if(desc) category.desc = desc
     category.departmentId = parentId
-    if(subCategoryId) category.subCategoryId.push(subCategoryId)
+    if(subCategoryId) category.subCategory.push(subCategoryId)
 
     await category.save()
-
-    let department = await Department.findOneAndUpdate({ _id: parentId }, { $push: { "categoryId": category._id } })
+    console.log(category._id);
+    let department = await Department.findOneAndUpdate({ _id: parentId }, { $push: { "category": category._id } })
     // let department = await Department.update({ _id: departmentId }, { $push: { "categoryId": category._id } })
 
     let menu = await getMenu()

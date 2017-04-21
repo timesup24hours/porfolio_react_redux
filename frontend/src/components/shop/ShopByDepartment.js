@@ -51,7 +51,7 @@ class ShopByDepartment extends Component {
         return (<ListItem
                   key={i}
                   onClick={() => this.handleChangeCategory(d)}
-                  primaryText={d.department}
+                  primaryText={d.name}
                   secondaryText={d.desc}
                 />)
       }) : null

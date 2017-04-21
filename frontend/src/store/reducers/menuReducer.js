@@ -21,7 +21,7 @@ const getSubCategories = categories => {
   let subcategory = []
   categories.forEach(d => {
     d.category.forEach(c => {
-      c.subcategory.forEach(s => {
+      c.subCategory.forEach(s => {
         subcategory.push(s)
       })
     })

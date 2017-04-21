@@ -5,7 +5,7 @@ const Category = new Schema({
   to: { type: String },
   desc: { type: String },
   departmentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Department' },
-  subCategoryId: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SubCategory' }],
+  subCategory: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SubCategory' }],
 })
 
 export default mongoose.model('Category', Category)
