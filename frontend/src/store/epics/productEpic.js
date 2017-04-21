@@ -62,7 +62,7 @@ export const getProductByCategoryEpic = action$ => action$
 
 export const addProductEpic = action$ => action$
   .ofType(actionTypes.PRODUCT_ADD_PRODUCT_REQUEST)
-  .delay(15000)
+  // .delay(15000)
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
     .ajax.post('/api/addProduct/', payload, headers)
