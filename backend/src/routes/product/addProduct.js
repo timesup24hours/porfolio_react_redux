@@ -29,14 +29,13 @@ export default (app) => {
       return
     }
 
-    if(req.body.salePrice) req.body.salePrice = parseInt(req.body.salePrice.split(',').join(''))
+    req.body.salePrice = req.body.salePrice.length === 0 ? 0 : parseInt(req.body.salePrice.split(',').join(''))
     req.body.price = parseInt(req.body.price.split(',').join(''))
 
 
     const validatedBody = validateAddProductBody(sanitizationProductBody(req.body).data)
     if(!validatedBody.valid) {
-      res.status(400).json({ error: 'invalided data' })
-      // res.status(400).json({ error: 'invalided data', error: validatedBody.error })
+      res.status(400).json({ error: validatedBody.error })
       return
     }
 
