@@ -12,8 +12,10 @@
   display: flex;
   flex-direction: row;
   min-width: 300px;
-  padding-right: 20px;
+  padding-right: 10px;
   position: relative;
+  width: 350px;
+  margin-right: 10px;
 
   .ProductInTheCart-img {
     padding: 10px;
@@ -40,6 +42,7 @@
   .ProductInTheCart-info-name {
     font-size: 16px;
     font-weight: bold;
+    @extend .wrapword;
   }
   .ProductInTheCart-info-price {
     color: red;
@@ -122,13 +125,15 @@
     align-items: center;
     min-width: 300px;
     padding-right: 0px;
+    width: 300px;
+    margin-right: 0px;
 
     .ProductInTheCart-img {
       padding: 0px;
       img {
 
-        max-height: 310px;
-        max-width: 310px;
+        max-height: 300px;
+        max-width: 300px;
         padding: 0px;
       }
     }

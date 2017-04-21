@@ -4,6 +4,7 @@ import * as cartActions from '../../store/actions/cartActions'
 import ProductInTheCart from './ProductInTheCart'
 import Calculator from '../calculator/Calculator'
 // import StripePay from './StripePay'
+import LoadingMask from '../mask/LoadingMask'
 
 const mapStateToProps = state => ({
   cart: state.cart,
@@ -48,20 +49,22 @@ export class Cart extends Component {
 
     return (
       <div className='Cart-container'>
-        {this.props.cart.cart.length === 0
-          ? <div className='Cart-no-items'>No items</div>
-          : (<div className='Cart-wrapper'>
+        {this.props.cart.pending
+          ? <LoadingMask />
+          : this.props.cart.cart.length === 0
+            ? <div className='Cart-no-items'>No items</div>
+            : (<div className='Cart-wrapper'>
 
-              <div className='Cart-calculator'>
-                <Calculator cart={this.props.cart} />
-              </div>
+                <div className='Cart-calculator'>
+                  <Calculator cart={this.props.cart} />
+                </div>
 
-              <div className='Cart-order-holder'>
-                <div className='Cart-order-title'>Review Your Order:</div>
-                {cart}
-              </div>
+                <div className='Cart-order-holder'>
+                  <div className='Cart-order-title'>Review Your Order:</div>
+                  {cart}
+                </div>
 
-            </div>)
+              </div>)
         }
 
 

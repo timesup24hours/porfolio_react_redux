@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import CircularProgress from 'material-ui/CircularProgress'
 import * as productActions from '../../store/actions/productActions'
 import EditProductForm from './EditProductForm'
-import { browserHistory } from 'react-router'
+// import { browserHistory } from 'react-router'
 import LoadingMask from '../mask/LoadingMask'
 
 class EditProductFormPage extends Component {

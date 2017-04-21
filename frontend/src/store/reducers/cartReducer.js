@@ -94,6 +94,17 @@ export default (state = initialState, action = {}) => {
   switch (action.type) {
     case actionTypes.CART_ADD_REQUEST:
     case actionTypes.CART_GET_REQUEST:
+      return {
+        ...state,
+        cart: [],
+        totalQuantity: 0,
+        total: 0,
+        pending: true,
+        success: false,
+        fail: false,
+        error: false,
+        errors: {},
+      }
     case actionTypes.CART_EMPTY_CART_REQUEST:
       return {
         ...state,

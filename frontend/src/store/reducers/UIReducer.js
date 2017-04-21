@@ -26,7 +26,6 @@ const initialState = {
 
 // browserHistory.push('/') // work
 
-
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case actionTypes.UI_SHOW_MASK:

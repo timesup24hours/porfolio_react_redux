@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs/Observable'
 import * as actionTypes from '../actions/actionTypes'
 import { signRequest } from '../../utils'
-import * as UIActions from '../actions/UIActions'
 
 export const productGetAllEpic = action$ => action$
   .ofType(actionTypes.PRODUCT_GET_ALL_REQUEST)
@@ -176,7 +175,6 @@ export const deleteProductEpic = action$ => action$
         type: actionTypes.SNACKBAR_OPEN,
         payload: 'Product has been deleted Successfully',
       },
-      UIActions.routeChange('/edit_product'),
     ))
     .catch(error => Observable.of(
       {
