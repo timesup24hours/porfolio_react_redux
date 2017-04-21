@@ -34,6 +34,10 @@ class Nav extends Component {
         this.props.scrollButtonShow()
       }
     }
+    if(document.body.scrollTop < document.documentElement.clientHeight) {
+      this.props.scrollButtonShow()
+      clearTimeout(this.scrollButtonHideTimer)
+    }
   }
 
   scroll = () => {

@@ -24,6 +24,7 @@
 }
 .Product-name {
   font-weight: 500;
+  @extend .wrapword;
 }
 .Product-image {
   img {
