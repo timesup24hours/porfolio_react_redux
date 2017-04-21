@@ -17,7 +17,6 @@ class EditProductFormPage extends Component {
   //     browserHistory.push('/edit_product')
   //   }
   // }
-  // 
 
   render() {
     return this.props.product.currentEditProduct && this.props.menu.categories ? (
