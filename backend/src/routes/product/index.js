@@ -1,9 +1,9 @@
 import getAllProduct from './getAllProduct'
 import getOneProduct from './getOneProduct'
-import addProduct from './addProduct'
+import addProduct from './addProductS3'
 import deleteProduct from './deleteProduct'
 import getProductsByowner from './getProductsByowner'
-import putProduct from './putProduct'
+import putProduct from './putProductS3'
 import getCurrentEditProductByOnwer from './getCurrentEditProductByOnwer'
 
 export default (app) => {

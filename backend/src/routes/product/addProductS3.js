@@ -1,35 +1,38 @@
 import passport from 'passport'
+import jwt from 'jsonwebtoken'
 import { Product } from '../../db/models'
+import { auth as authConfig } from '../../../config'
 import { asyncRequest } from '../../util'
 import inspector from 'schema-inspector'
-const uuidV4 = require('uuid/v4');
+import { s3 as s3Config } from '../../../config'
 
 import multer from 'multer'
+import multerS3 from 'multer-s3'
 
-const storage = multer.diskStorage({
-  // destination: 'public/uploads/images',
-  // destination: '../frontend/build/images/products',
-  destination: process.env.NODE_ENV === 'production' ? '../frontend/build/images/products' : '../frontend/public/images/products',
-  filename(req, file, cb) {
-    cb(null, `${Math.random()}-${new Date()}-${file.originalname}`) // file name should be unique
-    // cb(null, `${file.originalname}`) // test only
-  },
+import aws from 'aws-sdk'
+
+aws.config = ({
+  accessKeyId: s3Config.AccessKeyID,
+  secretAccessKey: s3Config.SecretAccessKey,
 })
 
-const upload = multer({ storage })
+const s3 = new aws.S3()
+
+let upload = multer({
+   storage: multerS3({
+       s3: s3,
+       bucket: 'learning123',
+       key: function (req, file, cb) {
+         cb(null, `${Math.random()}-${new Date()}-${file.originalname}`); //use Date.now() for unique file keys
+      }
+  })
+})
 
 export default (app) => {
 
-  app.put('/api/eidt_product', passport.authenticate('local-jwt'), upload.any(), asyncRequest(async (req, res, next) => {
+  app.post('/api/addProduct', passport.authenticate('local-jwt'), upload.any(), asyncRequest(async (req, res, next) => {
 
-    let product = await Product.findOne({ _id: req.body.id, deleted: { $ne: true } })
-
-    if(JSON.stringify(product.owner) !== JSON.stringify(req.user._id)) {
-      res.status(400).json({ success: true, error: 'no right to edit' })
-      return
-    }
-
-    if(req.files && req.files.length === 0 && JSON.parse(req.body.images).length === 0) {
+    if(req.files && req.files.length === 0) {
       res.status(400).json({ error: 'images if required' })
       return
     }
@@ -37,29 +40,33 @@ export default (app) => {
     req.body.salePrice = req.body.salePrice.length === 0 ? 0 : parseInt(req.body.salePrice.split(',').join(''))
     req.body.price = parseInt(req.body.price.split(',').join(''))
 
+
     const validatedBody = validateAddProductBody(sanitizationProductBody(req.body).data)
     if(!validatedBody.valid) {
       res.status(400).json({ error: validatedBody.error })
       return
     }
 
-    let newImages = []
+    let images = []
     req.files.forEach(f => {
-      newImages.push(f.filename)
+      images.push(f.location)
     })
+
+    let product = null
+
+    product = new Product()
 
     product.name = req.body.name,
     product.brand = req.body.brand,
     product.price = req.body.price,
     product.salePrice = req.body.salePrice,
-    product.listDesc = []
     req.body.listDesc.forEach((l, i) => {
       product.listDesc.push(l)
     })
     product.department = req.body.department
     product.subCategory = req.body.subCategory
     product.desc = req.body.desc,
-    product.images = newImages.concat(JSON.parse(req.body.images)),
+    product.images = images,
     product.category = req.body.category,
     product.stock = req.body.stock,
     product.numberOfStock = req.body.numberOfStock,
@@ -70,8 +77,9 @@ export default (app) => {
 
     await product.save()
 
-    res.status(200).json({ success: true, product })
+    res.status(201).json({ success: true, product })
   }))
+
 
 }
 
@@ -95,7 +103,7 @@ const sanitizationProductBody = data => {
         optional: false,
       },
       price: { type: 'number', optional: false },
-      salePrice: { type: 'number', optional: true, def: 0 },
+      salePrice: { type: 'number', optional: true },
       onSale: { type: 'boolean', optional: false },
       stock: { type: 'boolean', optional: true },
       numberOfStock: { type: 'number', optional: true, def: 0 },
@@ -173,7 +181,6 @@ const validateAddProductBody = (data) => {
       subCategory: {
           type: 'string',
           optional: false,
-          minLength: 1,
       },
       soldBy: {
           type: 'string',

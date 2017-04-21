@@ -19,14 +19,19 @@ const Product = props => {
       browserHistory.push(`/product/${_id}`)
     }
   }
-
+  
   return (
     <div className='Product-container' style={{ cursor: 'pointer' }}
       onClick={handleOnClick}>
 
             <div className="Product-image">
-              <img
-                src={`/images/products/${images[0]}`} alt=''/>
+              {/* without S3
+                <img
+                  src={`/images/products/${images[0]}`} alt=''/>
+                */}
+
+                <img
+                    src={images[0]} alt=''/>
             </div>
 
             <div className="Product-content">

@@ -10,7 +10,11 @@ const Gallery = props => {
                 onClick={() => props.setCurrentImage(i)}
                 onMouseOver={() => props.setTempPreviewImageIndex(i)}
                 onMouseOut={() => props.clearTempPreviewImageIndex()}>
-                <img src={`/images/products/${img}`} alt=''/>
+                {/*  without s3
+                  <img src={`/images/products/${img}`} alt=''/>
+
+                */}
+                <img src={img} alt=''/>
               </div>)
     })
     const previewImage = props.images.filter((img, i) => {
@@ -85,10 +89,16 @@ const Gallery = props => {
                 id='mark'
                 className='mark'></div>
               <div id='float-box' className='float-box'></div>
-              <img id='Gallery-preview-img' src={`/images/products/${previewImage}`} alt=''/>
+              {/*  without s3
+                <img id='Gallery-preview-img' src={`/images/products/${previewImage}`} alt=''/>
+                */}
+              <img id='Gallery-preview-img' src={previewImage} alt=''/>
             </div>
             <div id='Gallery-amplify' className='Gallery-amplify'>
-              <img id='Gallery-amplify-img' src={`/images/products/${previewImage}`} alt=''/>
+              {/*  without s3
+                <img id='Gallery-amplify-img' src={`/images/products/${previewImage}`} alt=''/>
+                */}
+              <img id='Gallery-amplify-img' src={previewImage} alt=''/>
             </div>
           </div>
 

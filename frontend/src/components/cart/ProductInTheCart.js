@@ -62,7 +62,10 @@ export class ProductInTheCart extends Component {
             : null
           }
           <div className='ProductInTheCart-img'>
-            <img src={`/images/products/${images[0]}`} alt=""/>
+            {/* without s3
+                <img src={`/images/products/${images[0]}`} alt=""/>
+              */}
+            <img src={images[0]} alt=""/>
           </div>
           <div className='ProductInTheCart-info-holder'>
             <div className='ProductInTheCart-div ProductInTheCart-info-name'>

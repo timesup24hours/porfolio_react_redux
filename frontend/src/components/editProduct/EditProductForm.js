@@ -255,8 +255,10 @@ class EditProductForm extends Component {
                 <i className="material-icons hover-cursor-pointer"
                   onClick={() => this.handleRemoveImage(i)}>cancel</i>
                 </div>
+                {/*  without s3
                 <img style={{ width: '200px', height: '200px' }} src={`/images/products/${f}`} alt=""/>
-
+                */}
+                <img style={{ width: '200px', height: '200px' }} src={f} alt=""/>
               </div>)
     })
 
@@ -304,7 +306,7 @@ class EditProductForm extends Component {
     if(this.state.listDesc.length)
       listDescInputField = this.state.listDesc.map((l, i) => {
         return (<div className='row' key={i}>
-                  <div className='col-sm-11'>
+                  <div className='col-sm-11 col-xs-11'>
                     <div className='form-group'>
                       <input
                         id='listDesc'

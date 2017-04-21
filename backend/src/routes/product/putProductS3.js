@@ -2,21 +2,29 @@ import passport from 'passport'
 import { Product } from '../../db/models'
 import { asyncRequest } from '../../util'
 import inspector from 'schema-inspector'
-const uuidV4 = require('uuid/v4');
+import { s3 as s3Config } from '../../../config'
 
 import multer from 'multer'
+import multerS3 from 'multer-s3'
 
-const storage = multer.diskStorage({
-  // destination: 'public/uploads/images',
-  // destination: '../frontend/build/images/products',
-  destination: process.env.NODE_ENV === 'production' ? '../frontend/build/images/products' : '../frontend/public/images/products',
-  filename(req, file, cb) {
-    cb(null, `${Math.random()}-${new Date()}-${file.originalname}`) // file name should be unique
-    // cb(null, `${file.originalname}`) // test only
-  },
+import aws from 'aws-sdk'
+
+aws.config = ({
+  accessKeyId: s3Config.AccessKeyID,
+  secretAccessKey: s3Config.SecretAccessKey,
 })
 
-const upload = multer({ storage })
+const s3 = new aws.S3()
+
+let upload = multer({
+   storage: multerS3({
+       s3: s3,
+       bucket: 'learning123',
+       key: function (req, file, cb) {
+         cb(null, `${Math.random()}-${new Date()}-${file.originalname}`); //use Date.now() for unique file keys
+      }
+  })
+})
 
 export default (app) => {
 
@@ -45,7 +53,7 @@ export default (app) => {
 
     let newImages = []
     req.files.forEach(f => {
-      newImages.push(f.filename)
+      newImages.push(f.location)
     })
 
     product.name = req.body.name,

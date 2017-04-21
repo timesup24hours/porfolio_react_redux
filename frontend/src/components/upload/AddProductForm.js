@@ -347,7 +347,7 @@ class AddProductForm extends Component {
     if(this.state.listDesc.length)
       listDescInputField = this.state.listDesc.map((l, i) => {
         return (<div className='row' key={i}>
-                  <div className='col-sm-11'>
+                  <div className='col-sm-11 col-xs-11'>
                     <div className='form-group'>
                       <input
                         id='listDesc'

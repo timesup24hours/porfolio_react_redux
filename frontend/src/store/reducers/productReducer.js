@@ -34,7 +34,6 @@ export default (state = initialState, action = {}) => {
         success: false,
         fail: false,
         error: false,
-        errors: {},
       }
     case actionTypes.PRODUCT_GET_ALL_REQUEST:
     case actionTypes.PRODUCT_ADD_PRODUCT_REQUEST:
@@ -223,7 +222,7 @@ export default (state = initialState, action = {}) => {
         error: true,
         errors: {
           message: shopByCategoryErrorToMessage(action.payload), // message needed to be corret
-          error: action.payload,
+          error: action.payload.xhr.response.error,
           status: action.payload.status,
         },
       }
