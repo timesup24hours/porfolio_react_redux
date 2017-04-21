@@ -29,18 +29,9 @@ export default (state = initialState, action = {}) => {
     case actionTypes.PRODUCT_ADD_PRODUCT_REQUEST:
     case actionTypes.PRODUCT_SET_CURRENT_CATEGORY_PRODUCT_REQUEST:
     case actionTypes.PRODUCT_GET_CURRENT_CATEGORY_PRODUCT_REQUEST:
-      return {
-        ...state,
-        pending: true,
-        success: false,
-        fail: false,
-        error: false,
-        errors: {},
-      }
     case actionTypes.PRODUCT_EDIT_PRODUCT_REQUEST:
       return {
         ...state,
-        currentEditProduct: null,
         pending: true,
         success: false,
         fail: false,
