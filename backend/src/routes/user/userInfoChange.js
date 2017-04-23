@@ -22,15 +22,15 @@ export default (app) => {
       return
     }
 
-    user.local.nickname = nickname
-    user.email = email
-    user.address.street = street
-    user.address.city = city
-    user.address.zipcode = zipcode
-    user.address.state = state
-    user.contact.cellphone = cellphone
-    user.contact.homephone = homephone
-    user.contact.workphone = workphone
+    if(nickname) user.local.nickname = nickname
+    if(email) user.email = email
+    if(street) user.address.street = street
+    if(city) user.address.city = city
+    if(zipcode) user.address.zipcode = zipcode
+    if(state) user.address.state = state
+    if(cellphone) user.contact.cellphone = cellphone
+    if(homephone) user.contact.homephone = homephone
+    if(workphone) user.contact.workphone = workphone
 
     await user.save()
 

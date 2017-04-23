@@ -62,6 +62,7 @@ class AddProductForm extends Component {
     initialValidate()
   }
 
+
   // handle clear the form data
   handleClearForm = () => {
     localStorage.removeItem('addProductForm-department')

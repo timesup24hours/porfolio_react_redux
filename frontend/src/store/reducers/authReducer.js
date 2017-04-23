@@ -21,20 +21,24 @@ const initialState = {
   user,
   status: 'inited',
   isAuthenticated: !isEmpty(user),
+  pending: false,
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SIGNUP_REQUEST:
+    case actionTypes.USER_INFO_CHANGE_REQUEST:
       return {
         ...state,
         user: null,
         status: 'pending',
+        pending: true,
       }
     case actionTypes.LOGIN_REQUEST:
       return {
         ...state,
         user: null,
+        pending: true,
         status: 'pending',
       }
     case actionTypes.SIGNUP_SUCCESS:
@@ -42,6 +46,7 @@ export default (state = initialState, action) => {
         ...state,
         status: 'done',
         signupSuccess: true,
+        pending: false,
         redirect: true,
         ...action.payload,
       }
@@ -59,6 +64,7 @@ export default (state = initialState, action) => {
         token: localStorage.getItem('user.token'),
         // user: JSON.parse(action.payload.user),
         user: action.payload.user,
+        pending: false,
       }
     case actionTypes.SIGNUP_FAIL:
     case actionTypes.LOGIN_FAIL:
@@ -67,6 +73,7 @@ export default (state = initialState, action) => {
         ...state,
         status: 'done',
         redirect: false,
+        pending: false,
         error: action.payload,
       }
     case actionTypes.LOGIN_OUT:

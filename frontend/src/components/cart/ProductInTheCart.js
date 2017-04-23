@@ -90,7 +90,7 @@ export class ProductInTheCart extends Component {
           <button
             id='ProductInTheCart-open-dialog'
             className='btn btn-danger'
-            onClick={this.handleOpen} >
+            onClick={this.handleOpen}>
             Remove
           </button>
         </div>
@@ -114,6 +114,11 @@ export class ProductInTheCart extends Component {
   }
 
 }
+
+ProductInTheCart.propTypes = {
+  totalQuantity: React.PropTypes.number.isRequired,
+}
+
 const mapStateToProps = state => ({
   totalQuantity: state.cart.totalQuantity,
 })
