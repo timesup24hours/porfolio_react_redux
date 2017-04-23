@@ -5,12 +5,12 @@ RUN mkdir -p /app
 WORKDIR /app
 
 # install yarn
-RUN npm install -g yarn
+# RUN npm install -g yarn
 
 # Cache npm dependencies
 COPY package.json /app/
-COPY yarn.lock /app/
-RUN yarn
+# COPY yarn.lock /app/
+RUN npm install
 
 # Copy application files
 COPY . /app
@@ -18,6 +18,6 @@ COPY . /app
 # Precompile javascript
 RUN ./node_modules/.bin/babel src --out-dir lib
 
-EXPOSE 80
+EXPOSE 8080
 
-CMD ["yarn", "run", "pm2"]
+CMD ["npm", "run", "dev"]
