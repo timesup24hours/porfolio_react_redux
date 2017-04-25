@@ -8,3 +8,8 @@ frontend/public/images
 frontend/coverage
 
 backend/lib
+
+frontend/.env
+backend/.env
+
+backend/data
