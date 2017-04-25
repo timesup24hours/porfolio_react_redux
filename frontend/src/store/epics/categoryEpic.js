@@ -6,7 +6,7 @@ export const addCategoryRequestEpic = action$ => action$
   .ofType(actionTypes.CATEGORY_ADD_REQUEST)
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.post('/api/category', payload, headers)
+    .ajax.post(`${process.env.API_HOST}/api/category`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -31,7 +31,7 @@ export const eidtCategoryRequestEpic = action$ => action$
   // .do(payload => console.log('del epic ', payload))
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.put('/api/eidt_category', payload, headers)
+    .ajax.put(`${process.env.API_HOST}/api/eidt_category`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -56,7 +56,7 @@ export const deleteCategoryRequestEpic = action$ => action$
   // .do(payload => console.log('del epic ', payload))
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.put('/api/delete_category', payload, headers)
+    .ajax.put(`${process.env.API_HOST}/api/delete_category`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {

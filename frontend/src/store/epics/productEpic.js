@@ -6,7 +6,7 @@ import { store } from '../configStore'
 export const productGetAllEpic = action$ => action$
   .ofType(actionTypes.PRODUCT_GET_ALL_REQUEST)
   .switchMap(() => Observable
-    .ajax.get('/api/products')
+    .ajax.get(`${process.env.API_HOST}/api/products`)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -25,7 +25,7 @@ export const productGetAllEpic = action$ => action$
 export const productGetOneEpic = action$ => action$
   .ofType(actionTypes.PRODUCT_GET_ONE_REQUEST)
   .switchMap(({ payload }) => Observable
-    .ajax.get(`/api/products/${payload.id}`)
+    .ajax.get(`${process.env.API_HOST}/api/products/${payload.id}`)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -44,7 +44,7 @@ export const productGetOneEpic = action$ => action$
 export const getProductByCategoryEpic = action$ => action$
   .ofType(actionTypes.PRODUCT_GET_CURRENT_CATEGORY_PRODUCT_REQUEST)
   .switchMap(({ payload }) => Observable
-    .ajax.get(`/api/get_products_by_category/${payload}`)
+    .ajax.get(`${process.env.API_HOST}/api/get_products_by_category/${payload}`)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -65,7 +65,7 @@ export const addProductEpic = action$ => action$
   // .delay(15000)
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.post('/api/addProduct/', payload, headers)
+    .ajax.post(`${process.env.API_HOST}/api/addProduct/`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -99,7 +99,7 @@ export const getProductByOwnserEpic = action$ => action$
   .ofType(actionTypes.PRODUCT_GET_PRODUCT_BY_OWNER_REQUEST)
   .map(signRequest)
   .switchMap(({ headers }) => Observable
-    .ajax.get(`/api/products_by_owner/`, headers)
+    .ajax.get(`${process.env.API_HOST}/api/products_by_owner/`, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -119,7 +119,7 @@ export const getCurrentEditProductsByOwnerEpic = action$ => action$
   .ofType(actionTypes.PRODUCT_GET_CURRENT_EDIT_PRODUCT_BY_OWNER_REQUEST)
   .map(signRequest)
   .switchMap(({ payload, headers }) => Observable
-    .ajax.get(`/api/get_current_edit_product_by_owner/${payload}`, headers)
+    .ajax.get(`${process.env.API_HOST}/api/get_current_edit_product_by_owner/${payload}`, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -139,7 +139,7 @@ export const editProductEpic = action$ => action$
   .ofType(actionTypes.PRODUCT_EDIT_PRODUCT_REQUEST)
   .map(signRequest)
   .switchMap(({ payload, headers }) => Observable
-    .ajax.put(`/api/eidt_product`, payload, headers)
+    .ajax.put(`${process.env.API_HOST}/api/eidt_product`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -172,7 +172,7 @@ export const deleteProductEpic = action$ => action$
   .ofType(actionTypes.PRODUCT_DELETE_PRODUCT_REQUEST)
   .map(signRequest)
   .switchMap(({ payload, headers }) => Observable
-    .ajax.put(`/api/delete_product`, payload, headers)
+    .ajax.put(`${process.env.API_HOST}/api/delete_product`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {

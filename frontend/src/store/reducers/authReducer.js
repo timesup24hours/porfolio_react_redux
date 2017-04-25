@@ -30,7 +30,7 @@ export default (state = initialState, action) => {
     case actionTypes.USER_INFO_CHANGE_REQUEST:
       return {
         ...state,
-        user: null,
+        // user: null,
         status: 'pending',
         pending: true,
       }
@@ -69,6 +69,7 @@ export default (state = initialState, action) => {
     case actionTypes.SIGNUP_FAIL:
     case actionTypes.LOGIN_FAIL:
     case actionTypes.USER_INFO_CHANGE_FAIL:
+      console.log(action.payload);
       return {
         ...state,
         status: 'done',

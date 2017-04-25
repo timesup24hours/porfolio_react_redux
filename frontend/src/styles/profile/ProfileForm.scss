@@ -1,4 +1,14 @@
 .ProfileForm {
   margin-top: 50px;
   padding-top: 40px auto 40px;
+
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+
+  input[type=number] {
+      -moz-appearance:textfield;
+  }
 }

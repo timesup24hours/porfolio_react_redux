@@ -201,9 +201,9 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        API_HOST: JSON.stringify(process.env.API_HOST || 'http://localhost:8080'),
-        STRIPE_PUBLIC_KEY: JSON.stringify(process.env.STRIPE_PUBLIC_KEY || 'pk_test_eZPEOrztVTn92MulyEkDp2ay'),
+        STRIPE_PUBLIC_KEY: JSON.stringify(process.env.STRIPE_PUBLIC_KEY),
       },
+      API_HOST: JSON.stringify(process.env.API_HOST || 'http://localhost:8080'),
     }),
   ],
   // Some libraries import Node modules but don't use them in the browser.

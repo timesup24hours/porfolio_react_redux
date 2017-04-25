@@ -492,7 +492,7 @@ class AddProductForm extends Component {
               <div className='col-sm-4'>
                 <div className="form-group">
                   <label>On Sale</label>
-                  <select className="form-control" id='onSale' name='onSale' value={this.state.onSale} onChange={this.handleChange}>\
+                  <select className="form-control" id='onSale' name='onSale' value={this.state.onSale} onChange={this.handleChange}>
                     <option disabled>Choose your option</option>
                     <option value={true}>true</option>
                     <option value={false}>false</option>

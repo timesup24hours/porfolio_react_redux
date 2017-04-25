@@ -16,7 +16,7 @@ export const signupRequestAction = () => ({
 
 export function isUserExistAction(data) {
   return dispatch => {
-    return axios.post('/api/isUserExist', data)
+    return axios.post(`${process.env.API_HOST}/api/isUserExist`, data)
   }
 }
 

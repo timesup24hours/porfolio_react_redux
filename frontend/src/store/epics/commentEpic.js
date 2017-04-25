@@ -5,7 +5,7 @@ import { signRequest } from '../../utils'
 export const commentGetAllEpic = action$ => action$
   .ofType(actionTypes.COMMENT_GET_ALL_REQUEST)
   .switchMap(() => Observable
-    .ajax.get('/api/comment')
+    .ajax.get(`${process.env.API_HOST}/api/comment`)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -25,7 +25,7 @@ export const commentDeleteEpic = action$ => action$
   .ofType(actionTypes.COMMENT_DELETE_REQUEST)
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.delete(`/api/comment/${payload.id}`, headers)
+    .ajax.delete(`${process.env.API_HOST}/api/comment/${payload.id}`, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -49,7 +49,7 @@ export const commentEditRequest = action$ => action$
   // .do(payload => console.log('going through signup epic', payload.payload)) // test
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.put(`/api/comment/`, { id: payload.id, comment: payload.comment }, headers)
+    .ajax.put(`${process.env.API_HOST}/api/comment/`, { id: payload.id, comment: payload.comment }, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {

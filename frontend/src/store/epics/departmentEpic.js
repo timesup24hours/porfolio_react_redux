@@ -6,7 +6,7 @@ export const addDepartmentRequestEpic = action$ => action$
   .ofType(actionTypes.DEPARTMENT_ADD_REQUEST)
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.post('/api/department', payload, headers)
+    .ajax.post(`${process.env.API_HOST}/api/department`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -31,7 +31,7 @@ export const deleteDepartmentRequestEpic = action$ => action$
   // .do(payload => console.log('del epic ', payload))
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.put('/api/delete_department', payload, headers)
+    .ajax.put(`${process.env.API_HOST}/api/delete_department`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -63,7 +63,7 @@ export const eidtDepartmentRequestEpic = action$ => action$
   // .do(payload => console.log('del epic ', payload))
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.put('/api/department', payload, headers)
+    .ajax.put(`${process.env.API_HOST}/api/department`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {

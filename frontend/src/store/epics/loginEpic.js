@@ -5,7 +5,7 @@ export const loginEpic = action$ => action$
   .ofType(actionTypes.LOGIN_REQUEST)
   // .do(payload => console.log('going through signup epic', payload)) // test
   .switchMap(({ payload }) => Observable
-    .ajax.post('/api/login', payload)
+    .ajax.post(`${process.env.API_HOST}/api/login`, payload)
     .map(res => res.response)
     .flatMap(response =>
       Observable.concat(

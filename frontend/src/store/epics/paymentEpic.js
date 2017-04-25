@@ -6,7 +6,7 @@ export const paymentRequestEpic = action$ => action$
   .ofType(actionTypes.PAYMENT_REQUEST)
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.post('/api/charge', payload, headers)
+    .ajax.post(`${process.env.API_HOST}/api/charge`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {

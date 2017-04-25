@@ -1,5 +1,6 @@
 require("babel-core/register");
 require("babel-polyfill");
+require('dotenv').config()
 
 import app from './server'
 import { mongoose } from '../db'

@@ -7,7 +7,7 @@ export const userInfoChangeRequest = action$ => action$
   .debounceTime(1000)
   .map(signRequest)
   .switchMap(({ payload, headers }) => Observable
-    .ajax.put('/api/userInfoChange', payload, headers)
+    .ajax.put(`${process.env.API_HOST}/api/userInfoChange`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -23,6 +23,10 @@ export const userInfoChangeRequest = action$ => action$
       {
         type: actionTypes.USER_INFO_CHANGE_FAIL,
         payload: error,
+      },
+      {
+        type: actionTypes.SNACKBAR_OPEN,
+        payload: 'some field is not valid'
       }
     ))
 

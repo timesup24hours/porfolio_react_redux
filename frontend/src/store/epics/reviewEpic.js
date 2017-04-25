@@ -7,7 +7,7 @@ export const reviewSubmitRequestEpic = action$ => action$
   // .do(payload => console.log('going through signup epic', payload.payload)) // test
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.post(`/api/review`, payload, headers)
+    .ajax.post(`${process.env.API_HOST}/api/review`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -26,7 +26,7 @@ export const reviewSubmitRequestEpic = action$ => action$
 export const getProductReviewEpic = action$ => action$
   .ofType(actionTypes.REVIEW_GET_CURRENT_PRODUCT_REVIEW_REQUEST)
   .switchMap(({ payload }) => Observable
-    .ajax.get(`/api/review/${payload.id}`)
+    .ajax.get(`${process.env.API_HOST}/api/review/${payload.id}`)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -46,7 +46,7 @@ export const reviewDeleteRequestEpic = action$ => action$
   .ofType(actionTypes.REVIEW_DELETE_REQUEST)
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.delete(`/api/review/${payload.id}`, headers)
+    .ajax.delete(`${process.env.API_HOST}/api/review/${payload.id}`, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -74,7 +74,7 @@ export const reviewEditRequestEpic = action$ => action$
   // .do(payload => console.log('going through eidt', payload.payload)) // test
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.put(`/api/review`, { id: payload.id, review: payload.comment }, headers)
+    .ajax.put(`${process.env.API_HOST}/api/review`, { id: payload.id, review: payload.comment }, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {

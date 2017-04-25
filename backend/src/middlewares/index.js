@@ -15,13 +15,14 @@ import mongoose from 'mongoose';
 export default (app) => {
 
   // static files
-  if(process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../../../frontend/build')))
-    console.log(path.join(__dirname, '../../../frontend/build'));
-  } else {
-    app.use(express.static(path.join(__dirname, '../../../frontend/public')))
-    console.log(path.join(__dirname, '../../../frontend/public'));
-  }
+  
+  // if(process.env.NODE_ENV === 'production') {
+  //   app.use(express.static(path.join(__dirname, '../../../frontend/build')))
+  //   console.log(path.join(__dirname, '../../../frontend/build'));
+  // } else {
+  //   app.use(express.static(path.join(__dirname, '../../../frontend/public')))
+  //   console.log(path.join(__dirname, '../../../frontend/public'));
+  // }
 
   // app.set('views', __dirname + '/views');
   // app.set('view engine', 'ejs');

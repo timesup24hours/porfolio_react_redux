@@ -11,6 +11,8 @@ function getClientEnvironment(publicUrl) {
       env[key] = process.env[key];
       return env;
     }, {
+      'STRIPE_PUBLIC_KEY': JSON.stringify(process.env.STRIPE_PUBLIC_KEY),
+      'API_HOST': JSON.stringify(process.env.API_HOST),
       // Useful for determining whether we’re running in production mode.
       // Most importantly, it switches React into the correct mode.
       'NODE_ENV': process.env.NODE_ENV || 'development',
@@ -28,11 +30,10 @@ function getClientEnvironment(publicUrl) {
         env[key] = JSON.stringify(raw[key]);
         return env;
       }, {}),
-    'process.env': {
-      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      API_HOST: JSON.stringify(process.env.API_HOST || 'http://localhost:80'),
-      STRIPE_PUBLIC_KEY: JSON.stringify(process.env.STRIPE_PUBLIC_KEY || 'pk_test_eZPEOrztVTn92MulyEkDp2ay'),
-    },
+    // 'process.env': {
+    //   NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+    //   STRIPE_PUBLIC_KEY: JSON.stringify(process.env.STRIPE_PUBLIC_KEY),
+    // },
   };
 
   return { raw, stringified };

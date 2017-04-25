@@ -4,7 +4,7 @@ import * as actionTypes from '../actions/actionTypes'
 export const menuGetAllEpic = action$ => action$
   .ofType(actionTypes.MENU_GET_CATEGORY_REQUEST)
   .switchMap(() => Observable
-    .ajax.get('/api/menu')
+    .ajax.get(`${process.env.API_HOST}/api/menu`)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {

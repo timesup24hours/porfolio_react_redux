@@ -6,7 +6,7 @@ export const addSubCategoryRequestEpic = action$ => action$
   .ofType(actionTypes.SUBCATEGORY_ADD_REQUEST)
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.post('/api/subcategory', payload, headers)
+    .ajax.post(`${process.env.API_HOST}/api/subcategory`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -31,7 +31,7 @@ export const eidtSubCategoryRequestEpic = action$ => action$
   // .do(payload => console.log('del epic ', payload))
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.put('/api/edit_subcategory', payload, headers)
+    .ajax.put(`${process.env.API_HOST}/api/edit_subcategory`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {
@@ -56,7 +56,7 @@ export const deleteSubCategoryRequestEpic = action$ => action$
   // .do(payload => console.log('del epic ', payload))
   .map(signRequest)
   .switchMap(({ headers, payload }) => Observable
-    .ajax.put('/api/delete_subcategory', payload, headers)
+    .ajax.put(`${process.env.API_HOST}/api/delete_subcategory`, payload, headers)
     .map(res => res.response)
     .mergeMap(response => Observable.of(
       {

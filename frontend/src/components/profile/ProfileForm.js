@@ -199,7 +199,14 @@ class ProfileForm extends Component {
                     pattern="^\d{5}$"
                     id='ProfileForm-zipcode'
                     name="zipcode"
-                    type="text"
+                    type='number'
+                    onKeyPress={e => {
+                      if(e.charCode === 101 || e.charCode === 45 || e.charCode === 46) {
+                        e.preventDefault()
+                      }
+                    }}
+                    min='0'
+                    step='any'
                   />
                 </div>
               </div>

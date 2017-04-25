@@ -27,7 +27,7 @@ class SignupForm extends Component {
     this.props.signupRequestClick()
     this.props.dispatch(showLoading())
     return new Promise((resovle, reject) => {
-      return axios.post('/api/signup', values)
+      return axios.post(`${process.env.API_HOST}/api/signup`, values)
         .then((res) => {
           this.props.signupSuccess(res.data)
           resovle()
