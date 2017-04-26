@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import moment from 'moment'
 import Delete from 'material-ui/svg-icons/action/delete-forever'
 import Edit from 'material-ui/svg-icons/editor/border-color'

@@ -13,3 +13,5 @@ frontend/.env
 backend/.env
 
 backend/data
+
+.DS_Store

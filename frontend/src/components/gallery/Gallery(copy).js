@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Spinner from '../spinner/Spinner'
 import { connect } from 'react-redux'
 import * as galleryActions from '../../store/actions/galleryActions'
@@ -66,7 +67,7 @@ const mapDispatchToProps = dispatch => ({
 })
 
 Gallery.propTypes = {
-  images: React.PropTypes.arrayOf(React.PropTypes.string),
+  images: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Gallery)

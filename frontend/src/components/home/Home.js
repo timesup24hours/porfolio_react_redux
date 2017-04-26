@@ -4,6 +4,35 @@ import Home2 from './Home2'
 import Home3 from './Home3'
 // import { scrollIt } from './scrollIt'
 
+const style = {
+  div1: {
+    zIndex: '500',
+    width: '100%',
+    height: '100%',
+    // borderTop: '80vh solid #303030',
+    borderTop: '80vh solid rgba(244,67,54 ,1)',
+    borderLeft: '100vw solid rgba(198,40,40 ,1)',
+    position: 'relative',
+  },
+  div2: {
+    zIndex: '500',
+    width: '100%',
+    height: '0',
+    borderBottom: '80vh solid rgba(255,82,82 ,1)',
+    borderRight: '100vw solid rgba(198,40,40 ,1)',
+    position: 'relative',
+  },
+  d2text: {
+    fontSize: '30px',
+    fontWeight: '20px',
+    marginTop: '30vh',
+    marginLeft: '10vh',
+    position: 'absolute',
+    border: '1px solid black',
+
+  }
+}
+
 class Home extends Component {
   // state = {
   //   scrollPosition: 0,
@@ -39,6 +68,8 @@ class Home extends Component {
   //   window.removeEventListener('scroll', this.handleScroll)
   // }
 
+
+
   render() {
     return (
       <div className='Home'>
@@ -48,6 +79,24 @@ class Home extends Component {
       </div>
     )
   }
+
 }
 
 export default Home
+
+
+// <div style={style.div1}>
+//   <div className='Home-div1-text'>
+//     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+//   </div>
+// </div>
+//
+//
+// <div style={style.div2}>
+//   <div className='Home-div-text'>
+//     <div className='Home-text'>
+//       <div className='Home-right-shape'></div>
+//       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+//     </div>
+//   </div>
+// </div>

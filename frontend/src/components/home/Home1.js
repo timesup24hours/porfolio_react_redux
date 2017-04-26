@@ -1,8 +1,6 @@
 import React from 'react'
 import home1Img from '../../../public/images/home1.jpg'
 
-console.log('asdf  ', process.env.API_HOST);
-
 const Home1 = () => {
   // console.log(document.styleSheets);
   return (

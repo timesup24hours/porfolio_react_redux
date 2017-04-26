@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import * as productActions from '../../store/actions/productActions'
 import { routeParamsFormatToName } from '../../utils'
@@ -19,7 +20,7 @@ const styles = {
 class ShopByDepartment extends Component {
 
   static contextTypes = {
-    router: React.PropTypes.object,
+    router: PropTypes.object,
   }
 
   closeDropDown = e => {

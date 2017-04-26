@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const TextFieldGroup = ({ id, name, value, label, cols, rows,
   error, type, onChange, onBlur, classNameContainer,
@@ -23,15 +24,15 @@ const TextFieldGroup = ({ id, name, value, label, cols, rows,
 }
 
 TextFieldGroup.propTypes = {
-  name: React.PropTypes.string,
-  value: React.PropTypes.any,
-  label: React.PropTypes.string,
-  error: React.PropTypes.string,
-  type: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  onBlur: React.PropTypes.func,
-  cols: React.PropTypes.string,
-  rows: React.PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.any,
+  label: PropTypes.string,
+  error: PropTypes.string,
+  type: PropTypes.string,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  cols: PropTypes.string,
+  rows: PropTypes.string,
 }
 
 TextFieldGroup.defaultProps = {

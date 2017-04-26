@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 import { connect } from 'react-redux'
@@ -10,8 +11,8 @@ import * as actionTypes from '../../store/actions/actionTypes'
 export class Comment extends Component {
 
   static propType = {
-    auth: React.PropTypes.object,
-    comment: React.PropTypes.object,
+    auth: PropTypes.object,
+    comment: PropTypes.object,
   }
 
   componentDidMount() {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 // import Add from 'material-ui/svg-icons/content/add'
 // import Remove from 'material-ui/svg-icons/content/remove'
@@ -116,7 +117,7 @@ export class ProductInTheCart extends Component {
 }
 
 ProductInTheCart.propTypes = {
-  totalQuantity: React.PropTypes.number.isRequired,
+  totalQuantity: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = state => ({

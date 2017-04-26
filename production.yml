@@ -9,31 +9,37 @@ services:
     image: mongo:latest
     env_file: ./backend/.env
     environment:
-      - DB_HOST=adsfdb
+      - DB_NAME=adsfdb
     volumes:
       - ./backend/data:/data/db
     ports:
       - "27017:27017"
+    restart: always
 
   adsfserver:
     build:
-      context: ./backend/.
+      context: ./backend/
       dockerfile: Prod.Dockerfile
     env_file: ./backend/.env
     environment:
       - APP_ENV=production
     ports:
       - "8080:8080"
+    links:
+      - adsfdb
+    restart: always
 
   adsfclient:
     build:
-      context: ./frontend/.
+      context: ./frontend/
       dockerfile: Prod.Dockerfile
     environment:
+      - PORT=8080
       - API_HOST=http://localhost:8080
-      - DB_HOST=adsfdb
+      - DB_NAME=adsfdb
     ports:
       - "80:9000"
+    restart: always
 
   # proxy:
   #   build: ./nginx/.

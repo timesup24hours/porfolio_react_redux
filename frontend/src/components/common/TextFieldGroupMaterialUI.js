@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import TextField from 'material-ui/TextField'
 
@@ -27,23 +28,23 @@ const TextFieldGroupMaterialUI = ({ name, value, label, error, type, onChange, o
 }
 
 TextFieldGroupMaterialUI.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  value: React.PropTypes.string,
-  type: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  label: React.PropTypes.string,
-  error: React.PropTypes.string,
-  onBlur: React.PropTypes.func,
-  className: React.PropTypes.string,
-  errorClassName: React.PropTypes.string,
-  multiLine: React.PropTypes.bool,
-  rowsMax: React.PropTypes.number,
-  fullWidth: React.PropTypes.bool,
-  disabled: React.PropTypes.bool,
-  id: React.PropTypes.string,
-  inputStyle: React.PropTypes.object,
-  textareaStyle: React.PropTypes.object,
-  underlineShow: React.PropTypes.bool
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  type: PropTypes.string,
+  onChange: PropTypes.func,
+  label: PropTypes.string,
+  error: PropTypes.string,
+  onBlur: PropTypes.func,
+  className: PropTypes.string,
+  errorClassName: PropTypes.string,
+  multiLine: PropTypes.bool,
+  rowsMax: PropTypes.number,
+  fullWidth: PropTypes.bool,
+  disabled: PropTypes.bool,
+  id: PropTypes.string,
+  inputStyle: PropTypes.object,
+  textareaStyle: PropTypes.object,
+  underlineShow: PropTypes.bool
 }
 
 TextFieldGroupMaterialUI.defaultProps = {

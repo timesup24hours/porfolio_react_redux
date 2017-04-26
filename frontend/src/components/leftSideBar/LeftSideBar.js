@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
@@ -54,7 +55,7 @@ class LeftSideBar extends Component {
   }
 
   static contextTypes = {
-    router: React.PropTypes.object,
+    router: PropTypes.object,
   }
 
   // resize function for event listener

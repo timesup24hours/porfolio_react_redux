@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import ProfileForm from './ProfileForm'
 import { connect } from 'react-redux'
 import * as authActions from '../../store/actions/authActions'
@@ -7,7 +8,7 @@ import LoadingMask from '../mask/LoadingMask'
 class Profile extends Component {
 
   static contextTypes = {
-    router: React.PropTypes.object,
+    router: PropTypes.object,
   }
 
   componentWillMount() {

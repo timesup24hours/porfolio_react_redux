@@ -1,6 +1,6 @@
-FROM node:6.7.0
+FROM node:7.2.1
 
-ENV DB_HOST adsfdb_dev
+ENV DB_NAME adsfdb_dev
 
 # Create app folder
 RUN mkdir -p /app
@@ -16,9 +16,6 @@ RUN yarn install
 
 # Copy application files
 COPY . /app
-
-# Precompile javascript
-RUN ./node_modules/.bin/babel src --out-dir lib
 
 EXPOSE 8080
 

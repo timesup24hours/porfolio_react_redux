@@ -1,6 +1,7 @@
-FROM node:6.7.0
+FROM node:7.2.1
 
-# ENV DB_HOST adsfdb
+ENV DB_NAME adsfdb
+ENV DB_HOST mongodb://adsfdb:27017/adsfDB
 
 # Create app folder
 RUN mkdir -p /app
@@ -18,10 +19,9 @@ RUN yarn install
 COPY . /app
 
 # Precompile javascript
-RUN ./node_modules/.bin/babel src --out-dir lib
+# RUN ./node_modules/.bin/babel src --out-dir lib
+RUN yarn build
 
 EXPOSE 8080
 
-RUN yarn build
-
-CMD ["yarn", "pm2"]
+CMD ["yarn", "start"]

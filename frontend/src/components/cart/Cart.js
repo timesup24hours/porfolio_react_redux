@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import * as cartActions from '../../store/actions/cartActions'
 import ProductInTheCart from './ProductInTheCart'
@@ -19,12 +20,12 @@ const mapDispatchToProps = dispatch => ({
 export class Cart extends Component {
 
   static propTypes = {
-    cart: React.PropTypes.object,
-    totalQuantity: React.PropTypes.number,
+    cart: PropTypes.object,
+    totalQuantity: PropTypes.number,
   }
 
   static contextTypes = {
-    router: React.PropTypes.object,
+    router: PropTypes.object,
   }
 
   componentDidMount() {

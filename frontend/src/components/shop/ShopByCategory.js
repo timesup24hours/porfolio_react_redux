@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Spinner from '../spinner/Spinner'
 import * as productActions from '../../store/actions/productActions'
@@ -9,7 +10,7 @@ import { Link } from 'react-router'
 class ShopByCategory extends Component {
 
   static contextTypes = {
-    router: React.PropTypes.object,
+    router: PropTypes.object,
   }
 
   componentDidMount() {

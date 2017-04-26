@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Nav from './nav/Nav'
 // import Block from './block/Block'<Block />
 import NavLeftMenu from './nav/NavLeftMenu'
@@ -20,9 +21,9 @@ import { store } from '../store/configStore'
 class App extends Component {
 
   static propTypes = {
-    getCartRequest: React.PropTypes.func,
-    snackbarClose: React.PropTypes.func,
-    // UI: React.PropTypes.obj
+    getCartRequest: PropTypes.func,
+    snackbarClose: PropTypes.func,
+    // UI: PropTypes.obj
   }
 
   // detect Safari browser in js
