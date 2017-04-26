@@ -107,6 +107,8 @@ module.exports = {
           /\.json$/,
           /\.svg$/,
           /\.scss$/,
+          /\.sass$/,
+          /\.scss$/,
         ],
         loader: 'url',
         query: {
@@ -139,7 +141,13 @@ module.exports = {
       //scss
       {
         test: /\.scss$/,
-        loaders: ["style-loader", "css-loader", "sass-loader"]
+        include: paths.appSrc,
+        loaders: ["style", "css", "sass"]
+      },
+      {
+        test: /\.sass$/,
+        include: paths.appSrc,
+        loaders: ["style", "css", "sass"]
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
@@ -201,9 +209,9 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-        STRIPE_PUBLIC_KEY: JSON.stringify(process.env.STRIPE_PUBLIC_KEY),
+        STRIPE_PUBLIC_KEY: JSON.stringify(process.env.STRIPE_PUBLIC_KEY) || 'pk_test_eZPEOrztVTn92MulyEkDp2ay',
+        API_HOST: JSON.stringify(process.env.API_HOST || 'http://localhost:8080'),
       },
-      API_HOST: JSON.stringify(process.env.API_HOST || 'http://localhost:8080'),
     }),
   ],
   // Some libraries import Node modules but don't use them in the browser.

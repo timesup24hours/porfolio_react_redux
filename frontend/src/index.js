@@ -1,6 +1,4 @@
 /* eslint-disable */
-require('dotenv').config()
-
 import 'rxjs'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -15,6 +13,7 @@ import { navBarFontColorChangeToBlackUI } from './store/actions/UIActions'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 require("!style-loader!css-loader!sass-loader!./styles/index.scss")
+// import './styles/index.scss'
 
 // material ui plugin
 import injectTapEventPlugin from 'react-tap-event-plugin'

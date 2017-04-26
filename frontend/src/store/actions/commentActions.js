@@ -29,7 +29,7 @@ export const commentResetValues = () => ({
 })
 
 export const commentSubmitRequest = payload =>
-  dispatch => axios.post('/api/comment', payload)
+  dispatch => axios.post(`${process.env.API_HOST}/api/comment`, payload)
 
 export const commentGetAllRequest = () => ({
   type: actionTypes.COMMENT_GET_ALL_REQUEST

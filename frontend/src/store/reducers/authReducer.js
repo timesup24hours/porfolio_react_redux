@@ -69,7 +69,6 @@ export default (state = initialState, action) => {
     case actionTypes.SIGNUP_FAIL:
     case actionTypes.LOGIN_FAIL:
     case actionTypes.USER_INFO_CHANGE_FAIL:
-      console.log(action.payload);
       return {
         ...state,
         status: 'done',

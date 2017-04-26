@@ -1,5 +1,5 @@
 FROM nginx
 
-RUN rm /etc/nginx/conf.d/*
+RUN rm /etc/nginx/sites-enabled/*
 
-COPY proxy.conf /etc/nginx/conf.d/
+COPY default /etc/nginx/sites-enabled/

@@ -1,11 +1,11 @@
-version: "3"
+version: "2"
 
 volumes:
-  adsfdb:
+  adsfdb_dev:
     external: false
 
 services:
-  adsfdb:
+  adsfdb_dev:
     image: mongo:latest
     env_file: ./backend/.env
     volumes:
@@ -13,24 +13,32 @@ services:
     ports:
       - "27017:27017"
 
-  adsfserver:
+  adsfserver_dev:
     build: ./backend/.
     env_file: ./backend/.env
     volumes:
-      - ~/Projects/adsf/backend:/app
+      - ~/Projects/adsf/backend/src:/app/src
     ports:
       - "8080:8080"
+    links:
+      - adsfdb_dev
 
-  adsfclient:
-    build: ./frontend/.
-    environment:
-      - API_HOST=http://localhost:8080
+  adsfclient_dev:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
     volumes:
-      - ~/Projects/adsf/frontend:/app
+      - ~/Projects/adsf/frontend/src:/app/src
+      - ~/Projects/adsf/frontend/config:/app/config
+      - ~/Projects/adsf/frontend/package.json:/app/package.json
     ports:
       - "80:3000"
+    #environment:
+    #  - API_HOST=http://localhost:8080
 
-  proxy:
-    build: ./nginx/.
-    ports:
-      - "80:80"
+  # proxy:
+  #   build: ./nginx/.
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     -

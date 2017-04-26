@@ -1,5 +1,7 @@
 FROM node:6.7.0
 
+ENV DB_HOST adsfdb_dev
+
 # Create app folder
 RUN mkdir -p /app
 WORKDIR /app
@@ -20,4 +22,4 @@ RUN ./node_modules/.bin/babel src --out-dir lib
 
 EXPOSE 8080
 
-CMD ["yarn", "run", "dev"]
+CMD ["yarn", "dev"]
