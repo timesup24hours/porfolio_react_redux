@@ -58,7 +58,6 @@
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
     "cleave.js": "^0.7.15",
-    "dotenv": "^4.0.0",
     "enzyme": "^2.8.0",
     "gsap": "^1.19.1",
     "lodash": "^4.17.4",
