@@ -1,5 +1,7 @@
 FROM node:7.2.1
 
+env NODE_ENV production
+
 # Create app folder
 RUN mkdir -p /app
 WORKDIR /app

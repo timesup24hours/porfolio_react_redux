@@ -34,7 +34,7 @@ services:
       context: ./frontend/
       dockerfile: Prod.Dockerfile
     environment:
-      - PORT=8080
+      - PORT=9000
       - API_HOST=http://localhost:8080
       - DB_NAME=adsfdb
     ports:

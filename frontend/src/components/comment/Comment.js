@@ -4,7 +4,7 @@ import CommentForm from './CommentForm'
 import CommentList from './CommentList'
 import { connect } from 'react-redux'
 import * as commentActions from '../../store/actions/commentActions'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
+import { CSSTransitionGroup } from 'react-transition-group' // ES6
 import CircularProgress from 'material-ui/CircularProgress'
 import * as actionTypes from '../../store/actions/actionTypes'
 
@@ -38,12 +38,12 @@ export class Comment extends Component {
       <div className='Comment-container clearfix'>
         <CommentForm comment={this.props.comment} />
         {Comments.length > 0
-          ? <ReactCSSTransitionGroup
+          ? <CSSTransitionGroup
               transitionName="CommentAnimation"
               transitionEnterTimeout={1000}
               transitionLeaveTimeout={800}>
               {Comments}
-            </ReactCSSTransitionGroup>
+            </CSSTransitionGroup>
           : this.props.comment.pending
             ? <div className='Comment-noComment'>
                 <CircularProgress size={50} thickness={3}/>
