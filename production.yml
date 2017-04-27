@@ -15,8 +15,6 @@ services:
     ports:
       - "27017:27017"
     restart: always
-    networks:
-      - backend
 
   adsfserver:
     build:
@@ -29,10 +27,10 @@ services:
       - "8080:8080"
     links:
       - adsfdb
-    restart: always
     networks:
       - frontend
       - backend
+    restart: always
 
   adsfclient:
     build:
@@ -45,9 +43,9 @@ services:
       - "80:9000"
     links:
       - adsfserver
-    restart: always
     networks:
       - frontend
+    restart: always
 
 networks:
   frontend:
