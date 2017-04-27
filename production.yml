@@ -34,10 +34,12 @@ services:
       context: ./frontend/
       dockerfile: Prod.Dockerfile
     environment:
-      - API_HOST=http://localhost:8080
+      - API_HOST=http://adsfserver:8080
       - DB_NAME=adsfdb
     ports:
       - "80:9000"
+    links:
+      - adsfdb
     restart: always
 
   # proxy:
