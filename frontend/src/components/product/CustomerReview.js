@@ -1,7 +1,7 @@
 import React from 'react'
 import CommentList from '../comment/CommentList'
 import ReviewForm from './ReviewForm'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
+import { CSSTransitionGroup } from 'react-transition-group' // ES6
 import * as actionTypes from '../../store/actions/actionTypes'
 
 
@@ -36,12 +36,12 @@ const CustomerReview = props => {
 
       <div className="row">
         {props.review.length > 0
-          ? <ReactCSSTransitionGroup
+          ? <CSSTransitionGroup
               transitionName="CommentAnimation"
               transitionEnterTimeout={1000}
               transitionLeaveTimeout={800}>
               {review}
-            </ReactCSSTransitionGroup>
+            </CSSTransitionGroup>
           : null}
       </div>
 
