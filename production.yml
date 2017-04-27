@@ -15,6 +15,8 @@ services:
     ports:
       - "27017:27017"
     restart: always
+    networks:
+      - backend
 
   adsfserver:
     build:
@@ -28,19 +30,29 @@ services:
     links:
       - adsfdb
     restart: always
+    networks:
+      - frontend
+      - backend
 
   adsfclient:
     build:
       context: ./frontend/
       dockerfile: Prod.Dockerfile
     environment:
-      - API_HOST=http://adsfserver:8080
+      - API_HOST=http://localhost:8080
       - DB_NAME=adsfdb
     ports:
       - "80:9000"
     links:
-      - adsfdb
+      - adsfserver
     restart: always
+    networks:
+      - frontend
+
+networks:
+  frontend:
+  backend:
+    driver: bridge
 
   # proxy:
   #   build: ./nginx/.

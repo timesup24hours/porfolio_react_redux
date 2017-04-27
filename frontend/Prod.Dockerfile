@@ -1,6 +1,6 @@
 FROM node:7.2.1
 
-ENV API_HOST http://adsfserver:8080
+ENV API_HOST http://localhost:8080
 
 # Create app folder
 RUN mkdir -p /app
