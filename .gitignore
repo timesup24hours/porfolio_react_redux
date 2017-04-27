@@ -8,10 +8,14 @@ frontend/public/images
 frontend/coverage
 
 backend/lib
+backend/data
+backend/data/
+./backend/data/
+./backend/data
 
 frontend/.env
 backend/.env
 
-backend/data
+
 
 .DS_Store
