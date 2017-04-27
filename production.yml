@@ -27,9 +27,6 @@ services:
       - "8080:8080"
     links:
       - adsfdb
-    networks:
-      - frontend
-      - backend
     restart: always
 
   adsfclient:
@@ -43,14 +40,7 @@ services:
       - "80:9000"
     links:
       - adsfserver
-    networks:
-      - frontend
     restart: always
-
-networks:
-  frontend:
-  backend:
-    driver: bridge
 
   # proxy:
   #   build: ./nginx/.
