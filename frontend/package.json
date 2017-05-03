@@ -16,7 +16,6 @@
     "cross-spawn": "4.0.2",
     "css-loader": "^0.26.1",
     "detect-port": "1.0.1",
-    "dotenv": "^4.0.0",
     "enzyme-to-json": "^1.5.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
@@ -50,6 +49,7 @@
     "url-loader": "0.5.7",
     "webpack": "^1.14.0",
     "webpack-dev-server": "1.16.2",
+    "webpack-dotenv-plugin": "^2.0.0",
     "webpack-manifest-plugin": "1.1.0",
     "whatwg-fetch": "2.0.2"
   },

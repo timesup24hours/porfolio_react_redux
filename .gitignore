@@ -14,6 +14,7 @@ backend/data/
 ./backend/data
 
 frontend/.env
+frontend/.env.default
 backend/.env
 
 

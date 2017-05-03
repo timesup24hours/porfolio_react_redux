@@ -17,7 +17,7 @@ services:
     build: ./backend/.
     env_file: ./backend/.env
     volumes:
-      - ~/Projects/adsf/backend/src:/app/src
+      - ~/projects/porfolio_react_redux/backend/src:/app/src
     ports:
       - "8080:8080"
     links:
@@ -28,9 +28,9 @@ services:
       context: ./frontend/
       dockerfile: Dockerfile
     volumes:
-      - ~/Projects/adsf/frontend/src:/app/src
-      - ~/Projects/adsf/frontend/config:/app/config
-      - ~/Projects/adsf/frontend/package.json:/app/package.json
+      - ~/projects/porfolio_react_redux/frontend/src:/app/src
+      - ~/projects/porfolio_react_redux/frontend/config:/app/config
+      - ~/projects/porfolio_react_redux/frontend/package.json:/app/package.json
     ports:
       - "80:3000"
     #environment:

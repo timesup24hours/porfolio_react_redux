@@ -6,7 +6,7 @@ var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
-
+var DotenvPlugin = require('webpack-dotenv-plugin');
 
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -212,6 +212,10 @@ module.exports = {
         STRIPE_PUBLIC_KEY: JSON.stringify(process.env.STRIPE_PUBLIC_KEY) || 'pk_test_eZPEOrztVTn92MulyEkDp2ay',
         API_HOST: JSON.stringify(process.env.API_HOST || 'http://localhost:8080'),
       },
+    }),
+    new DotenvPlugin({
+      sample: paths.envDefault,
+      path: paths.env
     }),
   ],
   // Some libraries import Node modules but don't use them in the browser.
