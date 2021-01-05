@@ -54,7 +54,7 @@
     "whatwg-fetch": "2.0.2"
   },
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.21.1",
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
     "cleave.js": "^0.7.15",
