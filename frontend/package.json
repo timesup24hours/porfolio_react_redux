@@ -59,7 +59,7 @@
     "classnames": "^2.2.5",
     "cleave.js": "^0.7.15",
     "enzyme": "^2.8.0",
-    "gsap": "^1.19.1",
+    "gsap": "^3.6.0",
     "lodash": "^4.17.4",
     "material-ui": "^0.17.0",
     "moment": "^2.17.1",
