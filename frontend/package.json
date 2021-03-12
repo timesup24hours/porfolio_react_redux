@@ -39,7 +39,7 @@
     "postcss-loader": "1.2.2",
     "promise": "7.1.1",
     "react-addons-test-utils": "^15.4.2",
-    "react-dev-utils": "^0.5.0",
+    "react-dev-utils": "^11.0.4",
     "recursive-readdir": "2.1.0",
     "redux-mock-store": "^1.2.2",
     "sass-loader": "^4.1.1",
