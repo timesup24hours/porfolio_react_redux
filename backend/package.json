@@ -47,7 +47,7 @@
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",
     "pm2": "^2.4.3",
-    "schema-inspector": "^1.6.8",
+    "schema-inspector": "^2.0.0",
     "stripe": "^4.17.1",
     "uuid": "^3.0.1"
   }
